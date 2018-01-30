@@ -27,7 +27,7 @@ int main() {
 	for (float i = 0; i <= 10; i++)
 		cout << i << ' ';
 	cout << '\n';
-
+	// type promotion 0 --> 0.0f
 	for (float i = 0; i <= 10; i += 0.1)
 		cout << i << ' ';
 	cout << '\n';
