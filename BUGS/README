@@ -1,0 +1,17 @@
+The files in the problem directory are c++ code that fails to build or run properly.
+The first two letters of each filename are a logarithmic difficulty level
+
+00 is elementary, usually syntax
+10 is elementary but may include semantic bugs
+20 a bug that can be tricky to find, subtle problems involving the linker
+30 a bug that is runtime, and difficult
+40 extremely difficult
+50 unsolved
+
+If the file is a directory, then the directory contains multiple files with a single problem.
+
+All these files are assumed to be compiled using the command:
+
+g++ -g -std=c++11
+
+unless otherwise indicated.  The -g is for debugging
