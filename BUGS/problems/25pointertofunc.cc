@@ -2,6 +2,12 @@
 #include <cmath>
 using namespace std;
 
+/**
+ * Accept any function of one double parameter returning double, and 
+ * invoke the function for f(a), f(a+h), f(a+2h), f(a+3h)... f(b).
+ * where h = (b-a) / n
+ *
+ */
 double sum(double *f(double), double a, double b, int n) {
 	double s = 0;
 	double dx = (b - a) / n;
