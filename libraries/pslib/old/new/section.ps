@@ -1,0 +1,206 @@
+<< /PageSize [1224 792] >> setpagedevice
+
+/redblue      <<
+  /FunctionType 0
+    /Domain [0 1]
+    /Range [0 1 0 1 0 1]
+    /Size [5]
+    /BitsPerSample 8
+    /DataSource <400000 ff0000 ffffff 0000ff 000040>
+ >> def
+
+/bluered      <<
+  /FunctionType 0
+    /Domain [0 1]
+    /Range [0 1 0 1 0 1]
+    /Size [5]
+    /BitsPerSample 8
+    /DataSource <000040 0000ff ffffff ff0000 400000>
+ >> def
+
+/blue      <<
+  /FunctionType 0
+    /Domain [0 1]
+    /Range [0 1 0 1 0 1]
+    /Size [5]
+    /BitsPerSample 8
+    /DataSource <ffffff 8080ff 0000ff 000080 000040>
+ >> def
+
+/green      <<
+  /FunctionType 0
+    /Domain [0 1]
+    /Range [0 1 0 1 0 1]
+    /Size [5]
+    /BitsPerSample 8
+    /DataSource <ffffff 80ff80 00ff00 006000 002000>
+ >> def
+
+/cross1 <<
+  /h [10 10 0 10 10 10 10 10 10 12 14 10 10 10 10 10 10 10 10 10]
+  /eta [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+  /x [0 500 1000 1500 2200 2700 3200 3900 4800 5900 6100 6600 7100 7700 8100 8700 9300 9800 10700 11600 12500 13000]
+  /sigma [0 .1 .2 .3 .4 .5 .6 .7 .8 .9 1]
+  /val [
+	[0 0 0 3 3 4 4 5 5 5 5 6 6 7 7 8 8 8 8 8]
+	[0 1 0 3 4 5 5 5 6 6 6 6 6 7 7 8 8 8 8 8]
+	[1 2 0 4 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7]
+	[2 3 0 5 5 5 5 5 9 9 9 9 9 9 8.5 8.5 8.5 8.5 8.5 8.5]
+	[4 6 0 8 8 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10]
+	[5 6 0 7 8 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10]
+	[6 7 0 8 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10]
+	[7 8 0 9 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11]
+	[8 9 0 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11]
+	[9 10 0 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11]
+	[12 12 0 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12]
+	]
+  /regions [ [0 2] [3 17] ]
+ 
+>> def
+
+
+/shadeagrid {
+  5 dict begin
+    /pointsperrow exch def
+    /gridvals exch def
+    /bgcolor exch def
+    /colormap exch def
+
+    0 1 gridvals length 1 sub {
+	/i exch def
+	gridvals i gridvals i get 12 div put 
+    } for
+%    colormap bgcolor gridvals pointsperrow pstack quit
+    <<
+      /ShadingType 5
+      /ColorSpace [/DeviceRGB]
+      /VerticesPerRow pointsperrow
+      /Background bgcolor
+      /Function colormap
+      /DataSource gridvals
+    >> shfill
+  end
+} bind def
+
+/plotgrid {
+  5 dict begin
+    /pointsperrow exch def
+    /rows exch def
+    /gridvals exch def
+    aload pop setrgbcolor 0 setlinewidth
+    /rowsize pointsperrow 3 mul def
+    0 1 rows 2 sub {
+    0 1 pointsperrow 2 sub {
+    (yohoho\n) print
+      /i exch 2 index rowsize mul add def
+      gridvals i get gridvals i 1 add get 2 copy == ==  moveto
+      gridvals i 3 add get gridvals i 4 add get 2 copy == ==  lineto
+      gridvals i rowsize add 3 add get gridvals i rowsize add 4 add get 2 copy == == lineto
+      gridvals i rowsize add get gridvals i rowsize add 1 add get 2 copy == == lineto
+      closepath
+      stroke
+    } for
+      pop
+    } for
+  end
+} bind def
+
+
+
+% x y r vectorinto -
+% draws a circle with an x in it, representing a vector into the page
+/vectorinto {
+  3 copy 0 360 arc stroke
+  3 1 roll pstack 3 copy moveto dup .5 mul dup dup rmoveto exch neg dup rlineto
+  moveto dup .5 mul dup dup neg rmoveto exch dup neg exch rlineto
+  stroke pstack
+} bind def
+
+% sectiondict section -
+% draws cross section of ecomsed hydro grid
+/section {
+  5 dict begin
+  /d exch def
+  /n d /sigma get length def
+  d /regions get  {
+    /reg exch def
+    /h d /h get reg aload pop getinterval def
+    /x1 d /x get reg aload pop getinterval def
+    /size h length n mul def
+%    /y size2 array def
+%    /x size2 array def
+    /data size 3 mul array def
+    /s 0 def
+    0 1 n 1 sub {
+      dup
+      d /sigma get exch get /sig exch def % depth level for this row
+      d /val get exch get reg aload pop getinterval /val exch def
+      h { sig mul } forall % multiply each element of h by sigma value above
+      h length array astore /y exch def % create an array for each level
+      0 1 h length 1 sub {
+        /i exch def
+        data s x1 i get put
+	data s 1 add y i get put
+	data s 2 add val i get put
+	/s s 3 add def
+      } for
+    } for
+    bluered [0 0 0] data h length shadeagrid
+  } forall
+
+  end
+} bind def
+
+
+% sectiondict section -
+% draws cross section grid lines for ecomsed hydro grid
+/sectiongrid {
+  5 dict begin
+  /d exch def
+  /n d /sigma get length def
+  d /regions get  {
+    /reg exch def
+    /h d /h get reg aload pop getinterval def
+    /x1 d /x get reg aload pop getinterval def
+    /size h length n mul def
+    /data size 3 mul array def
+    /s 0 def
+    0 1 n 1 sub {
+      dup
+      d /sigma get exch get /sig exch def % depth level for this row
+      d /val get exch get reg aload pop getinterval /val exch def
+      h { sig mul } forall % multiply each element of h by sigma value above
+      h length array astore /y exch def % create an array for each level
+      0 1 h length 1 sub {
+        /i exch def
+        data s x1 i get put
+	data s 1 add y i get put
+	data s 2 add val i get put
+	/s s 3 add def
+      } for
+    } for
+    [.5 .5 .5] data 11 h length plotgrid
+  } forall
+
+  end
+} bind def
+
+
+
+0 450 translate
+1 -200 scale
+cross1 section
+cross1 sectiongrid
+
+/gridvals [
+      0 0 0      100  0 .3
+      0 100 1    100 100 .7
+] def
+
+/drawgridsection {
+
+} bind def
+
+%redblue [1 1 1] gridvals 2 shadeagrid
+
+showpage

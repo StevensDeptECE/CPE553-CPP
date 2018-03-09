@@ -1,0 +1,40 @@
+gsave
+0 setlinewidth
+$boundBox -75.6 37.5 -69.6 42.8 scaleRect
+
+%gsave
+%[0.03] 0 setdash
+%-75.5 -70 12 38 42.5 10 drawgrid
+%grestore
+
+0 0 .6 setrgbcolor
+%coast drawcoastline
+
+0 0 0 setrgbcolor
+%0 80 900 650 -74.2857 40.3939 -73.83 40.882 scaleRect
+%0 80 600 950 -74.195 40.6 -74.05 40.85 scaleRect
+
+%grid 59 94 curvgrid pop
+%grid 136 424 curvgrid pop
+
+% -75 -71 9 40 42 5 drawgrid -
+
+/Helvetica .1 selectFont
+1 0 0 setrgbcolor
+-75.5 -70 12 38 42.5 10 numgrid
+
+grestore
+%(logo.eps) 1 1 0 0 includeEPS
+
+/Helvetica 24 selectFont
+(NYHOPS High Resolution Grid, v20) 400 750 moveto show
+
+/Helvetica 8 selectFont
+500 50 moveto
+(Model design by: Dov Kruger, Nicholas Kim, Alan Blumberg) show
+500 40 moveto
+(Bathymetry: Dov Kruger, Matthew Marko, Peter Stahley) show
+500 30 moveto
+(Rendered by graphite) show
+500 20 moveto
+(Generated: $date) show

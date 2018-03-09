@@ -1,0 +1,60 @@
+(library.ps) run
+(graphite.ps) run
+%100 0 600 200 -1 1 -1 1 scaleRect
+%0 0 0 setrgbcolor
+%-1 1 moveto
+%+1 -1 lineto
+%+1 +1 lineto
+%-1 +1 lineto
+%fill
+
+(grid.ps) run
+%(boop) print
+
+
+gsave
+%200 100 600 700 -74.1 40.5 -73.0 41 scaleRect
+200 100 600 700 -74.1 40.6 -73.9 40.8 scaleRect
+0 0 0 setrgbcolor
+0 setlinewidth
+grid 59 94 curvgrid pop
+%grid 136 424 curvgrid pop
+1 0 0 setrgbcolor
+
+newpath -73.9 40.64 moveto
+gsave
+  matrix setmatrix
+%  50 50 scale 90 rotate simpleArrow %0 1 rlineto stroke
+grestore
+
+/asize {20 20 matrix scale } def
+/textsize {matrix } def
+  0 0 0.7 setrgbcolor
+  0 asize -73.9 40.7 simpleArrow
+  30 3 asize -73.92 40.7 scaledSimpleArrow
+  60 5 asize -73.94 40.72 logScaledSimpleArrow
+  75 6 asize -73.94 40.73 logScaledSimpleArrow
+  75 8 asize -73.94 40.74 logScaledSimpleArrow
+  75 10 asize -73.94 40.75 logScaledSimpleArrow
+  75 12 asize -73.94 40.76 logScaledSimpleArrow
+
+/Helvetica 10 selectFont
+  [  (11.2) -73.96 40.74
+    (9.8) -73.97 40.74
+    (8.8) -73.98 40.74
+    (10.0) -74 40.7] textsize dispTextAt
+grestore
+(logo.eps) 1 1 0 0 includeEPS
+showpage
+
+
+%1 0 0 setrgbcolor
+%fauxdata plotxypoints
+%0 0 1 setrgbcolor
+%350 50 600 200 10 [5 15] drawTics
+%[ 0 0  .2 .1  .3 .15 .4 .29 .45 .3 .5 .31 .6 .28] plotxyconnected
+
+
+
+
+

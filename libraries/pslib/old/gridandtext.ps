@@ -1,0 +1,36 @@
+% -75 -71 9 40 42 5 drawgrid -
+/drawgrid {
+    /ny exch def
+    /ymax exch def
+    /ymin exch def
+    /nx exch def
+    /xmax exch def
+    /xmin exch def
+    ymin ymax ymin sub ny 1 sub div ymax {
+	dup dup xmin exch moveto xmax exch lineto stroke
+    } for
+    xmin xmax xmin sub nx 1 sub div xmax {
+	dup dup ymin moveto ymax lineto stroke
+    } for
+} def
+
+[0.03] 0 setdash
+-75.5 -70 12 38 42.5 11 drawgrid
+
+/numgrid {
+    /ny exch def
+    /ymax exch def
+    /ymin exch def
+    /nx exch def
+    /xmax exch def
+    /xmin exch def
+    ymin ymax ymin sub ny 1 sub div ymax {
+	dup xmin .1 sub exch moveto (             ) cvs show
+    } for
+    xmin xmax xmin sub nx 1 sub div xmax {
+	dup .1 sub ymin .1 sub moveto (             ) cvs show
+    } for
+} def
+/Helvetica .1 selectFont
+1 0 0 setrgbcolor
+-75.5 -70 12 38 42.5 11 numgrid

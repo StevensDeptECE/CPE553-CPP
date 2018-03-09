@@ -1,0 +1,16 @@
+Reliable Redundant Forecast Data Preparation:
+	 River flow gauges verified against each other
+	 Absolute values and deltas error checked, validated against rainfall data
+				   
+	 Tide gauges verified against astronomical tide, subject to override
+	 but only when correlated with severe weather events
+
+Re-engineering CMN site software
+	 Upgrade to current practices
+	 Remote updating
+	 Reduction in number of subprocesses launched
+	 Registering alerts with multiple parties
+
+Create package of Perl/Postscript code
+
+Integrate Java/OpenGL graphing package for daily runs

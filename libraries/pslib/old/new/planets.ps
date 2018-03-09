@@ -1,0 +1,28 @@
+/solarsystem [
+  <</name (Sun) /radius 30000 /orbitRadius 0 /ang 0>>
+  <</name (Mercury) /radius 2370 /orbitRadius 40000 /ang 0>>
+  <</name (Venus) /radius 6320 /orbitRadius  74000 /ang 92>>
+  <</name (Earth) /radius 6370 /orbitRadius 150000 /ang 123>>
+  <</name (Mars) /radius 3120 /orbitRadius 220000  /ang 248>>
+  <</name (Jupiter) /radius 15000 /orbitRadius 440000 /ang 141>>
+] def
+
+/plotgravsystem {
+  5 dict begin
+  {
+    /body exch def
+    body /orbitRadius get dup
+       body /ang get cos mul
+    exch
+       body /ang get sin mul
+    exch
+    body /radius get 0 360 arc stroke
+  }forall
+  end
+} bind def
+
+300 400 translate
+.001 .001 scale
+solarsystem plotgravsystem
+
+showpage

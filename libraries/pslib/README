@@ -1,0 +1,19 @@
+This is a graphing tool that I wrote while working on my robotics thesis.
+The cool features are the tight integration with Postscript, and the absolutely crystal clear graphs produced.
+It's also very convenient to plot stuff in batch, with a simple config file for each plot.
+An interactive tool would be nice, but is not a priority.
+
+In order to build the demo, you need MySQL++, or to do some surgery to the code. That's what I get for doing this for my buddy Dave, who wanted to actually use it to make plots for NYHOPS.  So I created a quick second version without the cool graphs that are so tied to the database.
+
+To build the database version, which uses a nice package available at: http://tangentsoft.net/mysql++/
+just make
+
+To build the standalone version:
+make testGraph2dnodb
+
+run and redirect to a file, which you then send to a postscript printer, or ghostscript.  I only ever tested this thing on our printer, a Docucolor 242, with an incredibly finicky engine called "fiery" and ghostscript.
+
+There's one known bug, some dangling memory that I haven't tracked down.
+
+If you make any cool modifications, let me know:
+Dov Kruger (Dov.Kruger  (at) gmail Do.T com)
