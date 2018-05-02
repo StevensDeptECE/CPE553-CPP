@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-// sum the numbers from 1 to n
+// multiply the numbers from 1 to n
 int prod(int n) {
 	int p = 0;
 	for (int i = 1; i <= n; i++)
