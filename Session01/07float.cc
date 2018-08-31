@@ -12,6 +12,6 @@ int main() {
 	float f2 = 1.234567e+38;
 	float f3 = 1.23e-38;
 
-	double d2 = 1.23456e+308;
+	double d2 = 1.23456789012345e+308;
 
 }

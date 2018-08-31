@@ -4,7 +4,10 @@ using namespace std;
   floating point is in binary
 
   we are used to thinking of "nice" numbers 1/10   0.1    1/2  0.5
-  numbers are repeating fractions: 1/3
+  numbers are repeating fractions: 1/3 = .33333333
+
+but on a computer, 0.1 is not a "nice" fraction.
+
 
        	1/2  1/4   1/8   1/16   1/32
 0.5    .1     0     0     0      0
