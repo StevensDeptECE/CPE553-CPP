@@ -1,9 +1,13 @@
 #include <iostream>
 using namespace std;
 
+uint64_t sum(uint64_t a, uint64_t b) {
+	uint64_t s = 0;
+	for (uint64_t i = a; i <= b; i++)
+		s += i;
+	return s;
+}
+
 int main() {
-	long long sum = 0;
-	for (long long i = 0; i < 10000000000L; i++)
-		sum += i;
-	cout << "hello" << sum;
+	cout << sum(100000, 3000000000) << '\n';
 }

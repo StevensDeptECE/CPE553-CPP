@@ -19,6 +19,8 @@ int main() {
 	cout << e << "\n";
 	69.0 * 365.0f * 22L * 3;
 	double Na = 6.022E+23;
+	double big = 1.23456789012345e+308;
+	double tiny = 1.23456789012345e-308;
 	long long x = 12345678901345678;
 	
 	
