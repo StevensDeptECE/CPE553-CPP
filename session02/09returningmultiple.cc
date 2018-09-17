@@ -2,8 +2,8 @@
 #include <cmath>
 using namespace std;
 
-void rect2polar(double x, double y, double& r, double& theta) {
-  r = sqrt(x*x+y*y);
+void rect2polar(double x, double y, double& qqq, double& theta) {
+  qqq = sqrt(x*x+y*y);
 	theta = atan2(y,x);
 }
 
