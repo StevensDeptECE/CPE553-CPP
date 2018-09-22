@@ -35,6 +35,7 @@ public:
 	void print() const {
 		cout << num << '/' << den;
 	}
+
 	//			b.print(f);
 	void print(ostream& s) const {
 		s << num << '/' << den;
@@ -47,6 +48,10 @@ public:
 
 int main() {
 	Fraction a;
+	Fraction badidea(); // THIS IS NOT AN OBJECT!!!
+	Fraction a2 = Fraction(1,2);  //elided constructor
+	
+	//	badidea.setNum(2); // error
 	a.setNum(1);
 	a.setDen(2);
 	const Fraction b(1,3);

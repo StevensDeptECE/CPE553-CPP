@@ -28,6 +28,7 @@ void f() {
 	cout << Zebra::getCount() << '\n';
 }
 int main() {
+	Zebra a("Yu-Dong");
 	f();
 	f();
 }
