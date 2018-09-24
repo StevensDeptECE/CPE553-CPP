@@ -38,15 +38,19 @@ private:
   double d; // 8   sizeof(E)=16
 };
 
+
+#define dispSize(x) cout << #x << " = " << sizeof(x) << '\n';
 int main() {
-  cout << sizeof(char) << '\n';
-  cout << sizeof(short) << '\n';
-  cout << sizeof(int) << '\n';
-  cout << sizeof(long) << '\n';
-  cout << sizeof(long long) << '\n';
-  cout << sizeof(float) << '\n';
-  cout << sizeof(double) << '\n';
-  cout << sizeof(long double) << '\n';
+  dispSize(char);
+  dispSize(short);
+  dispSize(int);
+  dispSize(long);
+  dispSize(long long);
+	dispSize(float);
+  dispSize(double);
+  dispSize(long double);
+	dispSize(char*);
+  dispSize(size_t);
   char s[20] = "abc"; // '\0' NUL  ^@ (control-@)
   cout << sizeof(s) << '\n';
 	char s2[] = "abc"; // '\0' NUL  ^@ (control-@)
