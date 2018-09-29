@@ -12,7 +12,6 @@ int main() {
   // normally, we don't care where a lives, and we do not get to choose
   
   int b = 2;
-  char d;
   cout << &b << '\n'; // the address of a, where it lives in memory
 
   
@@ -22,7 +21,7 @@ int main() {
   f(d);
   // a pointer is declared in reverse
   // "what p points to is an int, therefore p is a pointer to int"
-  int  *p;
+  int* p;
   cout << *p << '\n'; // probably crash, looking at random memory location
   *p = 124;
   int  *q = &a; // spaces make no difference.  q is pointing to a

@@ -32,5 +32,4 @@ int main() {
 	double v = 0;// moon avg vel;
 	Body moon(5.56e+22, Vec3d(3e8,0,0), Vec3d(0,v,0)); //
   //calculate acceleration of earth and moon	
-}	
-	
+}
