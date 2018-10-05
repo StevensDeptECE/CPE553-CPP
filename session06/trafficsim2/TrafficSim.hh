@@ -11,7 +11,7 @@ public:
 		std::string colors[] = {"red", "blue", "yellow", "black", "white"};
 		
 		std::default_random_engine gen(0);
-		std::uniform_int_distribution<int> distribution(0,2);
+		std::uniform_int_distribution<int> vehicleType(0,2);
 		std::uniform_int_distribution<int> speedDist(0,55);
 		std::uniform_int_distribution<int> passengerDist(0,30);
 		std::uniform_int_distribution<int> axleDist(2,6);
@@ -20,7 +20,7 @@ public:
 				
 		for (int i = 0; i < numVehicle; i++) {
 			int speed = speedDist(gen);
-			switch(distribution(gen)) {
+			switch(vehicleType(gen)) {
 			case 0:
 				vehicles.push_back(new Car(speed, colors[pickColor(gen)] ));
         break;				
@@ -36,6 +36,10 @@ public:
 	void payToll() {
 		for (int i = 0; i < vehicles.size(); ++i) {
 			std::cout << vehicles[i]->payToll() << '\n';
+		}
+
+		for (auto x : vehicles) {
+			std::cout << x->payToll();
 		}
 	}
 };

@@ -20,6 +20,8 @@ class B {
 
 int B::y = 1; // definition
 
+
+
 int main() {
   cout << sizeof(A) << "\n";
   cout << sizeof(B) << "\n";

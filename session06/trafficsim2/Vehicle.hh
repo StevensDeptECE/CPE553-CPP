@@ -1,5 +1,4 @@
-#ifndef VEHICLE_HH__
-#define VEHICLE_HH__
+#pragma once
 
 int/*this is my stupid comment*/x;
 /*
@@ -14,5 +13,3 @@ public:
 	Vehicle(int s) : speed(s) {}
 	virtual double payToll() const = 0; // abstract method, means Vehicle is abstract
 };
-
-#endif
