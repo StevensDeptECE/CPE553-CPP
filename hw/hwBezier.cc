@@ -35,8 +35,12 @@ int main() {
 		taking derivative: x'(t) = 3at^2 + 2bt + c
 		@t = 0, c = 
 	 */
-	const double X0 = 0, Y0 = 0, X1 = 200, Y1 = 0;
-	CubicBezier b(X0,Y0, 10,50, 190, 50, X1,Y1);
+	const double
+		X0 = 0, Y0 = 0,
+		X1 = 10, Y1 = 50,
+		X2 = 190, Y2 = 50,
+		X3 = 200, Y3 = 0;
+	CubicBezier b(X0,Y0, X1,Y1, X2,Y2, X1,Y1);
 
 	/*
 		Now add a segment that starts where the other point ends, ending at (400,0)
@@ -52,3 +56,4 @@ int main() {
 		you should not go until 1.0 except in the last segment
 	*/
 	b.write(f, 0.1);
+}
