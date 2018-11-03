@@ -1,0 +1,14 @@
+note: the files here have all moved to the homework repo:
+
+https://classroom.github.com/g/infkpqvF
+
+If you have already downloaded the repo, and just need a refresh....
+hopefully:
+
+git pull
+
+will just work.  We can find out what to do if not.
+
+remember the original repo (with all new code) is still here:
+git@github.com:DovKrugerECEClasses/CPE-553hw.git
+
