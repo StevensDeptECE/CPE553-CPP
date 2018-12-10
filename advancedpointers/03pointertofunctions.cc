@@ -7,6 +7,7 @@ double sq(double x) { return x*x; }
 
 // FuncOneVar is a pointer to functions that take one double parameter
 // and return double
+
 typedef double (*FuncOneVar)(double);
 
 void eval(FuncOneVar f, double a, double b, int n) {

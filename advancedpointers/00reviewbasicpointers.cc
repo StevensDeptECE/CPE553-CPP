@@ -12,6 +12,7 @@ int main() {
 
 	const int b = 3; // b may not change
 	const int* q = &b; // q is a readonly pointer
+	cout << *q;
 	q = &a; // now q points to a.  That's ok.  We promise not to change *q
 	// that does not mean that b doesn't change, just that we can't change it.
 
