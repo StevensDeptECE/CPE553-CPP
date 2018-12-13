@@ -19,8 +19,8 @@ void g() {
 }
 
 int main() {
-    thread t1(f);
-    thread t2(g);
-    t1.join();
-    t2.join();
+	thread t1(f);
+	thread t2(g);
+	t1.join();
+	t2.join();
 }

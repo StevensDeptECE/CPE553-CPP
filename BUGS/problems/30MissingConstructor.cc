@@ -14,5 +14,5 @@ public:
 
 int main() {
 	Elephant *e = new Elephant[10];
-	Elephant *e2 = new Elephant[3]{"", "Alice", "Yu"};
+	Elephant *e2 = new Elephant[3];
 }
