@@ -82,18 +82,22 @@ void statements() {
 	while (i < 10) {
 		cout << 'x';
 	}
+	cout << '\n';
 	do {
 		cout << 'y';
 	} while (i < 10);
+	cout << '\n';
 
 	for (int i = 2; i < 12; i <<= 1)
 		cout << i;
+	cout << '\n';
 
 	for (int i = 1; i < 16; i += 3) {
 		if (i % 8 == 0)
 			break;
 		cout << i;
 	}
+	cout << '\n';
 
 	for (int i = 0; i < 20; i += 4) {
 		if (i % 16 == 12)
@@ -102,6 +106,46 @@ void statements() {
 			i++;
 		cout << i;
 	}
+	cout << '\n';
+
+	for (int i = 0; i < 10; i++) {
+		if (i % 3 == 0)
+			continue;
+		cout << i;
+	}
+
+	for (int i = 0; i < 5; i++)
+		switch(i) {
+		case 0: cout << "zero";
+		case 1: cout << "one";
+		case 2: cout << "two";
+		case 3: cout << "three";
+		case 4: cout << "four";
+		default: cout << "default";
+		}
+	cout << '\n';
+
+	for (int i = 0; i < 5; i++)
+		switch(i) {
+		case 0:
+			cout << "zero";
+			break;
+		case 1:
+			cout << "one";
+			break;
+		case 2:
+			cout << "two";
+			break;
+		case 3:
+			cout << "three";
+			break;
+		case 4:
+			cout << "four";
+			break;
+		default:
+			cout << "default";
+			break;
+		}
 	cout << '\n';
 }
 
