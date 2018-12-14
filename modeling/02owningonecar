@@ -1,0 +1,13 @@
+class Car {};
+
+class Person {
+private:
+	Car* car;
+public:
+	Person() car(nullptr) {} // you are born without a car
+	
+	void buy(Car* c) {
+		delete car; // get rid of old car
+		car = c; // buy new car
+	}
+};

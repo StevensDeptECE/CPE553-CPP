@@ -17,14 +17,15 @@ using namespace std;
   5. A static variable within a class turns into an extern, requiring a global definition outside the class.
 
  */
-int x = 1;
+const double PI = 3.1415926535897932;
+const int x = 1; // mangled x_i ::x
 extern int y;
 void f();
 namespace stevens {
-  int x = 2;
+  int x = 2; // stevens::x
 }
 class A {
-  static int x;
+  static int x; // --> extern int A::x;
 };
 
 int A::x = 3;
