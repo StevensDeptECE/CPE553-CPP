@@ -12,4 +12,13 @@ int main() {
 		cout << b[i]; // prints 123
 	for (int i = 4; i >= 0; i--)
 		cout << d[i]; // 00123
+	const char s[] = "abcd"; // ASCII NUL  \0
+	cout << s << '\n';
+	cout << sizeof(s) << '\n';
+	cout << sizeof(b) << '\n';
+
+	string s2 = "abc";
+	string s3 = s2 + s2; // "abcabc"
+	cout << s2.substring(1, 2) << '\n';
+	cout << s3.length() << "\n";
 }
