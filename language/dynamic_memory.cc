@@ -2,6 +2,17 @@
 
 int main() {
 	int* p = new int[10]; // allocate 10 int (40 bytes)
+
+	delete [] p;
+
+	p = new int;
+
+	delete p;
+
+	p = malloc(1024);
+
+	free(p);
+	
 	for (int i = 0; i < 10; i++)
 		p[i] = i;
 	// the block now contains the values 0 1 2 3 4 5 6 7 8 9
