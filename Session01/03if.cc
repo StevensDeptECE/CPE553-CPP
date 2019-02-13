@@ -9,7 +9,7 @@ int main() {
 	// a > b
 	// a >= b
 	// a == b
-	// a != b
+	// a != b  NOT equal
 	//	if (2 == a)
 	if (a == b) {
 		cout << "equal\n";

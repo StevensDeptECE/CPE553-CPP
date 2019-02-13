@@ -1,0 +1,23 @@
+class	 object
+A class is a kind of object
+An object is an instance of a class
+When we create an instance of a class we are instantiating the class
+
+methods are functions inside an object
+methods are functions that only work on an object
+
+message is a call to an object method
+
+in c++ method = message (you cannot call a method that does not exist,
+   your program will not build)
+
+
+f(x) = x*x
+stopwatch.start();
+
+
+
+class Fraction {
+public:
+  Fraction add(Fraction)
+};
