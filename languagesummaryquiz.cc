@@ -67,7 +67,7 @@ void roundoff() {
 }
 
 void nan() {
-	subject("NaN");
+	subject("Inf and NaN");
 	double a = 1.0 / 0.0;
 	double b = -1.0 / 0.0;
 	double c = 2.0 * a;
