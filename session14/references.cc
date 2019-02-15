@@ -11,7 +11,9 @@ void polarToRect(double r, double theta, double* x, double* y) {
 void converttopolar() {
 	double r = 2.5, theta = 1.59;
 	double x,y;
-	polarToRect(r, theta, &x, &y);
+	polarToRect(r, theta, &x, &y); // call c-style function
+
+	polarToRect(r, theta, x, y); // call c++ style function (note you cannot tell that x,y are changed from the call)
 
 }
 
