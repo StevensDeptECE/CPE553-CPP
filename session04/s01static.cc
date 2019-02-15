@@ -5,11 +5,14 @@ using namespace std;
 class Zebra {
 private:
 	string name;
-	static int count; // shared by the class
+  static int count; // shared by the class --> extern
 public:
-	Zebra(const string& s) : name(s) {
+	Zebra(const string& name) : name(name) {
 		count++;
 		cout << "Hello I'm just born! my name is: " << name << '\n';
+	}
+	const string& getName() const {
+		return name;
 	}
 	~Zebra() {
 		count--;
@@ -22,12 +25,13 @@ int Zebra::count = 0;
 
 void f() {
 	cout << Zebra::getCount() << '\n';
-	Zebra a("Fred"); // now 1 zebra
-	Zebra b("Alice"); // 2
+	Zebra a("Fred"); // now 2 zebra
+	Zebra b("Alice"); // 3
 	//	cout << a.getCount() << '\n';
 	cout << Zebra::getCount() << '\n';
 }
 int main() {
+	cout << Zebra::getCount() << '\n'; // zero!
 	Zebra a("Yu-Dong");
 	f();
 	f();
