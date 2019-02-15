@@ -35,7 +35,7 @@ public:
 	Truck(double speed, double weight, int numAxles)
 		: Vehicle(speed), weight(weight), numAxles(numAxles) {}
   void payToll() const {
-		cout << '$' << 4 * numAxles;
+		cout << '$' << 20 * numAxles;
 	}
 
 };

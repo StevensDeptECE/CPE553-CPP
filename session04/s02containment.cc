@@ -4,13 +4,9 @@ using namespace std;
 class Wheel {
 private:
 	int pressure;
-	static int count;
 public:
 	Wheel(int pressure): pressure(pressure) {}
 };
-
-//global definition of static variable
-int Wheel::count = 0;
 
 
 class Engine {
