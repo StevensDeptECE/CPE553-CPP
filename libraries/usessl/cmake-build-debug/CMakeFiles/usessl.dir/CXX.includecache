@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dkruger/git/EE553-CPP/libraries/usessl/main.cpp
+openssl/conf.h
+-
+openssl/evp.h
+-
+openssl/err.h
+-
+
