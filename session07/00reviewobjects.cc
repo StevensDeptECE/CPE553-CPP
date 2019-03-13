@@ -4,12 +4,22 @@ class A { // definition: Creates class A
 };
 
 class A; // declaration: says that there is a class A
+class A; // declaration: says that there is a class A
+class A; // declaration: says that there is a class A
+class A; // declaration: says that there is a class A
+class A; // declaration: says that there is a class A
 
 // function definition
 void f() {
   cout << "hello";
 }
 
+// function prototype (declaration)
+void f();
+// function prototype (declaration)
+void f();
+// function prototype (declaration)
+void f();
 // function prototype (declaration)
 void f();
 

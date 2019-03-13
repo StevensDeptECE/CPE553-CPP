@@ -9,7 +9,7 @@ int main() {
 
 	delete p;
 
-	p = malloc(1024);
+	p =(int*) malloc(1024);
 
 	free(p);
 	

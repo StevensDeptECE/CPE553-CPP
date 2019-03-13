@@ -15,15 +15,15 @@ int main() {
   cout << &b << '\n'; // the address of a, where it lives in memory
 
   
-  const int c;
+	//  const int c;
   const int d = 54;
   f(b);
-  f(d);
+	//  f(d);
   // a pointer is declared in reverse
   // "what p points to is an int, therefore p is a pointer to int"
   int* p;
-  cout << *p << '\n'; // probably crash, looking at random memory location
-  *p = 124;
+	//  cout << *p << '\n'; // probably crash, looking at random memory location
+	//  *p = 124;
   int  *q = &a; // spaces make no difference.  q is pointing to a
   //int *a,b; // don't do this: a is a pointer to int, b is int
   double x[10];
@@ -35,6 +35,6 @@ int main() {
 
   dp = x + 5; // pointer addition works in terms of types, not bytes
   *dp = 2.5; // x[5] = 2.5
-  p = x; //????? Types don't match.  But you can do this
+  p = (int*)x; //????? Types don't match.  But you can do this
   // if you try hard enough, and it is BAD
 }

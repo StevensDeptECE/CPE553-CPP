@@ -10,12 +10,11 @@ int main() {
   //  double* q = b + 4;
   for (int * r = a; r < a + 10; r++)
     *r = 3;
-#if 0
-    int* r = a; /*  this comment does not work */
+	int* r = a;
   for (int count = 10; count > 0; count--, r++)
     *r = 3;
-#endif
-
+  // Don't do this: r is past the end!!! *r = 4;
+	
   // declare a pointer q to the fifth element of b
   //  add 1 to what p points at
   //  add 1 to what q points at

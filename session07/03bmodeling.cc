@@ -19,7 +19,7 @@ public:
 	int getSpeed() const { return speed; }
 };
 		
-class Car : public Vehicle {
+class Car : public Vehicle  {
 private:
 	Engine e;
 	Wheel w1,w2,w3,w4;
