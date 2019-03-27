@@ -491,9 +491,41 @@ void inheritance() {
 	/*
 		virtual inheritance is a fix for a problem involving multiple inheritance
 	*/
-	class E : public virtual A{};
+	class Employee {
+	private:
+		string ssn;
+	};
+	class TempEmployee : public virtual Employee {
+	};
+	class Secretary : public virtual Employee {
+	};
+	/* were it not for virtual inheritance, this wacky construction would fail.
+		 Really the problem is with multiple inheritance.
+		 You should only inherit from one object, and promise to implement certain methods.
+	 */
+	class TempSecretary : public TempEmployee, public Secretary {
+	};
 };
+
+void polymorphism() {
 	
+}
+
+void templatefunctions() {
+
+}
+
+void templateclasses() {
+
+}
+
+/*
+The syntax continues to get gnarlier...
+*/
+void variadictemplates() {
+
+}
+
 int main() {
 	integeroperations();
 	operatorprecedence();
@@ -515,4 +547,8 @@ int main() {
 	regexexamples();
 	randomnumbergen();
 	inheritance();
+	polymorphism();
+	templatefunctions();
+	templateclasses();
+	variadictemplates();
 }
