@@ -9,6 +9,9 @@ private:
 	int capacity;
 	int used;
 	T* data;
+	T* operator new(char* data) {
+		return (T*)
+	}
 	void checkGrow() {
 		if (used >= capacity) {
 			char* old = (char*)data;

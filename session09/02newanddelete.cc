@@ -1,7 +1,18 @@
 #include <iostream>
 using namespace std;
 
+void f() {
+	const int a = 2;
+	int b = 3;
+	const int* p = &a; // this pointer will not change what it looks at
+	p = &b;
+	b = 4;
+	int* const q = &b;
+}
+
 int main() {
+
+	
 	int* p = new int;
 	*p = 5;
 
@@ -26,6 +37,7 @@ int main() {
 	q++; 
 	delete[] q; // CRASH you did not delete the pointer you were given
 
+
 	// instead, try this to be safer:
 	int* const q = new int[10];
 	// not allowed to change where q points
@@ -33,6 +45,7 @@ int main() {
 
 	int* w = new int[10];
 	delete [] w;
+	cout << w[3];
 	delete [] w; // delete twice, and DIE!!!
 
 	

@@ -1,3 +1,9 @@
+void f() {
+	int*t = new int[1000];
+
+	// no delete, memory leak (no crash, but keep doing it and you will)
+}
+
 int main() {
 	int* p;
 	delete p; // crash, never allocated (random)
@@ -10,7 +16,6 @@ int main() {
 
 	int*s = new int[10];
 	delete s; // implementation defined what  happens (actually usually works)
-
-	int*t = new int[10];
-
-	// no delete, memory leak (no crash, but keep doing it and you will)
+	for (int i = 0; i < 10000000; i++)
+		f();
+}
