@@ -407,6 +407,29 @@ void arrays(int a[], int n) {
 	
 }
 
+void func1(const char x[]) { // x is a readonly pointer to a, but cannot change, const char* const x;
+	cout << x[2]; // array lookup
+	cout << *(x+2); // pointer notation
+}
+void func2(const char* x) { // x is a pointer to a, cannot  change a, but can point somewhere else
+	char foo[] = "test";
+	x = foo;
+	cout << x[2]; // array lookup
+	cout << *(x+2); // pointer notation
+}
+
+void func3(const char* const x) { // exactly the same as func1
+	cout << x[2]; // array lookup
+	cout << *(x+2); // pointer notation
+}
+
+void arraypointerequivalence() {
+	char a[] = "hello";
+	func1(a);
+	func2(a);
+	func3(a);
+}
+
 void bitoperations() {
 	subject("Bit operations");
 
@@ -491,9 +514,41 @@ void inheritance() {
 	/*
 		virtual inheritance is a fix for a problem involving multiple inheritance
 	*/
-	class E : public virtual A{};
+	class Employee {
+	private:
+		string ssn;
+	};
+	class TempEmployee : public virtual Employee {
+	};
+	class Secretary : public virtual Employee {
+	};
+	/* were it not for virtual inheritance, this wacky construction would fail.
+		 Really the problem is with multiple inheritance.
+		 You should only inherit from one object, and promise to implement certain methods.
+	 */
+	class TempSecretary : public TempEmployee, public Secretary {
+	};
 };
+
+void polymorphism() {
 	
+}
+
+void templatefunctions() {
+
+}
+
+void templateclasses() {
+
+}
+
+/*
+The syntax continues to get gnarlier...
+*/
+void variadictemplates() {
+
+}
+
 int main() {
 	integeroperations();
 	operatorprecedence();
@@ -515,4 +570,8 @@ int main() {
 	regexexamples();
 	randomnumbergen();
 	inheritance();
+	polymorphism();
+	templatefunctions();
+	templateclasses();
+	variadictemplates();
 }
