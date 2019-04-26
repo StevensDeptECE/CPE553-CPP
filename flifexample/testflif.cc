@@ -22,6 +22,7 @@ void loadFlif(const char filename[]) {
 	flif_decoder_set_scale(d, 1);
 	if (!flif_decoder_decode_file(d, filename)) {
 		//TODO:		delete??? d
+		//	flif_free(d);
 		throw "can't decode file";
 	}
 	FLIF_IMAGE* img = flif_decoder_get_image(d, 0);

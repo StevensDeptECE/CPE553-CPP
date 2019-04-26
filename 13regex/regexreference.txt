@@ -1,0 +1,38 @@
+a	match the single letter
+abc	match a followed by b, followed by c
+[aeiou] select any one of the letters
+[a-z]	any of a through z NOT A Z
+[A-z]   A-Z[\]^`a-z
+[^a-z]	any single letter that is NOT a-z
+[^\)]	any letter that is NOT )
+a+	one or more a
+a*	zero or more a  a+ is the same as aa*
+a?	zero or 1 a (a is optional)
+a{3}	exactly 3 a
+a{3,5}	3, 4 or 5 a
+[0-9]	a digit
+\d	shorthand for a digit
+\w	shorthand for [a-zA-Z0-9]
+.	any single letter (except \n)
+\.	escape the .
+\(	escape the (
+\\	escape the \
+\s	[ \t]
+cat|dog	cat or dog
+(?:cat|dog|mouse){3}		catcatcat catdogmouse  mousemousemouse ...
+
+(abc)+=\1			abc=abc   abcabc=abcabc
+([a-z]+)=\1			aaab=aaab    azac=azac
+
+
+\(([^\)]*)\)
+
+
+
+
+
+[ab][cd]+      ac ad bc bd bcc bdd bcd bcdcdcdcdcd
+
+
+( (  )  (  )  )   yacc   yet another compiler compiler
+bison
