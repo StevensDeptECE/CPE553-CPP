@@ -16,6 +16,7 @@ public:
 
 int main() {
   vector<Elephant> elephants;
+  elephants.push_back(Elephant("Fred", 3"));
 	elephants.emplace_back("Fred", 3);
 	elephants.emplace_back("Alice", 4);
 	for (auto& e : elephants) {

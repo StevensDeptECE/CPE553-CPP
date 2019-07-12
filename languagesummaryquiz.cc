@@ -11,6 +11,7 @@ using namespace std;
 void subject(const char name[]) {
 	cout << "\n\n========================\n" << name << '\n';
 }
+
 void integeroperations() {
 	subject("Integer Operations");
 	int a = 2 / 3;         // integer division
@@ -36,6 +37,22 @@ void operatorprecedence() {
 			 << b << '\t'
 			 << c << '\t'
 			 << d << '\n';
+}
+
+void equaloperatorprecedence() {
+	subject("Equal Operator Precedence");
+	int a = 3;
+	int b = 4;
+	int c = 5;
+  a += b *= c -= 1;
+	cout << a << '\t'
+			 << b << '\t'
+			 << c << '\n';
+  a = b = c = 1;
+  a *= 3 + 1;
+	cout << a << '\t'
+			 << b << '\t'
+			 << c << '\n';
 }
 
 void overflow() {
@@ -384,8 +401,19 @@ void sizeofclasses() {
 	cout << "sizeof(Bits)=" << sizeof(Bits) << '\n';
 }
 
-void arrays(int a[], int n) {
+void passArrayParameters(int a[], int n) {
+  cout << "Sizeof array parameters is always = sizeof a pointer: " << sizeof(a) << '\n';
+  cout << "The size of this array = " << n * sizeof(int) << '\n';
+  a[2] = 9;
+  for (int i = 0; i < n; i++)
+    cout << a[i] << ' ';
+  cout << '\n';
+}
+
+void arrays() {
 	subject("Arrays");
+  int a[3] = {1, 2};
+  passArrayParameters(a, 3);
 	// size of an array parameter is the size of the pointer (8 bytes)
 	cout << "sizeof array parameter is useless! = " << sizeof(a) << '\n';
 	// always pass the size of the array manually with the array or make an object
@@ -542,16 +570,36 @@ void templateclasses() {
 
 }
 
+void varargs() {
+	subject("var args");
+  // varargs are not typesafe.  You are just getting data off the stack
+  printf("%d %d", 2);
+}
 /*
 The syntax continues to get gnarlier...
 */
-void variadictemplates() {
+template<typename T>
+T adder(T v) {
+  return v;
+}
 
+template<typename T, typename... Args>
+T adder(T first, Args... args) {
+  return first + adder(args...);
+}
+
+void variadictemplates() {
+	subject("Variadic Templates");
+  //variadic templates are safe.  unlike varargs
+  cout << adder(2,3) << '\n';
+  cout << adder(2,3,4) << '\n';
+  cout << adder(2,3,4.2) << '\n';
 }
 
 int main() {
 	integeroperations();
 	operatorprecedence();
+  equaloperatorprecedence();
 	overflow();
 	roundoff();
 	nan();
@@ -564,13 +612,12 @@ int main() {
 	cppstrings();
 	namespaces();
 	sizeofclasses();
-	int a[] = {5, 4, 3};
-	arrays(a, 3);
 	bitoperations();
 	regexexamples();
 	randomnumbergen();
 	inheritance();
 	polymorphism();
+  varargs();
 	templatefunctions();
 	templateclasses();
 	variadictemplates();
