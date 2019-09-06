@@ -8,6 +8,20 @@
 
 using namespace std;
 
+/*
+	This language checklist serves to let you know what you do and do
+	not know about C++.  If you can predict what each of these functions
+	does, that is a significant measure of your understanding of what
+	C++ does, though it does not guarantee that you are able to create
+	sequences of operations to do what you want, which is the other part
+	of programming.
+
+	Any function that covers a topic NOT required by the course is
+	labelled as such. It may be a good idea to extend your knowledge
+	before going for an interview at a high-powered C++ job, but it is
+	not required for the final.
+*/
+
 void subject(const char name[]) {
 	cout << "\n\n========================\n" << name << '\n';
 }
@@ -72,7 +86,8 @@ void typepromotion() {
 	subject("Type Promotion");
 	float a = 1.5f * 3;
 	double b = 1 * 3;
-	cout << a << '\t' << b << '\n';
+	int c = 1.5f * 3;
+	cout << a << '\t' << b << '\t' << c << '\n';
 }
 
 void roundoff() {
@@ -80,7 +95,8 @@ void roundoff() {
 	double x = sqrt(2);
 	
 	bool a = x*x == 2;
-	cout << a << '\n';
+	bool b = x == x;
+	cout << a << '\t' << b << '\n';
 }
 
 void nan() {
@@ -99,6 +115,7 @@ void nan() {
 			 << e << '\t'
 			 << f << '\t'
 			 << g << '\n';
+	cout << (e == e) << '\t' << (e != e) << '\t' << '\n';
 }
 
 void ifstatements() {

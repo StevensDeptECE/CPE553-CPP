@@ -1,3 +1,0 @@
-ToolSet: w64 5.0@D:\msys64\mingw64
-Options: 
-CMake: 3.8.2@D:\bin\CLion2017.2.2\bin\cmake\bin\cmake.exe
