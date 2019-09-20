@@ -10,7 +10,7 @@ int main() {
 	Complex d = a - b;
 	Complex e = -a;
 	
-	// Main() Section 1
+	// Main() Section 3
 	cout << "a: " << a << '\n';
 	cout << "b: " << b << '\n';
 	cout << "a + b = " << c << '\n';
