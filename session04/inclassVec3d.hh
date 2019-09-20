@@ -1,6 +1,6 @@
 int main() {
-	Vec3d a(1.0, 2.5, 3.2);
-	Vec3d b(2.0, -1.5, 0.5);
+	const Vec3d a(1.0, 2.5, 3.2);
+	const Vec3d b(2.0, -1.5, 0.5);
 	// dot product ax*bx + ay*by + az*bz
   Vec3d g; // (0,0,0)
 	Vec3d h(); // not an object!  h is a function that return Vec3d
