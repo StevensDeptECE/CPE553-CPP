@@ -20,5 +20,13 @@ int main() {
 	// pick t = a random number from 0 to 2*pi
 	// 
 	// calculate x,y = r cos t, r sin t
-	
+
+	// next step (not necessary this week)
+	// calculate V
+	// pretend all orbits are circular
+	// calculate the length of the circular path around the sun 2*pi * r
+	// look up time it takes to orbit
+	// convert to meters and seconds
+	// v = distance around the sun / orbital period in seconds
 	cout << sun << mercury << venus << earth;
+}
