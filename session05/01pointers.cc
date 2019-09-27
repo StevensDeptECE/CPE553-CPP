@@ -6,7 +6,7 @@ void f(int& x) {
 }
 
 int main() {
-  int a; // order of variables in memory is NOT GUARANTEED
+	int a; // order of variables in memory is NOT GUARANTEED
   char c;
   cout << &a << '\n'; // the address of a, where it lives in memory
   // normally, we don't care where a lives, and we do not get to choose
@@ -15,16 +15,18 @@ int main() {
   cout << &b << '\n'; // the address of a, where it lives in memory
 
   
-	//  const int c;
+	//	const int c;
   const int d = 54;
   f(b);
 	//  f(d);
   // a pointer is declared in reverse
   // "what p points to is an int, therefore p is a pointer to int"
-  int* p;
+  int *p;
 	//  cout << *p << '\n'; // probably crash, looking at random memory location
 	//  *p = 124;
-  int  *q = &a; // spaces make no difference.  q is pointing to a
+  int* q = &a; // spaces make no difference.  q is pointing to a
+	*q = 5; // set the value of a
+	q = &b; // point somwhere else
   //int *a,b; // don't do this: a is a pointer to int, b is int
   double x[10];
   cout << x << "\n"; // the name of an array is a pointer to the start
@@ -33,7 +35,7 @@ int main() {
   dp++; // advance to the next element (8 bytes at a time)
   cout << *dp << '\n'; // what prints out????
 
-  dp = x + 5; // pointer addition works in terms of types, not bytes
+  dp = x + 5; // &x[5] pointer addition works in terms of types, not bytes
   *dp = 2.5; // x[5] = 2.5
   p = (int*)x; //????? Types don't match.  But you can do this
   // if you try hard enough, and it is BAD

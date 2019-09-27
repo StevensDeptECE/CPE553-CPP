@@ -5,11 +5,12 @@ class Vehicle { // class becomes abstract with pure virtual function
 private:
   double speed;
 public:
+	double getSpeed() const { return speed; }
   Vehicle(double speed) : speed(speed) {}
   friend ostream& operator <<(ostream& s, const Vehicle& v) {
     return s << v.speed;
   }
-  virtual	void payToll() const = 0; // a class that contains 1 or more pure virtual functions is abstract
+  virtual	void payToll() const = 0 ; // a class that contains 1 or more pure virtual functions is abstract
 };
 
 // has speed and number of passengers
@@ -35,7 +36,7 @@ public:
   Truck(double speed, double weight, int numAxles)
     : Vehicle(speed), weight(weight), numAxles(numAxles) {}
   void payToll() const {
-    cout << '$' << 4 * numAxles;
+    cout << '$' << 20 * numAxles;
   }
 
 };

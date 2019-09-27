@@ -22,8 +22,12 @@ int main() {
       cout << *i << '\t';
     cout << '\n';
 
+		auto a = 2;
+		auto b = 3.0; // double
+		auto c = 3.0f; // float
+
+		
     for (auto x : words ) 
       cout << x << '\t';
     cout << "\n";
 }
-

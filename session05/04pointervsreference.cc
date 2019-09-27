@@ -13,7 +13,7 @@ int main() {
 	r = b; // a is now 3
 	
   //  int& r2 = b; //error, r2 is not const
-  //  r2 = 3;
+  //  r2 = 4;
 	
   const int& r2 = b;
   cout << r2 << '\n';

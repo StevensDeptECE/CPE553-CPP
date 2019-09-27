@@ -7,9 +7,11 @@ int main() {
 	float f2 = float(d);
 	//	Fraction f1(1,2);
 	//	int i = int(f1);
-  int a = 12345667;
+  int a = 1000000;
   double* p;
   //  p = &a; // this doesn't work.the compiler knows I am being stupid
   p = (double*)&a;
+	// [ a a a a ]
+	//	     ^
   cout << *p << '\n';
 }
