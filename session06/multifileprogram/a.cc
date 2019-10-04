@@ -1,5 +1,8 @@
 #include <iostream>
+int x = 191;
 
 void f() {
-	std::cout << "hello";
+	static int count = 0;
+	count++;
+	std::cout << "hello" << count << '\n';
 }

@@ -20,6 +20,7 @@ using namespace std;
 const double PI = 3.1415926535897932;
 const int x = 1; // mangled x_i ::x
 extern int y;
+static int z = 3; // like global, but scope is file local
 void f();
 namespace stevens {
   int x = 2; // stevens::x
@@ -29,6 +30,10 @@ class A {
 };
 
 int A::x = 3;
+
+void g() {
+	static int w = 0; // scope is local to this function, lifetime is like global
+}
 
 int main() {
   int x = 4;

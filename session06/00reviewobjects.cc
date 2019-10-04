@@ -14,7 +14,8 @@ class A {}; // definition
 extern int x; // declaration
 int x; // definition: here it is
 class B {
-  int x;
+// default is private:!!!!
+ int x;
   static int y; // declaration
 };
 

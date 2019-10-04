@@ -9,9 +9,10 @@ private:
 	double x,y;
 public:
 	Shape(double x, double y) : x(x), y(y) {}
-	// pure virtual function
 	double getX() const { return x; }
 	double getY() const { return y; }
+
+	// pure virtual function
 	virtual	double area() = 0; // shape is abstract (you cannot make one)
 	// cannot instantiate an object
 };
@@ -21,7 +22,7 @@ private:
 	double r;
 public:
 	Circle(double x, double y, double r) : Shape(x,y), r(r) {}
-	//		double area() const { return PI * r*r; }
+	double area() const { return PI * r*r; }
 };
 
 class Rect : public Shape {
