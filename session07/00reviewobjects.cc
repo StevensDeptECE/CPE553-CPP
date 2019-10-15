@@ -22,6 +22,7 @@ void f();
 void f();
 // function prototype (declaration)
 void f();
+extern void f();
 
 class B {
 public:
@@ -29,7 +30,12 @@ public:
 };
 
 int main() {
-  int x; // declaration (also definition)
+  int x = 2; // declaration (also definition)
+	{
+		int x = 3;
+		cout << x;
+	}
+	cout << x;
   A a1; // how big?  NOT ZERO   legal!!!
   A a2; // if sizeof(a1) == 0, then a1=a2???
   //fundamental principle: all objects must have unique identity

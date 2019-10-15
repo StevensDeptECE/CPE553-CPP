@@ -21,4 +21,8 @@ int main() {
 		cout << a << " is even\n";
 	}
 
+	if (a % 3 == 0) {
+		cout << a << " is a multiple of 3";
+	}
+
 }

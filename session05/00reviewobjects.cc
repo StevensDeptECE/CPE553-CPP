@@ -2,7 +2,7 @@
 using namespace std;
 class A {
 public:
-	//A() {}  //default constructor
+	A() {}  //default constructor
 };
 
 class Fraction {
@@ -20,11 +20,24 @@ public:
 		// 1/2 + 1/2 = 4/4
 		return Fraction(a.num*b.den + b.num*a.den, a.den*b.den);
 	}
+	Fraction operator -(Fraction b) const {
+		return Fraction(num*b.den - b.num*den, den*b.den);
+	}
+#if 0
 	friend Fraction operator -(Fraction a, Fraction b) {
 		return Fraction(a.num*b.den - b.num*a.den, a.den*b.den);
 	}
+#endif
 	friend Fraction operator -(Fraction a) {
 		return Fraction(-a.num, a.den);
+	}
+#if 0
+	Fraction operator -() {
+		return Fraction(-num, den);
+	}
+#endif
+	friend ostream& operator <<(ostream& s, Fraction f) {
+		return s << f.num << '/' << f.den;
 	}
 };
 
@@ -41,4 +54,5 @@ int main() {
 	Fraction f2(2,3);
 	Fraction f3 = f1 + f2;
 	Fraction f4 = -f1;
+	cout << f4;
 }

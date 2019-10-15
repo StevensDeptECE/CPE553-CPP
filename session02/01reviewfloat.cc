@@ -18,6 +18,7 @@ int main() {
 	double e = 69.0 * 365.2425 * 24 * 60 * 60; // 1.2312512512516e+300
 	cout << e << "\n";
 	69.0 * 365.0f * 22L * 3;
+	long double xxx = 1	w = floor(y*3);.5L;
 	double Na = 6.022E+23;
 	double big = 1.23456789012345e+308;
 	double tiny = 1.23456789012345e-308;

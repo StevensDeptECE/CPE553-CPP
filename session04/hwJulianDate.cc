@@ -58,7 +58,7 @@ int JulianDate::EPOCH = 2000; // Jan.1 2000, 00:00:00 = 0
 
 int main() {
 	JulianDate newyear(2018, 1, 1, 0,0,0);
-	JulianDate valentine(2018, 2, 14, 12,0,0);
+	JulianDate valentine(2018, 2, 14, 12,0,0); // 0.5
 	JulianDate today; // get it from the system time: time(nullptr)
 	                  // localtime
 
@@ -72,6 +72,10 @@ int main() {
 			 << "\nhour: " << newyear.getHour()
 			 << "\nmin: " << newyear.getMin()
 			 << "\nsec: " << newyear.getSec() << '\n';
+	JulianDate d1(2019, 1, 1, 0,0,0);
+	for (int i = 0; i < 100; i++)
+		cout << d1 + i;
+
 }
 
 		

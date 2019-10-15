@@ -11,6 +11,13 @@ int main() {
   for (int * r = a; r < a + 10; r++)
     *r = 3;
 	int* r = a;
+
+	int x = 2, y = 3;
+
+	x = 5, y = 6;
+	for (int i = 0, j = 22; i < 10; i++, j--)
+		cout << j;
+	
   for (int count = 10; count > 0; count--, r++)
     *r = 3;
   // Don't do this: r is past the end!!! *r = 4;

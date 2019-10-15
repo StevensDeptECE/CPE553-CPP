@@ -21,10 +21,10 @@ inline double g(double x) {
 
 
 int main() {
-	5;
-	5+2;
-	hello;
-	hello();
+	5;     //does nothing...
+	5+2;   //NOP
+	hello; // NOP
+	hello(); // calls hello
 	hello();
 	test(5);
 	cout << f(2.0) << "\n";

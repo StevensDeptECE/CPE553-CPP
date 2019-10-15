@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 
+using namespace std;
 int main() {
 	ofstream f("test.stl");
 	f << "hello" << 5 << '\n';

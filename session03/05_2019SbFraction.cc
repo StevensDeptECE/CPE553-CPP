@@ -13,16 +13,17 @@ public:
 	void print() const {
 		cout << num << '/' << den;
 	}
-	friend Fraction operator +(Fraction x, Fraction y);
+	friend Fraction operator +(Fraction a, Fraction b);
+	friend Fraction add(Fraction x, Fraction y);
 	// this points to the object receiving the message
 	Fraction add(Fraction y) {
 		return	Fraction(this->num*y.den+y.num*this->den, this->den * y.den);
 	}
-
 };
 
 Fraction operator +(Fraction x, Fraction y) {
-  return	Fraction(x.num*y.den+y.num*x.den, x.den * y.den);
+	Fraction ans(x.num*y.den+y.num*x.den, x.den * y.den);
+	return ans;
 }
 
 Fraction add(Fraction x, Fraction y) {

@@ -6,13 +6,13 @@ int main() {
 	while (x < 10  ) {
 		cout << x;
 		x++; //x = x + 1; x += 1; ++x;
-		//		x += x++; //legal?
 	}
 	int count = 1;
 	while (count <= 10) {
 		cout << count;
 		count++;
 	}
+	cout << "at the end, count = " << count << '\n';
 	
 	int y = 0;
 	while (y < 10)

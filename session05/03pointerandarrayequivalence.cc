@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 int main() {
   int x[10];
   x[0] = 5;
@@ -8,9 +11,9 @@ int main() {
 
   const int y[10] = {3};
 	//	int* p = &y[0]; // error: *p = 99;
-	const int* q = y[0];
+	const int* q = &y[0]; // y + 0 // y
 	cout << *q;
-	*q = 55;
+	//ERROR: *q = 55;
 	
   const int* const r = y; // r and y are the same
   cout << y[0] <<'\n';
