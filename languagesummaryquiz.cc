@@ -209,6 +209,13 @@ void statements() {
 			break;
 		}
 	cout << '\n';
+  // you should know the difference when not declaring the variable in the for loop
+
+  int x;
+  for (x = 0; x < 10; x++)
+    cout << x << ' ';
+  cout << '\n';
+  cout << x << '\n'; // this would not be possible if x were declared in the loop
 }
 
 void thedreadedgoto(int n) {
@@ -588,6 +595,7 @@ T adder(T first, Args... args) {
   return first + adder(args...);
 }
 
+//NOT needed for the course
 void variadictemplates() {
 	subject("Variadic Templates");
   //variadic templates are safe.  unlike varargs
