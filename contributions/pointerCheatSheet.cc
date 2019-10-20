@@ -4,12 +4,12 @@ using namespace std;
 
 #if 0
 
-p++;         //use it then move to the next position
-*p++;        //use it then move to the next position 
-*(p)++;      //use it then move to the next position
+p++;         //use the value of p, then move to the next position
+*p++;        //dereference p (use the value of *p), then move to the next position 
+*(p)++;      //use it then move to the next position (should be equivalent to case above)
 
 ++p;         //move to the next position then use it
-*++p;        //move to the next position then use it
+*++p;        //move to the next position then dereference it
 *(++p);      //move to the next position then use it
 
 ++(*p);      //increment the value by 1 then use it
