@@ -27,5 +27,6 @@ int main() {
 
 	
   b.ellipse(xcenter, ycenter, xdiameter, ydiameter);
+	b.save("bitmap2.png");
 }
 
