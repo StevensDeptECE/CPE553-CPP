@@ -13,8 +13,13 @@ int main() {
 	constexpr uint32_t BLACK = 0xFF000000; // black opaque
 	constexpr uint32_t RED = 0xFFFF0000; // red opaque
 	constexpr uint32_t BLUE = 0xFF0000FF; // blue opaque	
-	constexpr uint32_t RED = 0xFFFFFFFF; // white opaque
-	constexpr uint32_t RED = 0xFFFFFF00; // yellow opaque
+	constexpr uint32_t WHITE = 0xFFFFFFFF; // white opaque
+	constexpr uint32_t YELLOW = 0xFFFFFF00; // yellow opaque
+	
+	xcenter = 100;
+	ycenter = 100;
+	xdiameter = 200;
+	ydiameter = 100;
 
 	//hardcoded size 600 x 400
 	Bitmap b(BLACK);
