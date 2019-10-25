@@ -22,7 +22,7 @@ int main() {
 	ydiameter = 100;
 
 	//hardcoded size 600 x 400
-	Bitmap b(BLACK);
+	DynamicBitmap b(1024, 1024, BLACK);
 	
         b.horizLine(0, 500, 200, RED); // horizontal line from x=0 to x=500, @y = 200
 	b.vertLine(0, 399, 300, RED); // y=0 to y=399 @ x= 300, red vertical line
