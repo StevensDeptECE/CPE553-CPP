@@ -1,11 +1,10 @@
 /*
-	you have to write:
-	1. constructor (that allocates dynamic memory)
-	2. destructor (free the memory delete [])
-  3. copy constructor
-  4.  operator = (use either old way or copy and swap)
-  5. move constructor
-
+  You have to write:
+  1. Constructor (that allocates dynamic memory)
+  2. Destructor (free the memory delete [])
+  3. Copy Constructor
+  4. Operator = (use either old way or copy and swap)
+  5. Move Constructor
 
  */
 
