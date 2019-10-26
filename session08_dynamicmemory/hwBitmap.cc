@@ -5,10 +5,10 @@ int main() {
 	
 	
 	// SECOND PART (DO NOT EDIT)
-	xcenter = 100;
-	ycenter = 100;
-	xdiameter = 200;
-	ydiameter = 100;
+	int xcenter = 100;
+	int ycenter = 100;
+	int xdiameter = 200;
+	int ydiameter = 100;
 
 	Bitmap b(BLACK); // Hardcoded size (600 x 400 pixels)
 	
