@@ -5,24 +5,22 @@
   3. Copy Constructor
   4. Operator = (use either old way or copy and swap)
   5. Move Constructor
-
  */
 
 
 int main() {
+	// FIRST PART (ADD COLORS HERE)
 	constexpr uint32_t BLACK = 0xFF000000; // black opaque
 	constexpr uint32_t RED = 0xFFFF0000; // red opaque
-	constexpr uint32_t BLUE = 0xFF0000FF; // blue opaque	
-	constexpr uint32_t WHITE = 0xFFFFFFFF; // white opaque
-	constexpr uint32_t YELLOW = 0xFFFFFF00; // yellow opaque
 	
-	xcenter = 100;
-	ycenter = 100;
-	xdiameter = 200;
-	ydiameter = 100;
+	
+	// SECOND PART (DO NOT EDIT)
+	int xcenter = 100;
+	int ycenter = 100;
+	int xdiameter = 200;
+	int ydiameter = 100;
 
-	//hardcoded size 600 x 400
-	DynamicBitmap b(1024, 1024, BLACK);
+	DynamicBitmap b(1024, 1024, BLACK); // Potentially dynamic size (Now: 1024 x 1024 pixels)
 	
         b.horizLine(0, 500, 200, RED); // horizontal line from x=0 to x=500, @y = 200
 	b.vertLine(0, 399, 300, RED); // y=0 to y=399 @ x= 300, red vertical line
@@ -36,8 +34,5 @@ int main() {
 	
 	b.save("bitmap.png");
 	
-	//OPTIONAL FUNCTION, 100pt bonus for implementing Wu's antialiasing
-	//https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm
-	//b.antialiedLine(400,0, 550,300, YELLOW);        
 }
 
