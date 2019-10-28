@@ -1,8 +1,10 @@
+
+
 int main() {
 	constexpr uint32_t BLACK = 0xFF000000; // black opaque
 	constexpr uint32_t RED =   0xFF0000FF; // red opaque
 
-	//hardcoded size 600 x 400
+	//hardcoded size 800 x 600
 	Bitmap b(BLACK);
   b.horizLine(0, 500, 200, RED); // horizontal line from x=0 to x=500, @y = 200
 	b.vertLine(0, 399, 300, RED); // y=0 to y=399 @ x= 300, red vertical line
