@@ -13,7 +13,7 @@ int main() {
 	int xdiameter = 200;
 	int ydiameter = 100;
 
-	Bitmap b(BLACK); // Hardcoded size (600 x 400 pixels)
+	Bitmap b(BLACK); // Hardcoded size (***800 x 600 pixels***)
 	
         b.horizLine(0, 500, 200, RED); // Red horizontal line, from x=0 to x=500, at y = 200
 	b.vertLine(0, 399, 300, RED); // Red vertical line, from y=0 to y=399, at x = 300
