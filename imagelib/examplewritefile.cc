@@ -14,6 +14,8 @@ public:
         pixels[i][j] = color;
       }
   }
+  void horizontalLine(int x1, int y, int x2, uint32_t color);
+  void verticalLine(int y1, int x, int y2, uint32_t color);
   void save(const char filename[]) {
     stbi_write_png(filename, w, h, 4, pixels, w*4);
   }
