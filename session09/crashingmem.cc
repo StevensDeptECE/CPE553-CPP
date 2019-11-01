@@ -6,6 +6,7 @@ void f() {
 
 int main() {
 	int* p;
+	cout << *p; // looking at random pointer (CRASH!)
 	delete p; // crash, never allocated (random)
 	int a;
 	int* q = &a;

@@ -1,5 +1,5 @@
 
-class LinkedList {
+class LinkedList2 {
 private:
 	class Node { // LinkedList::Node
 	public:
@@ -7,23 +7,20 @@ private:
 		Node* next;
 	};
 	Node* head;
+	Node* tail;
 public:
-	LinkedList() {}
-	~LinkedList() {
-		// delete each pointer, but be VERY CAREFUL
-		// first get the next pointer, THEN DELETE THIS ONE!!!
-	}
-	// optional: 150% for writing
-	// old c++: linker error if called 	LinkedList(const LinkedList& orig) ;
-
-	// new C++11 way
-	LinkedList(const LinkedList& orig)  = delete;
-	LinkedList& operator =(const LinkedList& orig)  = delete;
-
+	LinkedList();
+	~LinkedList() ;
+	LinkedList(const LinkedList& orig);
+	LinkedList& operator =(const LinkedList& orig);
 	// move constructor
 	LinkedList(LinkedList&& orig) { // steal orig data while it's dying (nice)
 
 	}
+	void addStart(int v);
+	void addEnd(int v);
+	void removeStart();
+	void removeEnd();
 };
 /**
   head --> nullptr
@@ -36,11 +33,16 @@ public:
 
  */
 int main() {
-	LinkedList a; // create an empty list  (head == nullptr
+	LinkedList2 a;
 	a.addStart(3); // 3 is the first element in the list
 	a.addStart(1); // 1  3
 	a.addStart(4); // 4 1 3
+	a.addEnd(1);
 	cout << a << '\n'; // print out the list
-	//	LinkedList b = a; // GIVES A LINKER ERROR BECAUSE YOU DIDN'T IMPLEMENT COPY CONSTRUCTOR
-
+	LinkedList2 b = a;
+  cout << c << '\n';
+	LinkedList2 c;
+	c.addStart(5);
+	c = b; // wipe out c, copy in b
+  cout << c << '\n';
 }
