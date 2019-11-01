@@ -23,7 +23,7 @@ int main() {
 	
 	b.line(400,0, 550,300, YELLOW); // Line drawn using https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
 	
-	b.ellipse(xcenter, ycenter, xdiameter, ydiameter); //Ellipse using specs from above
+	b.ellipse(xcenter, ycenter, xdiameter, ydiameter, GREEN); //Ellipse using specs from above
 	
 	b.save("bitmap.png");
 	
@@ -31,6 +31,6 @@ int main() {
 	// THIRD PART - OPTIONAL FUNCTION
 	// 100pt bonus for properly implementing Wu's antialiasing
 	//https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm
-	//b.antialiasedLine(400,0, 550,300, YELLOW);        
+	//b.antialiasedLine(400,50, 550,350, YELLOW);        
 }
 
