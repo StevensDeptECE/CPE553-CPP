@@ -35,14 +35,16 @@ public:
 int main() {
 	LinkedList2 a;
 	a.addStart(3); // 3 is the first element in the list
-	a.addStart(1); // 1  3
+	a.addStart(1); // 1 3
 	a.addStart(4); // 4 1 3
 	a.addEnd(1);
-	cout << a << '\n'; // print out the list
+	cout << a << '\n'; // print out the list, spaces/commas between each entry
+
 	LinkedList2 b = a;
-  cout << c << '\n';
+  	cout << b << '\n';
+	
 	LinkedList2 c;
 	c.addStart(5);
 	c = b; // wipe out c, copy in b
-  cout << c << '\n';
+  	cout << c << '\n';
 }
