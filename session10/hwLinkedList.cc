@@ -37,7 +37,10 @@ int main() {
 	a.addStart(3); // 3 is the first element in the list
 	a.addStart(1); // 1  3
 	a.addStart(4); // 4 1 3
-	a.addEnd(1);
+	for (int i = 1; i <= 5; i++)
+		a.addEnd(i);
+	a.removeStart();
+	a.removeEnd();
 	cout << a << '\n'; // print out the list
 	LinkedList2 b = a;
   cout << c << '\n';
