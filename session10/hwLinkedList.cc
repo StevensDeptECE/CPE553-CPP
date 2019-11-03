@@ -1,7 +1,7 @@
 
 class LinkedList2 {
 private:
-	class Node { // LinkedList::Node
+	class Node { // LinkedList2::Node
 	public:
 		int val;
 		Node* next;
@@ -9,12 +9,12 @@ private:
 	Node* head;
 	Node* tail;
 public:
-	LinkedList();
-	~LinkedList() ;
-	LinkedList(const LinkedList& orig);
-	LinkedList& operator =(const LinkedList& orig);
+	LinkedList2();
+	~LinkedList2() ;
+	LinkedList2(const LinkedList2& orig);
+	LinkedList2& operator =(const LinkedList2& orig);
 	// move constructor
-	LinkedList(LinkedList&& orig) { // steal orig data while it's dying (nice)
+	LinkedList2(LinkedList2&& orig) { // steal orig data while it's dying (nice)
 
 	}
 	void addStart(int v);
