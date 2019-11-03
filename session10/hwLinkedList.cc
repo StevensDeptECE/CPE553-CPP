@@ -41,7 +41,8 @@ int main() {
 		a.addEnd(i);
 	a.removeStart();
 	a.removeEnd();
-	cout << a << '\n'; // print out the list
+	cout << a << '\n'; // print out the list, separated by spaces or commas
+	
 	LinkedList2 b = a;
   	cout << b << '\n';
 	
