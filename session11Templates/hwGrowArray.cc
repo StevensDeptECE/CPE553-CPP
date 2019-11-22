@@ -42,6 +42,8 @@ int main() {
 	GrowArray<Person> list(1000000); // should not call constructor for Person!
 	list.add(Person("Test")); // Should call the constructor once and the copy once
 	/*
-		destructor should be called twice for person (once for the temp, and once for the object in the array. If the optimizer somehow can do it, it could be only once. But most important, you must not call the destructor 1000000 times!
+		Destructor should be called twice for person (once for the temp, and once for 
+		the object in the array. If the optimizer somehow can do it, it could be only once. 
+		But most important, you must not call the destructor 1000000 times!
 	*/
 }
