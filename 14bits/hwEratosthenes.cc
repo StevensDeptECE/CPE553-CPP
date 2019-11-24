@@ -38,6 +38,13 @@ lcm(105, 64) = 105*64
 
 int main() {
   PrimeSolver p(63); // allocate the right number of 64-bit words
-	PrimeSolver p2 = p; // this should give an error
+#if 0
+	//You do not have to support copy constructor, but you should at least delete it
+	PrimeSolver p2 = p; // this would give an error
+
+	// same for operator =
+
+	p2 = p; // just delete both copy constructor and operator = to show that you know how
+#endif
 	cout << p.countPrimes();
 }
