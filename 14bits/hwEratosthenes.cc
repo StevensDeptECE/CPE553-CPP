@@ -1,9 +1,3 @@
-class PrimeSolver {
-	// new uint64_t[(n + 63) / 64]
-	//copy consturctor, operator = not required
-public:
-};
-
 /*
  Eratosthenes' sieve
 
@@ -25,19 +19,21 @@ better:
     if i is prime
       for j = i*i to n step 2*i
 
-
-
   3x5x7 =105   64 = 2**6
 lcm(105, 64) = 105*64
     64 65 66 67 68 69 70
     1  0  0  1  1   0 1   111111111111111111111111111111111111111111111111111
   
-
-
 */
 
+class PrimeSolver {
+	// new uint64_t[(n + 63) / 64]
+	//copy constructor, operator = not required
+public:
+};
+
 int main() {
-  PrimeSolver p(63); // allocate the right number of 64-bit words
+  PrimeSolver p(1000000000); // allocate the right number of 64-bit words
 #if 0
 	//You do not have to support copy constructor, but you should at least delete it
 	PrimeSolver p2 = p; // this would give an error
