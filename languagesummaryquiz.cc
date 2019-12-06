@@ -341,7 +341,7 @@ void identifiers() {
 	// functions may not be declared within functions
 }
 
-namespace A {
+namespace stevens {
 	namespace B {
 		class C {};
 	}
@@ -349,8 +349,8 @@ namespace A {
 
 // unlike anything else, namespaces may be declared multiple times.
 // each one adds to the definition of the namespace.
-// in this case, class D is added to namespace A::B
-namespace A {
+// in this case, class D is added to namespace stevens::B
+namespace stevens {
 	namespace B {
 		class D {};
 	}
@@ -358,8 +358,8 @@ namespace A {
 
 void namespaces() {
 	subject("namespaces");
-	A::B::C c1; // namespaces allow partitioning namespace to allow the same name to be used for multiple classes
-	A::B::D d1;
+	stevens::B::C c1; // namespaces allow partitioning namespace to allow the same name to be used for multiple classes
+	stevens::B::D d1;
 }
 
 void sizeofclasses() {
@@ -583,16 +583,137 @@ void inheritance() {
 	};
 };
 
+class A {
+private:
+  int dummy; // just to demonstrate...
+public:
+  virtual void f() = 0;
+  virtual ~A() = 0;
+};
+
+class B : public A {
+public:
+  void f() override {
+    cout << "B";
+  }
+};
+
+class C : public A {
+public:
+  void f() override {
+    cout << "C";
+  }
+};
+
+
+struct Packing1 {
+  uint32_t a;
+  char b;
+  double c;       // objects are aligned to the word width of the machine or their size
+  uint16_t d;
+  double* p;      // whichever is less
+};
+
+struct Packing2 {
+  uint32_t a;
+  char b;
+  uint16_t d;
+  double c;
+  double* p;
+};
+void alignmentAndPacking() {
+  cout << sizeof(Packing1) << '\n';
+  cout << sizeof(Packing2) << '\n';
+}
+
 void polymorphism() {
-	
+  vector<A*> list;
+  list.push_back(new B());
+  list.push_back(new C());
+  list.push_back(new C());
+  list.push_back(new B());
+  for (auto a : list)
+    a->f();
+  cout << sizeof(A) << '\n'; // the size of A is bigger than the data by one pointer
+  cout << sizeof(B) << '\n'; // and same for every object inheriting from A
+  cout << sizeof(C) << '\n';
+}
+
+uint32_t verylongfunctionshouldnotbeinlined(uint32_t a) {
+  uint32_t sum = 0;
+  for (uint32_t i = 1; i <= a; i++)
+    sum += i*i;
+  for (uint32_t i = a; i > 0; i--) // bogus loop to fool compiler
+    sum += 1 / (i*i);
+  return sum;
+}
+
+inline uint32_t add(uint32_t a, uint32_t b) { return a + b; }
+void cannotbeinlined(); // the compiler cannot see the code, so it cannot possibly be inlined
+
+// a recursive function cannot be inline because it has to call something
+double recursiveCannotInline(int n) {
+  if (n < 2)
+    return 3;
+  return n + 1.1*recursiveCannotInline(n-2);
+}
+  
+void preprocessor() {
+  // to cut out a section of code, use #if 0
+
+#if 0
+  // this code
+  // does not
+  // exist
+  /* a traditional c comment inside this block is ok */
+#endif
+
+  //Do not use /* ... */ to chop out code because these kind of comments do not nest
+  
+
+}
+
+void inlining() {
+  uint32_t n;
+  cin >> n;
+  cout << verylongfunctionshouldnotbeinlined(n) << '\n'; // not advantageous to inline, too big
+  cout << add(2,3) << '\n'; // this should  be inlined because the code becomes
+  // shorter and faster. In this case 2+3 --> 5, no computation at all, just print 5.
+  //inline is just a suggestion. It typically only happens when optimization is on
+  // inline cannot happen if the compiler does not have the code for the function
+}
+
+template<typename T>
+void sort(T x[], int n) {
+  for (int j = 0; j < n-1; j++)
+    for (int i = 0; i < n-1; i++)
+      if (x[i] < x[i+1])
+        swap(x[i], x[i+1]);
 }
 
 void templatefunctions() {
-
+  int a[] = {4, 3, 2, 1};
+  double b[] = {3.5, 2.5, 4.1, 1.2, 2.7};
+  string c[] = {"test", "hello", "apple", "donkey", "cat", "bear"};
+  sort(a, 4); // sort is a generic function that works on any type as long as a > b is supported
+  sort(b, 5);
+  sort(c, sizeof(c)/sizeof(string));
 }
 
-void templateclasses() {
+template<typename Precision>
+class Complex {
+private:
+  Precision r,i;
+public:
+  Complex(Precision r, Precision i) : r(r), i(i) {}
+  friend Complex operator +(Complex a, Complex b) { return Complex(a.r+b.r, a.i+b.i); }
+};
 
+void templateclasses() {
+  Complex<int> a(1,2);
+  Complex<double> b(3.5,2.2);
+  Complex<double> c(1.2,3.1);
+  Complex<double> d = b + c;
 }
 
 // a function that accepts n parameters. It will go until the first zero
@@ -643,20 +764,21 @@ int main() {
 	nan();
 	ifstatements();
 	statements();
-	thedreadedgoto(100);
+	thedreadedgoto(100); //***
 	scopeandlifetime();
 	openingfiles();
-	oldcstrings();
+	oldcstrings(); //***
 	cppstrings();
 	namespaces();
 	sizeofclasses();
 	bitoperations();
 	regexexamples();
 	randomnumbergen();
-	inheritance();
+	inheritance(); //***
+  alignmentAndPacking();
 	polymorphism();
-  varargs();
+  varargs(); /***
 	templatefunctions();
 	templateclasses();
-	variadictemplates();
+	variadictemplates(); //***
 }
