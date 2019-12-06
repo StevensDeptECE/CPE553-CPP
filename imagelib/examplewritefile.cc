@@ -6,7 +6,7 @@
 class Image {
 private:
   constexpr static uint32_t w = 400, h = 300;
-  uint32_t pixels[w][h];
+  uint32_t pixels[h][w];
 public:
   Image(uint32_t v) {
     for (uint32_t i = 0; i < h; i++)
