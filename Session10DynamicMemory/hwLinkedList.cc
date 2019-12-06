@@ -1,7 +1,7 @@
 
 class LinkedList2 {
 private:
-	class Node { // LinkedList2::Node
+	class Node { // LinkedList::Node
 	public:
 		int val;
 		Node* next;
@@ -9,12 +9,12 @@ private:
 	Node* head;
 	Node* tail;
 public:
-	LinkedList2();
-	~LinkedList2() ;
-	LinkedList2(const LinkedList2& orig);
-	LinkedList2& operator =(const LinkedList2& orig);
+	LinkedList();
+	~LinkedList() ;
+	LinkedList(const LinkedList& orig);
+	LinkedList& operator =(const LinkedList& orig);
 	// move constructor
-	LinkedList2(LinkedList2&& orig) { // steal orig data while it's dying (nice)
+	LinkedList(LinkedList&& orig) { // steal orig data while it's dying (nice)
 
 	}
 	void addStart(int v);
@@ -41,8 +41,7 @@ int main() {
 		a.addEnd(i);
 	a.removeStart();
 	a.removeEnd();
-	cout << a << '\n'; // print out the list, separated by spaces or commas
-	
+	cout << a << '\n'; // print out the list
 	LinkedList2 b = a;
   	cout << b << '\n';
 	

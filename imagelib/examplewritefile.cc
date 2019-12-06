@@ -8,10 +8,10 @@ private:
   constexpr static uint32_t w = 400, h = 300;
   uint32_t pixels[h][w];
 public:
-  Image(uint32_t v) {
+  Image(uint32_t color) {
     for (uint32_t i = 0; i < h; i++)
       for (uint32_t j = 0; j < w; j++) {
-        pixels[i][j] = v;
+        pixels[i][j] = color;
       }
   }
   void horizontalLine(int x1, int y, int x2, uint32_t color);
@@ -23,7 +23,27 @@ public:
 
   int main()
 {
-  Image im1(0xFFFF0000); // appears to be ABGR
+	/*
+0    0000
+1    0001
+2    0010
+3    0011
+4    0100
+5    0101
+6    0110
+7    0111
+8    1000
+9    1001
+A    1010
+B    1011
+C    1100
+D    1101
+E    1110
+F    1111
+	 */
+
+	// on an Intel processor, int is stored little-endian (low byte first)
+  Image im1(0xFFFF0000); // appears to be RGBA
   im1.save("blue.png"); // save our boring, solid black picture
 
   Image im2(0xFF00FF00); // appears to be ABGR
