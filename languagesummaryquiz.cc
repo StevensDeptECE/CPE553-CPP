@@ -5,6 +5,7 @@
 #include <string>
 #include <regex>
 #include <random>
+#include <stdarg.h>
 
 using namespace std;
 
@@ -594,10 +595,22 @@ void templateclasses() {
 
 }
 
+// a function that accepts n parameters. It will go until the first zero
+int sumargs(int first, ...) {
+	va_list args;
+	int v;
+	int sum = first;
+	while ((v = va_arg(args, int)) != 0)
+		sum += sumargs(v);
+	return sum;
+}
+
 void varargs() {
 	subject("var args");
   // varargs are not typesafe.  You are just getting data off the stack
-  printf("%d %d", 2);
+	printf("%d %d\n", 2); // prints garbage
+	printf("%d\n", 2.0f); // incorrectly interprets the first 32-bits as int
+	sumargs(5, 4, 1, 0);
 }
 /*
 The syntax continues to get gnarlier...
