@@ -11,11 +11,9 @@ void test(int a) {
 }
 
 // f(x) = x*x
-double f(double x) {
-	return x*x;
-}
+double f(int x);
 
-inline double g(double x) {
+inline int g(int x) {
 	return x*x;
 }
 
@@ -24,9 +22,9 @@ int main() {
 	5;     //does nothing...
 	5+2;   //NOP
 	hello; // NOP
-	hello(); // calls hello
-	hello();
-	test(5);
-	cout << f(2.0) << "\n";
-	cout << g(2.0) << "\n";
+	//	hello(); // calls hello
+	//	hello();
+	//	test(5);
+	cout << f(2) << "\n";
+	cout << g(2) << "\n";
 }

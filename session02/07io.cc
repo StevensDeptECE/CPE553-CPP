@@ -13,4 +13,7 @@ int main() {
 		line >> x >> y >> z;
 		cout << x << ',' << y << ',' << z << '\n';
 	}
+	ofstream out("test.dat");
+	out << "hello";
+	out << 5 + 2 << '\n';
 }
