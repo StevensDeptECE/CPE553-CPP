@@ -12,7 +12,8 @@ int main() {
 		cout << b[i]; // prints 123
 	for (int i = 4; i >= 0; i--)
 		cout << d[i]; // 00123
-	const char s[] = "abcd"; // ASCII NUL
+	const char s[] = "abcd"; // s[0] = 'a' s[1] = 'b' s[2] = 'c' s[3] = 'd' s[4] = '\0'
+	
 	cout << s << '\n';
 	cout << sizeof(s) << '\n';
 	cout << sizeof(b) << '\n';

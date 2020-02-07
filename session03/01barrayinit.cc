@@ -7,9 +7,9 @@ int main() {
 								 {5},
 								 {2, -1},
 								 {3, -5}
-	};
+	}; // generates the following sequentially in memory 5 0 2 -1 3 -5 0 0
 
 	int arduino[2][2][2][2][2][20];
-
+	// no big arrays on the stack!  int x[2000000];
 	// big arrays cannot be on the stack. More later...	int big[1000000];
 }
