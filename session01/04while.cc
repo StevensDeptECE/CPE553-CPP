@@ -2,21 +2,24 @@
 #include <cstdint>
 using namespace std;
 int main() {
+
 	int x = 0;
-	while (x < 10  ) {
-		cout << x;
-		x++; //x = x + 1; x += 1; ++x;
+	while (x < 10) {
+		cout << x;                  //0123456789
+		x = x + 1; // x += 1; x++; ++x; 
 	}
+	
 	int count = 1;
 	while (count <= 10) {
-		cout << count;
+		cout << count;         //12345678910
 		count++;
 	}
 	cout << "at the end, count = " << count << '\n';
 	
 	int y = 0;
 	while (y < 10)
-		cout << y++ << endl; 
+		cout << y++ << endl;
+
 
 	int z = 10;
 	while (z < 10) {
@@ -26,6 +29,6 @@ int main() {
 
 	int w = 0;
 	while (w < 10)
-		cout << ++w;
+		cout << ++w; //12345678910
 	
 }

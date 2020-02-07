@@ -21,7 +21,8 @@ class C {
 private:
   B b1, b2;
 public:
-  C(int x1, int y1, int x2, int y2) : b1(x1,y1), b2(x2,y2) { cout << 'G'; }
+  C(int x1, int y1, int x2, int y2)
+		: b1(x1,y1), b2(x2,y2) { cout << 'G'; }
   ~C() { cout << 'H'; }
 };
 
@@ -40,23 +41,29 @@ bool g() {
 class D {
 public:
   virtual void f() = 0;
+  virtual void g() {
+		cout << 'd';
+	}
 };
 class E : public D {
 public:
-  virtual void f() override {
+  void f() override {
     cout << 'a';
   }
+  void g() override {
+		cout << 'e';
+	}
 };
 class F : public D {
 public:
-  virtual void f() override {
+  void f() override {
     cout << 'b';
   }
 };
 
 class G : public F {
 public:
-  virtual void f() override {
+  void f() override {
     cout << 'c';
   }
 };
@@ -117,7 +124,8 @@ int main() {
     cout << "hello\n";                          //____________________________
   if (g() || !f())
     cout << "hello\n";                          //____________________________
-
+  if (g() && f())
+    cout << "hello\n";                          //____________________________
   //structure packing rules and sizes
   struct A {
     char a;
@@ -126,6 +134,15 @@ int main() {
     double d;
   };
   cout << sizeof(char) << '\n';                 //____________________________
+
+	// rearrange A to be more efficient....
+#if 0
+	struct A {
+		char a, c; // 2 bytes wasted
+		uint32_t b;
+    double d;
+	};
+#endif
   cout << sizeof(uint32_t) << '\n';             //____________________________
   cout << sizeof(A) << '\n';                    //____________________________
 
@@ -144,19 +161,34 @@ int main() {
     sum2 += f;
   cout << sum2 << '\n';                         //____________________________
 
+	{
+		// inheritance
+		C c1(1,2, 3,4);                               //____________________________
+		cout << '\n';
+	}
 
-  // inheritance
-  C c1(1,2, 3,4);                               //____________________________
-  E e1;
-  e1.f();                                       //____________________________
-  D* d = &e1;
-  d->f();                                       //____________________________
-  F f1;
-  d = &f1;
-  d->f();                                       //____________________________
-  H* h = new J();
-  h->f();                                       //____________________________
-  cout << '\n';
+	{
+		E e1;
+		e1.f();                                       //____________________________
+		D* d = &e1;
+		d->f();                                       //____________________________
+		d->g();                                       //____________________________
+		F f1;
+		d = &f1;
+		d->f();                                       //____________________________
+		d->g();                                       //____________________________
+		cout << '\n';
+	}
+
+	{
+		H h1;
+		h1.f();
+		J j1;
+		j1.f();
+		H* h = &j1;
+		h->f();                                       //____________________________
+		cout << '\n';
+	}
   // pointer madness
   int y[10] = { 5, 2, 9, 6};
   int* p = y + 3;

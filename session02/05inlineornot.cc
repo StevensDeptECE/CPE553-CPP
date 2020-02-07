@@ -11,3 +11,11 @@ void veryLongFunction(int n) {
 }
 // rule: always inline small functions 1-2 lines
 // always inline a function that is only called once
+
+int main() {
+	veryLongFunction(100);
+	veryLongFunction(100);
+	veryLongFunction(100);
+	veryLongFunction(100);
+
+}
