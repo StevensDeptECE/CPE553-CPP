@@ -6,8 +6,8 @@ int main() {
 	Fraction f4(1,3);       // 1/3
 
 	// Main() Section 2
-	f5 = f2.add(f4); // 1/2 + 1/3 = 5/6
-	f6 = f4.sub(f3); // 5/1 - 1/2 = 9/2
+	Fraction f5 = f2.add(f4); // 1/2 + 1/3 = 5/6
+	Fraction f6 = f4.sub(f3); // 5/1 - 1/2 = 9/2
 	
 	// Main() Section 3	
 	int r = gcd(f2, f5); // greatest common denominator, 6
