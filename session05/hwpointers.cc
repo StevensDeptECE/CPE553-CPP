@@ -15,7 +15,7 @@ void doubleMe(int x[], int size) {
 }
 
 // print out every element of x separated by spaces  then newline
-void print(int x[], int size) {
+void print(const int x[], int size) {
 
 }
 

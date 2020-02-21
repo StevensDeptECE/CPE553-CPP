@@ -12,13 +12,13 @@ int main() {
   // normally, we don't care where a lives, and we do not get to choose
   
   int b = 2;
-  cout << &b << '\n'; // the address of a, where it lives in memory
+  cout << &b << '\n'; // the address of b, where it lives in memory
 
   
 	//	const int c;
   const int d = 54;
   f(b);
-	//  f(d);
+	//Error: f(d);
   // a pointer is declared in reverse
   // "what p points to is an int, therefore p is a pointer to int"
   int *p;
@@ -27,6 +27,8 @@ int main() {
   int* q = &a; // spaces make no difference.  q is pointing to a
 	*q = 5; // set the value of a
 	q = &b; // point somwhere else
+	cout << *q;
+	
   //int *a,b; // don't do this: a is a pointer to int, b is int
   double x[10];
   cout << x << "\n"; // the name of an array is a pointer to the start

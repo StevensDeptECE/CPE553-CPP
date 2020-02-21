@@ -10,11 +10,13 @@ private:
 	uint32_t num, den;
 public:
 	Fraction(uint32_t n, uint32_t d) : num(n), den(d) {
+#if 0
 		int g = gcd(n, d);
 		if (g > 1) {
 			num /= g;
 			den /= g;
 		}
+#endif
 	}
 	friend Fraction operator +(Fraction a, Fraction b) { // 1/2+1/3 = 5/6
 		// 1/2 + 1/2 = 4/4
