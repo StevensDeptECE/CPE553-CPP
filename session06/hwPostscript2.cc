@@ -6,38 +6,49 @@ using namespace std;
 	suggestion:
 for this assignment:
 
+// what makes an abstract class???
 class Shape {
+private:
+double x,y;
 public:
-  virtual void draw(ostream& s) = 0;
+  Shape(double x, double y) : x(x), y(y) {}
+  virtual void draw(ostream& s)  = 0;
+	virtual ~Shape() {}
 };
 
-class Polygon : public Shape {
- void draw(ostream& s) {...}
+class Circle : public Shape {
+private:
+ void draw(ostream& s) override {...}
+// ~Circle() {}
 };
+
  */
 
 class Drawing {
 private:
 	ofstream f;
-	Shape*  shapes[100];
-	int     numShapes;
+	vector<Shape*>  shapes;
 public:
-	Drawing(string filename) : f(filename.c_str()), numShapes(0) {
-		for (int i = 0; i < 100; i++)
-			shapes[i] = nullptr;
+	Drawing(string filename) : f(filename.c_str()), shapes() {
+	}
+	~Drawing() { // write destructor
+    
 	}
 	void add( Shape* s ) {
-    shapes[numShapes++] = s;
+    shapes.push_back(s);
 	}
 
-	void draw() {
+	void draw() const {
 		for (int i = 0; i < numShapes; i++)
 			shapes[i]->draw(f);
 	}
 };
 
+void printIt(const Drawing& d) {
+	d.draw();
+}
+
 int main() {
-	ofstream f(  );
 	Drawing d("test2.ps");
 	d.setrgb(1,0,0); // set drawing color to be bright red:  1 0 0 setrgbcolor
 	d.add(new FilledRect(100.0, 150.0, 200.0, 50)); // x y moveto x y lineto ... fill
@@ -48,9 +59,6 @@ int main() {
 
 	d.add(new Circle(0,0, 100)); // 0 0 100 0 360 stroke
 	d.add(new Line(400,500, 600,550));
-	d.add(new Polygon(200,200, 50, 6));
-	d.draw();
+	//OPTIONAL+40%	d.add(new Polygon(200,200, 50, 6));
+  printIt(d);
 }
-	
-	
-	
