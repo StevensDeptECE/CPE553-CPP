@@ -3,11 +3,19 @@ private:
   double r, i;
 public:
 	Complex(double r = 0, double i = 0) : r(r), i(i) {}
+#if 0
   friend	Complex operator +(const Complex& a, const Complex& b) {
 		return Complex(a.r + b.r, a.i + b.i);
 	}
 	friend Complex operator -(Complex a) {
 		return Complex(-a.r, -a.i);
+	}
+#endif
+	Complex operator +(const Complex& b) const {
+		return Complex(r + b.r, i + b.i);
+	}
+	Complex operator -() const {
+		return Complex(-r, -i);
 	}
   friend ostream& operator <<(ostream& s, Complex c) {
 		return s << "(" << c.r << "," << c.i << ")";
