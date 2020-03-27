@@ -30,16 +30,21 @@ public:
 	friend ostream& operator <<(ostream& s, const Elephant& e) {
 		return s << "Elephant " << e.name << " " << e.age;
 	}
-
+#if 0
+	// now we don't need this, we sort on ANY KEY
 	friend bool operator >(const Elephant& e1, const Elephant& e2) {
 		return e1.name > e2.name;
 	}
+#endif
+	//close?	static int Elephant::* byAge() { return &Elephant::age; }
+	//close?  static string Elephant::* byName() { return &Elephant::name; }
 };
 
 int main() {
 	Elephant e[] = { Elephant("Fred", 3), Elephant("Jill", 19), Elephant("Alice", 23) };
 
-  sort(e, 3, &Elephant::name);
+	sort(e, 3, &Elephant::name);
+	//close?	sort(e, 3, Elephant::byAge());
 	print(e, 3);
 
 	sort(e, 3, &Elephant::age);

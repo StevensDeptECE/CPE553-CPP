@@ -19,7 +19,7 @@ private:
 	}
 public:
 	List(int initialSize) : used(0), capacity(initialSize), list(new int[capacity])	{}
-	List() :List(100) {}
+	List() : List(1) {}
 	void add(int v) {
 		checkGrow();
 		list[used++] = v;
@@ -31,7 +31,7 @@ public:
 		for (int i = 0; i < used; i++)
 			list[i] = orig.list[i];
 	}
-
+#if 0
 	List& operator =(const List& orig) {
 		if (this != &orig) {
 			delete [] list;
@@ -41,6 +41,14 @@ public:
 			for (int i = 0; i < used; i++)
 				list[i] = orig.list[i];
 		}
+		return *this;
+	}
+#endif 
+	//copy and swap (the "new" c++11 way)
+	List& operator =(List copy) {
+		used = copy.used;
+		capacity = copy.capacity;
+		swap(list, copy.list);
 		return *this;
 	}
 
@@ -71,4 +79,5 @@ int main() {
   c = c;
 
 	a = b = c;
+	a = a;
 }

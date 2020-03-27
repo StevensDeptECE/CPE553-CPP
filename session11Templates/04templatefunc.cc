@@ -8,6 +8,9 @@ private:
 	int age;
 public:
 	Elephant(const string& name, int age) : name(name), age(age) {}
+	friend	bool operator >(const Elephant& a, const Elephant& b) {
+		return false;
+	}
 };
 #endif
 
@@ -16,7 +19,9 @@ void sort(T* const x, uint32_t n) {
 	for (int j = 0; j < n-1; j++)
 		for (int i = 0; i < n-1; i++)
 			if (x[i] > x[i+1]) {
-				swap(x[i], x[i+1]);
+				auto temp = x[i];
+				x[i] = x[i+1];
+				x[i+1] = temp;
 			}
 }
 
@@ -47,6 +52,9 @@ int main() {
 	sort(z, sizeof(z)/sizeof(string));
 	print(z, sizeof(z)/sizeof(string));
 
-	//	Elephant e[] = {Elephant("Fred", 1), Elephant("Alice", 2)};
-	//	sort(e, 2);
+#if 0
+	Elephant e[] = {Elephant("Fred", 1), Elephant("Alice", 2)};
+	sort(e, 2);
+	print(e, 2);
+#endif
 }

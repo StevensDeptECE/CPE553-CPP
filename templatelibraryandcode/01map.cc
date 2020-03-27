@@ -31,7 +31,7 @@ int main() {
 		cout << i->first  << " ==> " << i->second << '\n';
 	}
 
-	for (auto x : stockPrice) {
+	for (auto x : stockPrice) { // this really uses map<string,double>::const_iterator 
 		cout << x.first << " ==> " << x.second << '\n';
 	}
 	
