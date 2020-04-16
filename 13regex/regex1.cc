@@ -1,15 +1,32 @@
 #include <iostream>
+#include <string>
 #include <regex>
 
 using namespace std;
 
+#if 0
+cout << R"(
+***************************************************************
+*                                                             *
+*   Hello there!                                              *
+*   cout << \"hello\";                                        *
+*                                                             *
+***************************************************************
+)";
+#endif
+
+
+//int x = 5 /* this is a comment */5;
+
 string s = R"(
-void f(int x, int y) {}
+void f(int x, int y) {}\n
 uint32_t gello(int);
-long double h123(long double x,) {}
+cout << "hello";
+long double h123(long double x,int y) {}
 )";
 
 int main() {
+	//	regex r2("\\d{3}[\\.\\-] ");
 	regex r( R"([a-zA-Z_][\w_]*\s*\([^\)]*\))");
 
 	smatch m;
