@@ -43,6 +43,14 @@ public:
 		}
 		return *this;
 	}
+#if 0
+	List& operator =( List copy) {
+		used = copy.used;
+		capacity = copy.capacity;
+		swap(list, copy.list);
+		return *this;
+	}
+#endif
 
 	List(List&& orig) : used(orig.used), capacity(orig.capacity), list(orig.list) {
 		orig.list = nullptr;
