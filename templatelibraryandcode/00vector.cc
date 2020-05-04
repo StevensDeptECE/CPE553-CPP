@@ -34,6 +34,7 @@ int main(){
 	for (int i = 0; i < a.size(); i++) 
 		cout << a[i] << ' ';
 	cout << '\n';
+
 	g(a);
 	
   f(a);

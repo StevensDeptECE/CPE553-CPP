@@ -11,7 +11,11 @@ public:
   friend Complex operator +(Complex a, Complex b)	{
     return Complex(a.r+b.r, a.i+b.i);
 	}
-	friend ostream& operator <<(ostream& s, Complex c) {
+
+	friend Complex operator -(Complex a, Complex b)	{
+    return Complex(a.r-b.r, a.i-b.i);
+	}
+friend ostream& operator <<(ostream& s, Complex c) {
 		return s << '(' << c.r << ',' << c.i << ')';
 	}
 };
@@ -30,4 +34,11 @@ int main() {
 	cout << sizeof(c1) << '\n';
 	cout << sizeof(c4) << '\n';
 	cout << sizeof(c5) << '\n';
+
+	// this does not make any sense!
+	Complex<string> c6("a", "b");
+	Complex<string> c7("c", "d");
+	Complex<string> c8 = c6 + c7; // "ac" "bd" legal though!
+	
+	//Complex<string> c9 = c6 - c7; // "ac" "bd" legal unless you try subtraction...
 }		

@@ -11,7 +11,7 @@ int main() {
 
 	vector<string> b;
 	b.push_back("abc");
-	b.push_back(3);
+	b.push_back("3");
 
 	
 }
