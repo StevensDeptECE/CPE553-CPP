@@ -596,13 +596,17 @@ public:
   void f() override {
     cout << "B";
   }
+	~B(){}
 };
+
+B::~B() {}
 
 class C : public A {
 public:
   void f() override {
     cout << "C";
   }
+	~C(){}
 };
 
 
@@ -772,12 +776,12 @@ int main() {
 	namespaces();
 	sizeofclasses();
 	bitoperations();
-	regexexamples();
-	randomnumbergen();
+	regexexamples(); //**
+	randomnumbergen(); //***
 	inheritance(); //***
   alignmentAndPacking();
 	polymorphism();
-  varargs(); /***
+  varargs(); //***
 	templatefunctions();
 	templateclasses();
 	variadictemplates(); //***
