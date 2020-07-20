@@ -43,7 +43,7 @@ public:
 		}
 		return *this;
 	}
-#endif 
+#endif
 	//copy and swap (the "new" c++11 way)
 	List& operator =(List copy) {
 		used = copy.used;
