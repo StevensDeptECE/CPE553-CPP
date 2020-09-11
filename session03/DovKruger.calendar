@@ -1,0 +1,39 @@
+#revised input for calendar program
+# first section specifies styles to be used
+# size specifies the size of the image
+# color is the color of the whole page
+# optional img is a picture to put on the calendar
+# all other style names are whatever the user wishes to pick
+#image   dovkruger.jpg  0 0 200 300
+size    800       600
+color   0x000000    0xFAFA9D
+s1      0xFF0000    0x00004F
+s2      0x00CC00    0x00004F
+s3      0x0022CC    0x00004F
+s4      0x00CC00    0x00004F
+s5      0xCC4400    0x00004F
+s6      0x4400CC    0x00004F
+
+#second section is the base weekly events that repeat
+#event                 style   location      weekday   starttime   endtime
+Computer Architecture  s1      99884349327   T         1530        1620
+Data Structures        s2                    T         1830        2100
+Computer Architecture  s1      99884349327   H         1530        1620
+C++                    s3      99884349327   F         1200        1430
+Java                   s4      91542586211   F         1500        1730
+Office Hours           s5      98309917165   W         1500        1730
+Office Hours           s5      98309917165   H         1530        1730
+TA Meeting: Fan        s5      94881999879   H         1730        1830
+TA Meeting: Hanyi      s5      94881999879   W         1730        1830
+
+#last load events for a particular date
+#have as many sections as desired, each starting with a year specification
+#start by identifying the date. No years needed (we can't handle spanning years?)
+year                  2020
+#event                style   location     date      starttime     endtime
+Department Meeting    s6      7342599424   09-02     1200          1330
+Department Meeting    s6      7342599424   10-07     1200          1330
+Department Meeting    s6      7342599424   11-04     1200          1330
+Department Meeting    s6      7342599424   12-02     1200          1330
+
+year                  2021

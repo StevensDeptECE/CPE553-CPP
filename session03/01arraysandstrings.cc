@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 int main() {
@@ -12,11 +13,12 @@ int main() {
 		cout << b[i]; // prints 123
 	for (int i = 4; i >= 0; i--)
 		cout << d[i]; // 00123
-	const char s[] = "abcd"; // s[0] = 'a' s[1] = 'b' s[2] = 'c' s[3] = 'd' s[4] = '\0'
+	const char s[] = "abcd"; // s[0] = 'a' s[1] = 'b' s[2] = 'c' s[3] = 'd' s[4] = '\0'  NUL ^@
 	
 	cout << s << '\n';
-	cout << sizeof(s) << '\n';
-	cout << sizeof(b) << '\n';
+	cout << sizeof(s) << '\n'; // size of s = 5
+	cout << sizeof(b) << '\n'; // size of b = 3*4 = 12
+	cout << strlen(s) << '\n'; // string length of s = 4
 
 	string s2 = "abc";
 	string s3 = s2 + s2; // "abcabc"

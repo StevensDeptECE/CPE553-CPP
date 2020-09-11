@@ -15,7 +15,7 @@ int main() {
 	// b= 18 16 14 12 10 8 6 4 2 0
 
 	// can you spot the bug?
-	//	for (uint32_t i = SIZE-1; i >= 0; i--)
+	//for (uint32_t i = SIZE-1; i >= 0; i--)
 	//	b[i] = 0;
 
 	for (int i = 0; i < SIZE; i++)
