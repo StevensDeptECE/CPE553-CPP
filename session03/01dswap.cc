@@ -9,8 +9,8 @@ int main() {
 	a = b;
 	b = temp;
 
-	a += b;
-	b = a - b;
-	a -= b;
+	a += b;  // now a = (a+b)
+	b = a - b; // (a+b) - b == a
+	a -= b;   // a = (a+b) - a == b
 
 }

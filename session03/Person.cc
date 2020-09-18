@@ -23,6 +23,7 @@ public:
 
 int main() {
 	const	Person p1("Dov", "Kruger", "Burchard", 217);
+	const	Person p2("Vlad the Impaler", "Kruger", "Burchard", 217);
 	p1.print();
 	cout << '\n';
 	//	p1.setName("Freddy");
