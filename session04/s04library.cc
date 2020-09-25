@@ -11,31 +11,32 @@
   unordered_map   (hash table)
  */
 
-class Zebra {
+class Zebra
+{
 private:
-  string name;
+	string name;
+
 public:
-	Zebra(const string& name) : name(name) {}
-	friend ostream& operator <<(ostream& s, const Zebra& z) {
+	Zebra(const string &name) : name(name) {}
+	friend ostream &operator<<(ostream &s, const Zebra &z)
+	{
 		return s << "Zebra " << z.name;
 	}
 };
 
-
-
-
-int main() {
-  vector<int> a;
+int main()
+{
+	vector<int> a;
 	for (int i = 0; i < 10; i++)
 		a.push_back(i); // add to the end
 
-	for (int i = a.size()-1; i >= 0; i--)
+	for (int i = a.size() - 1; i >= 0; i--)
 		cout << a[i] << ' ';
 	cout << '\n';
 
 	list<Zebra> b;
 	b.push_back(Zebra("Fred"));
-  b.push_back("Alice");
+	b.push_back("Alice");
 
 	for (int i = 0; i < b.size(); i++)
 		cout << b[i];
@@ -43,13 +44,8 @@ int main() {
 	for (list<Zebra>::iterator i = b.begin(); i != b.end(); ++i)
 		cout << *i << ' ';
 
-
-	for (auto x : b) {
+	for (auto x : b)
+	{
 		cout << x;
 	}
-	
-	
-	
-
-
 }

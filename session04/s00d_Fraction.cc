@@ -17,7 +17,7 @@ public:
 	
 	//		a.setNum(1);
 	void setNum(int n) {
-    num = n;
+    	num = n;
 	}
 	
 	void setDen(int d) {
@@ -51,4 +51,5 @@ int main() {
 	d.print();
 	Fraction e(5);
 	//		cout << d;
+	//illegal, you may only leave off parameters at the end: Fraction f(,3);
 }

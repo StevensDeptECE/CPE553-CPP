@@ -2,13 +2,19 @@
 using namespace std;
 
 void f(int x) {
-  cout << x;
+  cout << x << '\n';
 	x += 5;
 }
 
-void g(int& x) {
-  cout << x;
+void g(int& x) { //pass by reference, changing a
+  cout << x << '\n';
 	x += 5;
+}
+
+void h(int* x) {
+  cout << x << '\n';
+  cout << *x << '\n';
+  *x += 5;
 }
 
 int main() {
@@ -18,10 +24,14 @@ int main() {
 	f(4); // notice, 4 does not change!!!
 	g(a); // 3 but now a = 8
 	g(a); // 8 now a = 13
-	g(12);
+	//g(12); cannot pass constant by ref
+	h(&a);
+	h(&a);
 
 	const int & r = 4;
 	int b = 4;
 	b = 5;
-	5 = b;
+//	int& c = 4;
+	//c = 5;
+	//5 = b;
 }

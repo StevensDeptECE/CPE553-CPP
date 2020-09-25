@@ -18,3 +18,5 @@ int main() {
 	Fraction f3;
 	cout << f1 << '\n';
 }
+
+

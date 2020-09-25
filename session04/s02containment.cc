@@ -25,7 +25,6 @@ private:
 	Wheel w1,w2,w3,w4;
 public:
 	Car(int hp, int p) : e(hp), w1(p), w2(p), w3(p), w4(p) {} 
-
 };
 
 int main() {

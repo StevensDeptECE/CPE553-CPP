@@ -25,8 +25,8 @@ int Zebra::count = 0;
 
 void f() {
 	cout << Zebra::getCount() << '\n';
-	Zebra a("Fred"); // now 2 zebra
-	Zebra b("Alice"); // 3
+	Zebra a("Fred"); // now 1 zebra
+	Zebra b("Alice"); // 2
 	//	cout << a.getCount() << '\n';
 	cout << Zebra::getCount() << '\n';
 }

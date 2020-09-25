@@ -5,7 +5,10 @@ class Vec3d {
 
 class Body {
 private:
+    string name;
 	Vec3d pos;
+	Vec3d v;
+	Vec3d a;
 
 };
 
@@ -16,6 +19,7 @@ int main() {
 
 	Body sun, mercury, venus, earth, moon;
 	solarsystem >> sun >> mercury >> venus >> earth;
+	// read in the name of each body
 	// compute average distance of each body from sun (average of perihelion and aphelion)
 	// pick t = a random number from 0 to 2*pi
 	// 
