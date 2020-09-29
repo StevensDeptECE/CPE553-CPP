@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Shape.hh"
 #include <iostream>
 
