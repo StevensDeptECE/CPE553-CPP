@@ -1,5 +1,8 @@
 #include <iostream>
 using namespace std;
+
+
+
 int main() {
   Rect r1(100, 50, 20, 40);	// Rect(x,y, width, height)
   cout << r1.area() << '\n';
