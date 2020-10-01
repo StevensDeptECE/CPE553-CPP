@@ -5,12 +5,15 @@ class Vec3d {
 
 class Body {
 private:
-    string name;
-	Vec3d pos;
-	Vec3d v;
-	Vec3d a;
+	string name;
+	double mass;   // mass of the body
+	double radius; // size of the body (assumes spherical)
+	Vec3d pos;     // pos = (x,y,0) ignore z for now. x,y should be based on orbital radius
+	Vec3d v;       // v = 0 next week we have to calculate
+	Vec3d a;       // a = 0 next week we compute gravitational acceleration due to all other bodies
 
 };
+
 
 int main() {
 	ifstream solarsystem("solarsystem.dat");
@@ -19,11 +22,13 @@ int main() {
 
 	Body sun, mercury, venus, earth, moon;
 	solarsystem >> sun >> mercury >> venus >> earth;
+
 	// read in the name of each body
 	// compute average distance of each body from sun (average of perihelion and aphelion)
 	// pick t = a random number from 0 to 2*pi
 	// 
 	// calculate x,y = r cos t, r sin t
+	// put into pos vector (x,y, 0)
 
 	// next step (not necessary this week)
 	// calculate V
