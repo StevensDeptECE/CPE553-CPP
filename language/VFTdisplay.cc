@@ -48,6 +48,18 @@ public:
 	}
 };
 
+class A {
+	int x;
+};
+
+class B {
+	double y;
+};
+
+class C {
+	double y;
+	int x;
+};
 
 void raw_dump(const void *ptr, int len) {
 	int i, j;
