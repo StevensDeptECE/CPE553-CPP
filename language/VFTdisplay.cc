@@ -11,6 +11,10 @@ public:
 	virtual void fn4() const = 0;
 };
 
+// there are 4 member functions in each class, each requires a pointer (8 byte)
+// therefore the size of the VFT is 32 bytes
+constexpr int sizeof_VFT = 32;
+
 class Car : public Vehicle {
 public:
 	int val;
@@ -123,7 +127,7 @@ int main() {
     printf("\tc.something = 0x%llx\n\n", c.something);
 
     printf("dump 40 bytes from vtable for Car\n");
-    raw_dump(*(void**)&c, sizeof(c)*3/2);
+    raw_dump(*(void**)&c, sizeof_VFT);
 
     printf("\n");
 		
@@ -141,7 +145,7 @@ int main() {
     raw_dump(&t, sizeof(t)*3/2);
 		
 		printf("dump 40 bytes from vtable for Truck\n");
-    raw_dump(*(void**)&t, sizeof(c)*3/2);
+    raw_dump(*(void**)&t, sizeof_VFT);
 
     auto tprint = &Truck::print;
     auto tpayToll = &Truck::payToll;
