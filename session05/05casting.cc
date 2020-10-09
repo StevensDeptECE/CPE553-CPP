@@ -11,6 +11,7 @@ int main() {
   double* p;
   //  p = &a; // this doesn't work.the compiler knows I am being stupid
   p = (double*)&a;
+  // new notation does not work for pointers: p = double*(&a)
 	// [ a a a a ]
 	//	     ^
   cout << *p << '\n';

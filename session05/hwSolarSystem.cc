@@ -8,7 +8,7 @@ using namespace std;
 
 class SolarSystem {
 private:
-
+  vector<Body> bodies;
 public:
 };
 

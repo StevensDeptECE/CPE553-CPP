@@ -22,7 +22,7 @@ public:
     : Vehicle(speed), numPassengers(numPassengers)  { // the order of initialization is the order in memory.  Specifying out of order is IGNORED
     //this->speed = speed; //not allowed
   }
-  void payToll() const {
+  void payToll() const override {
     cout << "$4";
   }
 };
@@ -35,7 +35,7 @@ private:
 public:
   Truck(double speed, double weight, int numAxles)
     : Vehicle(speed), weight(weight), numAxles(numAxles) {}
-  void payToll() const {
+  void payToll() const override {
     cout << '$' << 20 * numAxles;
   }
 
@@ -48,13 +48,13 @@ private:
 public:
   Car(double speed, const string& color)
     : Vehicle(speed), color(color) {}
-  void payToll() const {
+  void payToll() const override {
     cout << "$15";
   }
 };
 
 int main() {
-  Vehicle* v[1000];
+  Vehicle* v[1000]; // it is always legal to create a pointer. It is NOT LEGAL to create a Vehicle
   cout << sizeof(Vehicle*) << '\n';
   Car c1(55, "red");
   Bus b1(90, 28);

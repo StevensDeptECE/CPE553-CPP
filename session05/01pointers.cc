@@ -2,6 +2,8 @@
 using namespace std;
 
 void f(int& x) {
+  cout << &x << '\n';
+  cout << sizeof(x) << '\n';
   x = 0;
 }
 
@@ -25,7 +27,8 @@ int main() {
 	//  cout << *p << '\n'; // probably crash, looking at random memory location
 	//  *p = 124;
   int* q = &a; // spaces make no difference.  q is pointing to a
-	*q = 5; // set the value of a
+	*q = 5; // set the value of a   *q is an ALIAS to a
+  *q = a; // same as saying a = a; DOES NOTHING
 	q = &b; // point somwhere else
 	cout << *q;
 	
@@ -41,4 +44,5 @@ int main() {
   *dp = 2.5; // x[5] = 2.5
   p = (int*)x; //????? Types don't match.  But you can do this
   // if you try hard enough, and it is BAD
+  cout << *p;
 }

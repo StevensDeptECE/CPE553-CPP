@@ -60,6 +60,8 @@ int main() {
 	b.ellipse(xcenter, ycenter, xdiameter, ydiameter, GREEN); //Ellipse using specs from above
 	
 	b.save("bitmap2.png");
+	DynamicBitmap b2 = b; // test copy constructor
+	b2 = b; // test operator =
 	
 }
 
