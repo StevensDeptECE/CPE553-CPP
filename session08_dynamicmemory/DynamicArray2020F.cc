@@ -34,6 +34,7 @@ public:
   DynamicArray(const DynamicArray& orig) : capacity(orig.capacity), size(orig.size), arr(new int[orig.capacity]) {
     memcpy(arr, orig.arr, orig.size * sizeof(int));
   }
+#if 0
   DynamicArray& operator =(const DynamicArray& orig) {
       if (this != &orig) {
         delete [] arr;
@@ -44,7 +45,19 @@ public:
       }
       return *this;
   }
+#endif
+// copy and swap (simpler, more maintable, faster, thread safe)
+  DynamicArray& operator =(DynamicArray orig) {
+    capacity = orig.capacity;
+    size = orig.size;
+    swap(p, orig.p);
+    return *this;
+  }
 
+// c++11 move constructor
+  DynamicArray(DynamicArray&& orig) : capacity(orig.capacity), size(orig.size), p(orig.p) {
+    orig.p = nullptr;
+  }
   void addEnd(int v) {
       if (size >= capacity) {
           grow();
@@ -69,6 +82,12 @@ void f(DynamicArray d) {
 
 }
 
+DynamicArray g() {
+  DynamicArray x(1000);
+  for (int i = 0; i < 10000; i++)
+    x.add(i);
+  return x;
+}
 int main() {
     DynamicArray a(5);
     for (int i = 0; i < 10; i++)

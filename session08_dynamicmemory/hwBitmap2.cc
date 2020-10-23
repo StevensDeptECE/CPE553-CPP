@@ -25,12 +25,24 @@ public:
 	uint32_t& operator ()(int y, int x) {
     return p[y * w + x];
 	}
-	void line(int x1, int y1, ...) {
+	//https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
+	void line(uint32_t x1, uint32_t y1,
+						uint32_t x2, uint32_t y2, uint32_t color) {
 		int x = x1, y = y1;
 
 		//		set(x,y, RED);
-		(*this) (x,y) = RED;
+		(*this) (x,y) = color;
 	}
+
+#if 0
+	//+50% if you do this :https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm
+	void wuline(uint32_t x1, uint32_t y1,
+						uint32_t x2, uint32_t y2, uint32_t color) {
+		int x = x1, y = y1; // go to it!
+
+		(*this) (x,y) = color;
+	}
+#endif
 };
 
 int main() {
@@ -57,7 +69,7 @@ int main() {
 	
 	b.line(400,0, 550,300, YELLOW); // Line drawn using https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
 	
-	b.ellipse(xcenter, ycenter, xdiameter, ydiameter, GREEN); //Ellipse using specs from above
+	//	b.wuline(400,100, 550,400, GREEN);  //optional
 	
 	b.save("bitmap2.png");
 	DynamicBitmap b2 = b; // test copy constructor
