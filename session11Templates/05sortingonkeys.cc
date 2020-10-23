@@ -22,8 +22,8 @@ void print(T x[], int n) {
 
 class Elephant {
 public:
-	int age;
-	string name;
+	int age;				// relative pointer     &Elephant::age
+	string name;			// relative pointer 	&Elephant::name
 public:
 	Elephant(const string& name, int age) : name(name), age(age) {}
 
@@ -42,6 +42,8 @@ public:
 
 int main() {
 	Elephant e[] = { Elephant("Fred", 3), Elephant("Jill", 19), Elephant("Alice", 23) };
+	//ERROR: Elephant e2[3]; //  requires the constructor Elephant()
+	Elephant e3[] = {  {"Fred", 3}, {"Jill", 19}, {"Alice", 23}   };
 
 	sort(e, 3, &Elephant::name);
 	//close?	sort(e, 3, Elephant::byAge());
