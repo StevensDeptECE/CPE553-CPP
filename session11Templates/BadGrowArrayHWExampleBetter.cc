@@ -8,11 +8,12 @@ class BadGrowArray {
 private:
   uint32_t size;
   T*       data;
-
 public:
   BadGrowArray() : size(0), data(nullptr) {}
   ~BadGrowArray() {
-      delete [] data;
+      for (uint32_t i = 0; i < size ;i++)
+        data[i].~T();
+      delete [] (char*)data;
   }
   BadGrowArray(const BadGrowArray& orig) : size(orig.size), data((T*)new char[orig.size*sizeof(T)]) {
       for (int i = 0; i < size; i++)
@@ -27,12 +28,13 @@ public:
     return p;
   }
   void addEnd(const T& v) {
-     const char* old = (char*)data;
+     char* old = (char*)data;
      data = (T*)new char[(size+1)*sizeof(T)];
      memcpy(data, old, size*sizeof(T));
      new (data+size) T(v); // call copy constructor placing object at data[size]
+     memset(old, 0, size*sizeof(T));
      size++;
-     delete [] old;
+     delete [] (char*)old;
   }
   void removeEnd() {
      const char* old = (char*)data;
@@ -40,7 +42,7 @@ public:
      data[size].~T();
      data = (T*)new char[size*sizeof(T)];
      memcpy(data, old, size*sizeof(T));
-     delete [] old;
+     delete [] (char*)old;
   }
   friend ostream& operator <<(ostream& s, const BadGrowArray& list) {
       for (int i = 0; i < list.size; i++)
