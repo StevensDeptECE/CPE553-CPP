@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <cmath>
 #include <cstring>
 #include <string>
@@ -59,15 +60,17 @@ void equaloperatorprecedence() {
 	int a = 3;
 	int b = 4;
 	int c = 5;
+	int d = 3;
   a += b *= c -= 1;
 	cout << a << '\t'
 			 << b << '\t'
 			 << c << '\n';
-  a = b = c = 1;
+  a = b = c = 2;
+  d *= c += b *= a;
   a *= 3 + 1;
-	cout << a << '\t'
-			 << b << '\t'
-			 << c << '\n';
+  cout << a << '\t'
+       << b << '\t'
+	   << c << '\n';
 }
 
 void overflow() {
@@ -79,8 +82,10 @@ void overflow() {
 	int c = 1;
 	for (int i = 0; i < 35; i++)
 		c <<= 1;
+	uint16_t d = 65534;
+	d += 3;
 	
-	cout << a << '\t' << b << '\t' << c << '\n';
+	cout << a << '\t' << b << '\t' << c << '\t' << d << '\n';
 }
 
 void typepromotion() {
@@ -98,6 +103,9 @@ void roundoff() {
 	bool a = x*x == 2;
 	bool b = x == x;
 	cout << a << '\t' << b << '\n';
+	if (abs(x*x - 2) < 0.000001) {
+		cout << "close enough\n";
+	}
 }
 
 void nan() {
@@ -282,6 +290,9 @@ void openingfiles() {
 	string s;
 	f >> s; // reads in one word "write";
 	getline(f, s); // read in the entire line "to this file"
+	istringstream line(s);
+	double x,y;
+	line >> x >> y;
 	cout << s << '\n';
 	int v;
 	f >> v;
@@ -336,7 +347,7 @@ void identifiers() {
 	constexpr int BLACK = 0, WHITE = 1; // new C++11 way of specifying constants that have no storage, so better potential for optimization
 	class A {}; // class names are identifiers
 	void f(); // so are function prototypes
-	
+	typedef double (*FuncOneVar)(double x); // typedefs are identifiers
 	// void g() { cout << "hello"; }  so are functions but I can't write one here
 	// functions may not be declared within functions
 }
