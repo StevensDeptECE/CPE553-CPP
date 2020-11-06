@@ -15,7 +15,8 @@ public:
         data[i].~T();
       delete [] (char*)data;
   }
-  BadGrowArray(const BadGrowArray& orig) : size(orig.size), data((T*)new char[orig.size*sizeof(T)]) {
+  BadGrowArray(const BadGrowArray& orig) :
+		size(orig.size), data((T*)new char[orig.size*sizeof(T)]) {
       for (int i = 0; i < size; i++)
         new (data + i) T(orig.data[i]);
   }
@@ -30,9 +31,13 @@ public:
   void addEnd(const T& v) {
      char* old = (char*)data;
      data = (T*)new char[(size+1)*sizeof(T)];
-     memcpy(data, old, size*sizeof(T));
+		 if constexpr(std::is_trivially_copyable_v<T>) {
+       memcpy(data, old, size * sizeof(T));
+     } else {
+       for(size_t i = 0; i < size; ++i)
+         new (data + i) T(std::move_if_noexcept(old[i]));
+     }
      new (data+size) T(v); // call copy constructor placing object at data[size]
-     memset(old, 0, size*sizeof(T));
      size++;
      delete [] (char*)old;
   }
@@ -41,7 +46,12 @@ public:
      size--;
      data[size].~T();
      data = (T*)new char[size*sizeof(T)];
-     memcpy(data, old, size*sizeof(T));
+		 if constexpr(std::is_trivially_copyable_v<T>) {
+       memcpy(data, old, size * sizeof(T));
+     } else {
+       for(size_t i = 0; i < size; ++i)
+         new (data + i) T(std::move_if_noexcept(old[i]));
+     }
      delete [] (char*)old;
   }
   friend ostream& operator <<(ostream& s, const BadGrowArray& list) {
@@ -72,7 +82,7 @@ int main() {
 	
 	for (int i = 0; i < sizeof(s)/sizeof(string); i++)
 		b.addEnd(s[i]);
-	b.removeEnd();
+	//	b.removeEnd();
 	cout << b << '\n';
 
 	BadGrowArray<string> c = b; // test copy constructor
