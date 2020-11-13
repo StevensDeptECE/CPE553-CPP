@@ -1,9 +1,12 @@
 #include <iostream>
 using namespace std;
+#include "f.hh"
 
-extern void f(); //declaration that function f exists
 void f(); // function prototype (same)
 
+float x=1.5f; //globals are binary zero
+
 int main() {
+	cout << x << '\n';
 	f();
 }
