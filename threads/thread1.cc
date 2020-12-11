@@ -34,10 +34,15 @@ void withdraw() {
  */
 
 int main() {
+	deposit(); // single-threaded, takes 0.38 seconds on my AMD3200G 3.6GHz? 3200Mhz RAM
+	withdraw();
+#if 0
+#endif
+#if 0
 	thread t1(deposit);
-	//	thread t2(deposit);
 	thread t2(withdraw);
 	t1.join();
 	t2.join();
+#endif
 	cout << "balance=" << balance << '\n';
 }

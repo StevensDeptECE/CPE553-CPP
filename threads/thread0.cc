@@ -37,8 +37,8 @@ int main() {
   thread t2(g);
 	thread t3(h);
 	thread t4(i);
-	//	t1.join();
-	//	t2.join();
-	//	t3.join();
-	//	t4.join();
+	t1.join();
+	t2.join();
+	t3.join();
+	t4.join();	
 }
