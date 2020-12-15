@@ -14,7 +14,7 @@ int primeCount2 = 0;
 
 void countPrimes(int* primeCounter, int start, int end) {
 	// go in a loop from start to end checking for primes
-  (*primeCounter)++;
+  (*primeCounter) = 0; // do this at the end with your answer
 	// 	cout << *primeCounter << " start=" << start << " end=" << end << '\n';
 }
 

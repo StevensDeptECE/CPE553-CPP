@@ -4,8 +4,9 @@
 
 using namespace std;
 
-
-const int n = 10000000;
+// this code is simple, but not ideal. For better practices, see:
+// https://www.modernescpp.com/index.php/prefer-locks-to-mutexes
+const int n = 100000000;
 int balance = 0; // balance is in RAM
 mutex m;
 
@@ -43,7 +44,6 @@ void withdraw() {
 
 int main() {
 	thread t1(deposit);
-	//	thread t2(deposit);
 	thread t2(withdraw);
 	t1.join();
 	t2.join();
