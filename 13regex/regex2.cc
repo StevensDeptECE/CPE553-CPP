@@ -24,6 +24,8 @@ int main() {
   while (regex_search (p,m,r)) {
 		//    for (auto x : m)
 		cout << m[0] << "\t" << m.length() << '\n';
+		for (int i = 0; i < m.size(); i++)
+			cout << m.position(i) <<  "," << m.length(i);
 		p = p + m.position() + m.length();
 		cout << "P=" << p << "\n\n";
   }
