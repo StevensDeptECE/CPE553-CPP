@@ -45,4 +45,6 @@
 *.out
 *.app
 
+.vscode/
+
 *~
