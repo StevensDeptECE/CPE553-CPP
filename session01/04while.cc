@@ -12,7 +12,7 @@ int main()
   }
 
   int count = 1;
-  while (count <= 10)
+  while (count <= 10)             //  <  >  <=  >=  ==    !=  
   {
     cout << count; //12345678910
     count++;
@@ -20,7 +20,7 @@ int main()
   cout << "at the end, count = " << count << '\n';
 
   int y = 0;
-  while (y < 10)
+  while (y < 10) 
     cout << y++ << endl;
 
   int y2 = 0;

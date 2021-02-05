@@ -4,7 +4,7 @@ using namespace std;
 int main() {
 	int sum = 0;
 	for (int i = 1; i <= 100; i++) {
-		sum += i; // sum = sum + i     x = x * 2 --> x *= 2    y = y / 3  --> y/=3
+		sum += i; // sum = sum + i     //add i to sum
 	}
 	cout << sum << '\n';
 
