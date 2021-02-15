@@ -25,8 +25,8 @@ int main() {
 	g(a); // 3 but now a = 8
 	g(a); // 8 now a = 13
 	//g(12); cannot pass constant by ref
-	h(&a);
-	h(&a);
+	h(&a); // a = 18
+	h(&a); // a=26
 
 	const int & r = 4;
 	int b = 4;

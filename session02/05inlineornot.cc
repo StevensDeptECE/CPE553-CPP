@@ -17,5 +17,6 @@ int main() {
 	veryLongFunction(100);
 	veryLongFunction(100);
 	veryLongFunction(100);
+	f();
 
 }

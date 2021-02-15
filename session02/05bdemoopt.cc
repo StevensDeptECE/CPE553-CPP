@@ -3,7 +3,7 @@ using namespace std;
 uint64_t sum(uint64_t n) {
 	uint64_t sum = 0;
 	const uint64_t n = 10000000000;
-	for (uint64_t i = 0; i < n; i++)
+uint64_t i = 0; i < n; i++)
 		sum = sum + i;
 	return sum;
 }

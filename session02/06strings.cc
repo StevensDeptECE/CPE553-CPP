@@ -5,6 +5,9 @@ using namespace std;
 int main() {
 	char s[] = "abcd"; // \0  (control ^@)  ASCII NUL
 	for (int i = 0; s[i] != '\0'; i++)
+	  cout << s[i];
+	cout << '\n';
+	cout << s << '\n';
 	
 	string a = "abc";
 	cout << a;
