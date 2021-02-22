@@ -18,5 +18,5 @@ int main() {
 	const Complex d = a.add(b); // this should be the same as the above except the name
 	d.print();
 	Complex e = -d; // implement unary - using a member operator. Since it has one parameter which is this should have ZERO PARAMETERS!!!
-	e.print();
+	cout << e << '\n';
 }
