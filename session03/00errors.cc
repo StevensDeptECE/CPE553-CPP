@@ -11,7 +11,7 @@ int main() {
 	int c3 = 1000000000 * 3 / 3;
 	int d = 2 / 3 * 2.5;
 	double e = 5 / 2.5 * 2;
-	double e2 = 5 / 2; // 2 --> 2.0
+	double e2 = 5 / 2;
 	int f = -a / 2 * 2;
 	cout << 4 % 5 + 5 % 5 + 6 % 5 << '\n';
 }

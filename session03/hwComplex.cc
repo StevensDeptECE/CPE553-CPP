@@ -9,7 +9,7 @@
 
 
 int main() {
-	const Complex a(1.0, 2.0); // create a complex number with real=1.0 imag=2.0
+	const Complex a(1.2, 2.0); // create a complex number with real=1.2 imag=2.0
 	const Complex b(0.5, 0.0); // real = 0.5, imag = 0.0
 	const Complex c = a + b;   // overload operator + using a friend function
 	c.print(); // should print the following to cout: (1.5,2.0)
