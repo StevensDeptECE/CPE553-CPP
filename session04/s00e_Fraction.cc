@@ -44,7 +44,8 @@ int main() {
 	ofstream f("test.dat");
 	b.print(f);
 	const	Fraction c = a + b;
-	//		...		b.add(a);
+	//		...		b.
+	add(a);
 	const Fraction d = -c;
 	d.print();
 	Fraction e(5);

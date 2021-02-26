@@ -14,7 +14,7 @@ public:
 	const string& getName() const {
 		return name;
 	}
-	~Zebra() {
+	~Zebra() { //destructor
 		count--;
 		cout << "Ugh! I'm dying" << count << "\n";
 	}
@@ -25,14 +25,18 @@ int Zebra::count = 0;
 
 void f() {
 	cout << Zebra::getCount() << '\n';
-	Zebra a("Fred"); // now 1 zebra
-	Zebra b("Alice"); // 2
+	Zebra a("Fred"); 
+	Zebra b("Alice"); 
 	//	cout << a.getCount() << '\n';
 	cout << Zebra::getCount() << '\n';
 }
 int main() {
 	cout << Zebra::getCount() << '\n'; // zero!
 	Zebra a("Yu-Dong");
+	cout << Zebra::getCount() << '\n'; 
+  
 	f();
 	f();
+  cout << Zebra::getCount() << '\n';
+
 }

@@ -12,6 +12,17 @@ private:
 	Vec3d v;       // v = 0 next week we have to calculate
 	Vec3d a;       // a = 0 next week we compute gravitational acceleration due to all other bodies
 
+  Body() : name(), pos(), v(), a() {}
+	
+  friend ostream& operator <<(ostream& s, const Body& b) {
+
+
+	}
+
+  friend istream& operator >>(istream& s, Body&  b) {
+
+
+	}
 };
 
 

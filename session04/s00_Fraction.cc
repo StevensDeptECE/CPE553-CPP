@@ -36,7 +36,7 @@ public:
 		den = d;
 	}
 	
-	void print() const {
+	void print() const { // C++: this is a member function
 		cout << num << '/' << den;
 	}
 	//			b.print(f);
@@ -50,11 +50,11 @@ public:
 };
 
 int main() {
-	Fraction a;
+	Fraction a; // Fraction is a type, a is an object of that type (an instance of that type)
 	a.setNum(1);
 	a.setDen(2);
 	const Fraction b(1,3);
-	b.print();
+	b.print(); // sending a message to b, which responds by executing a method (O-O terminology)
 	ofstream f("test.dat");
 	b.print(f);
 	const	Fraction c = a.add(b);

@@ -1,6 +1,6 @@
 #include "Shape.hh"
 
-class Circle : public Shape{
+class Circle : public Shape {
 private:
   double r;
 public:

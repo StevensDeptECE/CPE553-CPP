@@ -52,8 +52,10 @@ public:
 	}
 };
 
+
 int main() {
-	//	const Vehicle v(45); // vehicle is abstract, cannot make one instantiate
+	//const Vehicle v(45); // vehicle is abstract, cannot make one instantiate
+	//v.payToll();
 	const Truck t(90.5, 12000, 5);  // speed, weight, #axles
 	const Bus b(55.5, 13);			// speed, numberof passengers
 	const Car c(55.5, "red");       // speed, color

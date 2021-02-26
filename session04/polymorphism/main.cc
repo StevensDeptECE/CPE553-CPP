@@ -20,7 +20,7 @@ int main() {
     double sumArea= 0;
     double sumPerimeter = 0;
     for (int i = 0; i < sizeof(shapes)/sizeof(Shape*); i++) {
-      sumArea += shapes[i]->area();
+      sumArea += shapes[i]->area(); // polymorphism
       sumPerimeter += shapes[i]->perimeter();
     }
 

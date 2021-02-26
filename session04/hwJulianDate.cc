@@ -35,6 +35,10 @@ hh:mm:ss
 00:00:00  0.0
 12:00:00  0.5
 
+18*365+18/4 - 18/100 + 18/400
+18*364+4 = 6574
+
+6574.041666666 --> Jan 1, 2018, 01:00:00
 http://aa.usno.navy.mil/faq/docs/JD_Formula.php
 http://www.math.harvard.edu/~knill/3dprinter/exhibits/bc/Meeus1988.pdf
 
@@ -57,7 +61,7 @@ http://www.math.harvard.edu/~knill/3dprinter/exhibits/bc/Meeus1988.pdf
 int JulianDate::EPOCH = 2000; // Jan.1 2000, 00:00:00 = 0
 
 int main() {
-	JulianDate newyear(2018, 1, 1, 0,0,0);
+	JulianDate newyear(2018, 1, 1, 0,0,0); // how many days since day 0? dy = (2018 - 2000) * 365
 	JulianDate valentine(2018, 2, 14, 12,0,0); // 0.5
 	JulianDate today; // get it from the system time: time(nullptr)
 	                  // localtime
