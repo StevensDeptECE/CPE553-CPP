@@ -1,5 +1,14 @@
+#include <iostream>
+#include <memory.h>
+using namespace std;
 class Cow {
-
+public:
+  Cow() { 
+		cout << "Cow constructor\n";
+	}
+	~Cow() {
+		cout << "Cow destructor\n";
+	}
 };
 
 int main() {
@@ -11,7 +20,7 @@ int main() {
 
 	delete [] p;
 
-	int* q = malloc(1024*sizeof(int));
+	int* q = (int*)malloc(10*sizeof(int));
 	free(q);
 
 	
@@ -19,10 +28,10 @@ int main() {
 
 	delete w; // calls Cow::~Cow() once
 
-	Cow *x = new Cow[1000]; // call Cow::Cow() 1000 times
-  delete x;
+	Cow *x = new Cow[5]; // call Cow::Cow() 5 times
+  //delete x;
 	
-	delete [] x; // calls Cow::~Cow() 1000 times
+	delete [] x; // calls Cow::~Cow() 5 times
 	// DIE!	delete [] x; // calls Cow::~Cow() 1000 times
 
 	int a;

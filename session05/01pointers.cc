@@ -4,21 +4,20 @@ using namespace std;
 void f(int& x) {
   cout << &x << '\n';
   cout << sizeof(x) << '\n';
-  x = 0;
+  //x = 0;
 }
 
 int main() {
 	int a; // order of variables in memory is NOT GUARANTEED
   char c;
-  cout << &a << '\n'; // the address of a, where it lives in memory
   // normally, we don't care where a lives, and we do not get to choose
   
   int b = 2;
+  cout << &a << '\n'; // the address of a, where it lives in memory
   cout << &b << '\n'; // the address of b, where it lives in memory
+  cout << &c << '\n'; // the address of c, where it lives in memory
 
-  
-	//	const int c;
-  const int d = 54;
+	const int d = 54;
   f(b);
 	//Error: f(d);
   // a pointer is declared in reverse
@@ -31,7 +30,6 @@ int main() {
   *q = a; // same as saying a = a; DOES NOTHING
 	q = &b; // point somwhere else
 	cout << *q;
-	
   //int *a,b; // don't do this: a is a pointer to int, b is int
   double x[10];
   cout << x << "\n"; // the name of an array is a pointer to the start

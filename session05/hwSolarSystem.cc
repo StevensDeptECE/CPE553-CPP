@@ -26,7 +26,7 @@ int main() {
      For any body m, the accelation due to another body m2 is:
 
      a = Gm2/rsq,   rsq = (pos2 - pos).magsq()
-     G = universal gravitational constant
+     G = universal gravitational constant 6.667E-11
 
      To calculate the vector acceleration, you must break down a into components
      dpos = (pos2 - pos).normalize 

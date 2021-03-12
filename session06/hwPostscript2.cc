@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 using namespace std;
 
 /*
@@ -32,7 +33,7 @@ public:
 	Drawing(string filename) : f(filename.c_str()), shapes() {
 	}
 	~Drawing() { // write destructor
-    
+    //delete each individual pointer in the shapes list!
 	}
 	void add( Shape* s ) {
     shapes.push_back(s);
@@ -51,6 +52,7 @@ void printIt(const Drawing& d) {
 int main() {
 	Drawing d("test2.ps");
 	d.setrgb(1,0,0); // set drawing color to be bright red:  1 0 0 setrgbcolor
+	//d.setrgb should be equivalent to d.add(new RGB(...)) You have to make another object
 	d.add(new FilledRect(100.0, 150.0, 200.0, 50)); // x y moveto x y lineto ... fill
 	d.add(new Rect(100.0, 150.0, 200.0, 50));       // x y moveto x y lineto ... stroke
 	for (int x = 0; x < 600; x += 100)
