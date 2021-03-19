@@ -17,7 +17,7 @@ private:
 // your class goes here!
 
 public:
-
+	// constructor, destructor, copy constructor, operator =, move constructorr
 	uint32_t operator ()(int y, int x) const {
     return p[y * w + x];
 	}
@@ -74,6 +74,7 @@ int main() {
 	b.save("bitmap2.png");
 	DynamicBitmap b2 = b; // test copy constructor
 	b2 = b; // test operator =
+	b2.save("bitmap2copy.png");
 	
 }
 
