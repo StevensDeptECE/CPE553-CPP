@@ -9,13 +9,13 @@ int main() {
   int* p = &a;
   int x[6] = {9,2,7};
   p = x + 2; // or p = &x[0] + 2
-  cout << *p << '\n';                // _____________________________
-  int q = *p++; // p points to x[3]
+  cout << *p << '\n';  // 7 _____________________________
+  int q = *p++;        // q=*p; p++ q = 7, p points to x[3] which is 0
   int* s = &q;
-  *s = 22;
-  *p++ = 11; // x[3] = 11, p = &x[4]
-  *--p += 3; // p = &x[3] *p += 3  x[3] = 14
-	int j = --*p;  // j = x[3] = 13
+  *s = 22;             //q = 22 *p still zero
+  *p++ = 11;           // *p=11; p++   x[3] = 11
+  *--p += 3;           // --p; *p += 3   p points to x[2] x[2] += 3
+	int j = --*p;        //
 	//int j = (*p)--;  // j = 14, x[3] = 13
   cout << j << '\n';
   for (int i = 0; i < b; i++)
