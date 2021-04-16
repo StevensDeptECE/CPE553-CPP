@@ -1,3 +1,21 @@
+/*
+	separate compilation
+
+	Cube.hh
+	Cube.cc
+
+	Cylinder.hh
+	Cylinder.cc
+
+optional:
+	Sphere.hh
+	Sphere.cc
+
+	Drawing.cc
+	Drawing.hh
+
+ */
+
 int main() {
 	//translate([0,10,0]) cube(25);
 	Cube c(0,10,0, 25); // make a 25x25x25 cube at location (0,10,0)
@@ -5,7 +23,7 @@ int main() {
 
 	//translate([100,0,0]) cylinder(r=20,h=50, $fn=30);
 	
-	// canter of base circle x=100, y=0, z=0 r=20 h=50, number of facets = 30
+	// center of base circle x=100, y=0, z=0 r=20 h=50, number of facets = 30
 	Cylinder cyl(100, 0, 0, 20, 50, 30);
 	c.print("cyl.stl");
 
