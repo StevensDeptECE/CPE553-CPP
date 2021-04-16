@@ -1,4 +1,5 @@
 #include "Fraction.hh"
+
 using namespace std;
 
 Fraction::Fraction(int num, int den) : num(num),den(den) {
