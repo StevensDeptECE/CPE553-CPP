@@ -16,7 +16,7 @@ using namespace std;
 	4. open istringstream on your line
   5. add word to your dictionary
 
-	dict[word]++;
+	dict[word] = count++;
 
  */
 

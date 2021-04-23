@@ -43,7 +43,7 @@ int main(){
 		x += "x";
 	}
 
-  for (auto x : b) {
+  for (const auto& x : b) {
 		cout << x << ' ';
 	}
 
