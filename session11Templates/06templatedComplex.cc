@@ -40,5 +40,5 @@ int main() {
 	Complex<string> c7("c", "d");
 	Complex<string> c8 = c6 + c7; // "ac" "bd" legal though!
 	
-	Complex<string> c9 = c6 - c7; // "ac" "bd" legal unless you try subtraction...
+	//Complex<string> c9 = c6 - c7; // "ac" "bd" legal unless you try subtraction...
 }		

@@ -33,10 +33,26 @@ public:
 	}
 };
 
+//new Person[5]  --> Person()
 /*
 	You can write your code here
  */
 
+class GrowArray {
+private:
+	uint32_t capacity;
+	uint32_t len;
+	char* data;
+public:
+	// new T[1000] --> calls constructor T::T() 1000 times
+	GrowArray(uint32_t initialCapacity) : capacity(initialCapacity), len(0), data(new char[initialCapacity*sizeof(T)]) {}
+	~GrowArray() {
+		for (int i = 0; i < len; i++)
+			(((T*)data)+i).~T();
+		delete [] data;
+	}
+	// add copy constructor and operator =
+};
 
 int main() {
 	GrowArray<Person> list(1000000); // should not call constructor for Person!
@@ -46,4 +62,6 @@ int main() {
 		the object in the array. If the optimizer somehow can do it, it could be only once. 
 		But most important, you must not call the destructor 1000000 times!
 	*/
+	GrowArray<Person> list2(list); // make a copy of the list
+	list2 = list; // operator =
 }
