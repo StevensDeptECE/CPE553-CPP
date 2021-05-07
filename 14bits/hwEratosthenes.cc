@@ -1,8 +1,11 @@
 /*
  Eratosthenes' sieve
 
+bool* isPrime = new bool[n]; // 1 billion bytes? ouch
  2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21...
- 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1   1  1  1  1  1  1  1  1  1  1  1
+ 1 1 0 1 0 1 0 1 0   1  0  1  0  1  0  1  0  1  0  1
+ 1 1 0 1 0 1 0 0 0   1  0  1  0  0  0  1  0  1  0  0
 
   faster given bit implementation to just write bits[i] = 0xFFFFFFFFFFFFFFFFULL
   bits[i] = ~0ULL
@@ -18,6 +21,11 @@ better:
   for each i =  3 to end step 2 (do only odd numbers)
     if i is prime
       for j = i*i to n step 2*i
+        set j to NOT PRIME (clear the bit)
+
+ 3 5 7 9 11 13 15 17 19 21...
+ 1 1 1 0 1   1  0  1  1  0
+ 1 1 1 0 1   1  0  1  1  0
 
   3x5x7 =105   64 = 2**6
 lcm(105, 64) = 105*64
