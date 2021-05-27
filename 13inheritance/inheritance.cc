@@ -61,4 +61,27 @@ protected:
 
 
 
+// an interface in C++
+class F {
+public:
+	virtual void f() = 0;
+};
 
+F f1; // this is illegal, can't instantiate
+f1.f(); // therefore this can never happen
+
+class AbstractClass : public F {
+private:
+	int x;
+public:
+	AbstractClass(int x) : x(x) {}
+};
+
+AbstractClass a(2); // can't instantiate because f
+
+class MyClass : public AbstractClass {
+public:
+	void f() override  {
+
+	}
+}
