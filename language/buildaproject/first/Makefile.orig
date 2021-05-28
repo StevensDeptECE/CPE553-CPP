@@ -1,0 +1,2 @@
+hangman: main.cc #hang.cc bloop.cc
+	g++ -g $^ -o $@
