@@ -34,7 +34,6 @@ int main() {
 	cout << results[1] << '\n';
 	cout << results[2] << '\n';
 	cout << results[3] << '\n';
-	//	t3.join();
 	//Q: is this code faster than just running single threaded?
 }
 

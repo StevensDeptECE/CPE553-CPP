@@ -3,31 +3,40 @@
 #include <mutex>
 #include<unistd.h>
 using namespace std;
-
-int balance = 0;
 mutex m;
+int balance = 0;
 void deposit(uint32_t n) {
 	for (int i = 0; i < n; i++) {
-		
+		m.lock();
+    //cout << "depositing " << flush;		
 		balance++; // mov r0, balance; add r0, #1; str r0, balance
+		m.unlock();
 	}
 }
 
 void withdraw(uint32_t n) {
-	for (int i = 0; i < n; i++)
-		if (balance > 1)
+	for (int i = 0; i < n; i++) {
+		m.lock();
+		//cout << "withdrawing " << flush;		
+		if (balance >= 1)
 			balance--;
+		m.unlock();
+	}
 }
 
 int main() {
-	deposit(10000);
+	const int n1 = 5;
+	deposit(n1);
 	cout << balance << '\n';
-	withdraw(10000);
+	withdraw(n1);
 	cout << balance << '\n';
 
-	thread t1(deposit, 100000000);
-	usleep(1000);
-	thread t2(deposit, 100000000);
+	constexpr int n = 10000000;
+	thread t1(deposit, n);
+	cout << "Immediately print balances: " << balance << '\n';
+	//	usleep(1000);
+	cout << "After a refreshing nap: " << balance << '\n';
+	thread t2(withdraw, n);
 
 	t1.join();
 	t2.join();

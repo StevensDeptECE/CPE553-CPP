@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/hang.dir/main.cc.o  -o hang 

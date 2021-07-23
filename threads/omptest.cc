@@ -1,5 +1,8 @@
 #include <omp.h>
+
 #include <cstdio>
+#include <cstdint>
+
 using namespace std;
 int main() {
 #pragma omp parallel num_threads(2)
@@ -12,7 +15,7 @@ int main() {
 
 	constexpr uint64_t N = 10000000000ULL;
 #pragma omp for
-	for (int i=0; i < N; i++){
+	for (uint64_t i=0; i < N; i++){
 		
 	}
 }

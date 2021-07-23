@@ -29,6 +29,8 @@ void countPrimes(int* primeCounter, int start, int end) {
    for 50% bonus
    time for 4 threads:
 
+
+	 make it generic up to n threads 200%
  */
 
 int main(int argc, char* argv[]) {
