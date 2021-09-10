@@ -3,8 +3,8 @@ using namespace std;
 
 int main()  {
 
-	int a;
-	unsigned int b = 65535U;
+	int javaStyleCamelCase;
+	unsigned int snake_case = 65535U;  // this is current C++ style
 	long c = 123455L; // >= int
 	long long d = 123456789123435678LL;
 	short int e = 123; //-32768..32767
