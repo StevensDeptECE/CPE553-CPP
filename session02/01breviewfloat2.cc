@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <iomanip>
 
 using namespace std;
@@ -25,4 +25,52 @@ int main() {
     for (float x = 0; x < 10; x += 0.1f)
       cout << x << ' ';
     cout << '\n';
+    /*
+        1/2 = 0.5
+        1 /3 = .33333333333
+        1/10 = 0.1
+
+      .101011101010101010101010
+    seeeeeeeemmmmmmmmmmmmmmmmmmmmmm
+    0000000000000000000000000000001
+
+
+    010
+
+    011
+
+    100
+0111111100000000000000000000001
+0011111100000000000000000000001
+
+    */
+   int i;
+   double x;
+   for (x = 0, i = 0; i < 100; i++, x += 0.1)
+     cout << x << ' ';
+
+   for (int j = 0; j < 100; j++)
+     cout << 0.1*j << ' ';
+/*
+    a + b == b + a
+    a + b + c == a + (b+c) NOT TRUE in floating point
+
+    1.23
+     .568
+     .0496
+===========
+    1.79
+     .0496
+    1.83
+
+     .568
+     .0496
+     =====
+     .617
+    1.23
+    1.84
+*/
+
+
+
 }
