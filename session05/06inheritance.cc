@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 // parent,  C++ = base class
@@ -43,6 +44,14 @@ int main() {
 	cout << (*cp).payToll() << '\n';
 	cout << cp->payToll() << '\n';
 
+	/*
+		cannot point to incompatible types
+		int a = 2;
+		double d = 3.5;
+		int* p = &a;
+		p = &d;
+	*/
+	
 	cp = &s;
 	cp->payToll(); // $15
 

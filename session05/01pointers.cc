@@ -9,7 +9,7 @@ void f(int& x) {
 
 int main() {
 	int a; // order of variables in memory is NOT GUARANTEED
-  char c;
+  uint64_t c;
   // normally, we don't care where a lives, and we do not get to choose
   
   int b = 2;
@@ -32,6 +32,9 @@ int main() {
 	cout << *q;
   //int *a,b; // don't do this: a is a pointer to int, b is int
   double x[10];
+	cout << sizeof(x) << '\n'; // sizeof(double) * 10 = 8 * 10 = 80
+	cout << sizeof(q) << '\n';   // sizeof(pointer) = 8 on a 64 bit machine
+	// no one has (4x10^9)^2 = 16 000 000 000 000 000 000  bytes of RAM
   cout << x << "\n"; // the name of an array is a pointer to the start
   double* dp = &x[0]; // point to the location of the first element
   double* dp2 = x; // point to the location of the first element
