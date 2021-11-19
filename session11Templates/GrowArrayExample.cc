@@ -4,26 +4,38 @@ using namespace std;
 
 class GrowArray {
 private:
+	uint32_t capacity;
 	uint32_t len;
 	int* data;
+	void checkGrow() {
+		if (len < capacity)
+			return;
+		const int* old = data;
+		data = new int[capacity*2];
+		memcpy(data, old, len * sizeof(int));
+		delete [] old;
+		capacity = 2*capacity;
+	}
 public:
-	GrowArray() : len(0), data(nullptr) {}
+	GrowArray(uint32_t capacity) : capacity(capacity), len(0), data(nullptr) {}
 	~GrowArray() { delete [] data; } // ok to delete nullptr
-	GrowArray(const GrowArray& orig) : len(orig.len), data(new int[orig.len]) {
+	GrowArray(const GrowArray& orig) :
+		capacity(orig.capacity), len(orig.len), data(new int[orig.capacity]) {
 		memcpy(data, orig.data, len * sizeof(int));
 	}
 	GrowArray& operator =(GrowArray orig) {
+		capacity = orig.capacity;
 		len = orig.len;
 		swap(data, orig.data);
 		return *this;
 	}
-	GrowArray(GrowArray&& orig) : len (orig.len), data(orig.data) {
+	GrowArray(GrowArray&& orig)
+		: capacity(orig.capacity), len(orig.len), data(orig.data) {
 		orig.data = nullptr;
 	}
+	
 	void addEnd(int v) {
-		int* old = data;
-		data = new int[len +1];
-		memcpy(data, old, len* sizeof(int));
+		checkGrow();
 		data[len++] = v;
 	}
 	
