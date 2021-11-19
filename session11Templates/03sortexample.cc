@@ -1,6 +1,32 @@
 #include <iostream>
 using namespace std;
 
+// 8 7 9 6 5
+
+// simple bubble sort
+void bubblesort(int x[], uint32_t n) {
+	for (int j = 0; j < n-1; j++)
+		for (int i = 0; i < n-1; i++)
+			if (x[i] > x[i+1]) {
+				int temp = x[i];
+				x[i] = x[i+1];
+				x[i+1] = temp;
+			}
+}
+
+// simple bubble sort
+void bubblesort(double x[], uint32_t n) {
+	for (int j = 0; j < n-1; j++)
+		for (int i = 0; i < n-1; i++)
+			if (x[i] > x[i+1]) {
+				double temp = x[i];
+				x[i] = x[i+1];
+				x[i+1] = temp;
+			}
+}
+
+
+
 // sort into ascending order
 void sort(int* const x, uint32_t n) {
 	for (int j = 0; j < n-1; j++)

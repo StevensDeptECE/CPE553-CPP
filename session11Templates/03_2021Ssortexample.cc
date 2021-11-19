@@ -64,8 +64,11 @@ int main() {
 		{
 		 {"Fred", 3}, {"Alice",12}, {"Tina", 2}
 		};
-	//	sort(e, 3);
+	//sort(e, 3);
 	sort(e, 3, &Elephant::name); // sort elephants by name
+	for (auto x : e)
+		cout << x << ' ';
+	cout << '\n';
 	sort(e, 3, &Elephant::age); // sort elephants by age
 	for (auto x : e)
 		cout << x << ' ';

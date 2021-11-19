@@ -39,6 +39,9 @@ int main(){
 	
   f(a);
 
+	for (auto x : b) // copy each string (by value, slow)
+		cout << x;
+	
 	for (auto& x : b) {
 		x += "x";
 	}
@@ -48,4 +51,9 @@ int main(){
 	}
 
 	cout << "\n";
+	const string s = "hello";
+	for (auto c : s) {
+		cout << c;
+	}
+		
 }
