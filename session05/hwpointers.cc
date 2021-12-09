@@ -3,7 +3,7 @@ using namespace std;
 
 // fill the array x with zeros (using pointer)
 void fill(int x[], int size) {
-	x[i] = 0; // NO, use pointer!!! *p++ = 0
+	//x[i] = 0; // NO, use pointer!!! *p++ = 0
 }
 
 // add 1 to every element of x
@@ -27,7 +27,7 @@ int main() {
 	print(x, size);
 	increment(x, size);
 	print(x, size);
-	doubleMe(x, size)
+	doubleMe(x, size);
 	print(x, size);
 }
 

@@ -15,10 +15,12 @@ public:
 	friend Complex operator -(Complex a, Complex b)	{
     return Complex(a.r-b.r, a.i-b.i);
 	}
-friend ostream& operator <<(ostream& s, Complex c) {
+	
+  friend ostream& operator <<(ostream& s, Complex c) {
 		return s << '(' << c.r << ',' << c.i << ')';
 	}
 };
+
 
 int main() {
 	Complex<double> c1(1.1, 2.1);

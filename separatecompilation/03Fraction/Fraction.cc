@@ -12,3 +12,7 @@ Fraction operator +(Fraction a, Fraction b) {
 ostream& operator <<(ostream& s, Fraction f){
   return s << f.num << '/' << f.den;
 }
+
+Fraction Fraction::operator -() const {
+  return Fraction(-num, this->den);
+}

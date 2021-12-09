@@ -6,13 +6,17 @@ public:
 };
 
 class Engine {
+private:
+	doubel hp;
 public:
-	Engine(double hp) {}
+	Engine(double hp) : hp(hp) {}
 };
 
 class Wheel {
+private:
+	int pressure;
 public:
-	Wheel(int p) {}
+	Wheel(int p) : pressure(p) {}
 };
 
 class Car : public Vehicle {
@@ -21,8 +25,8 @@ private:
 	Wheel w1, w2, w3, w4;
 	//	Wheel w[4];
 public:
-	Car(int speed, double hp, int p1, int p2, int p3, int p4) :
-		Vehicle(speed), e(hp), w1(p1), w2(p2), w3(p3), w4(p4) {}
+	Car(int speed, double hp, int pfront, int pback) :
+		Vehicle(speed), e(hp), w1(pfront), w2(pfront),w3(pback), w4(pback)  {}
 };
 /*
 	Vehicle has a speed
@@ -34,6 +38,6 @@ public:
 
  */
 int main() {
-	Car c1(55, 480, 28, 29, 31, 31);
+	Car c1(55, 480.0, 28, 31);
 
 }

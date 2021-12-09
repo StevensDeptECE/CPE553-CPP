@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-extern int x;
+extern int x; // declaration
 extern uint64_t pi;
 
 

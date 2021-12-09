@@ -2,9 +2,10 @@
 using namespace std;
 
 int main() {
-  int x[10];
+  int x[10]; // x can only point to this block of memory (Fixed)
   x[0] = 5;
   int* const p = x; // p and x are the same (const pointers to int)
+
   cout << x[0] << p[0] << '\n';
 	p[0] = 22;
 	//	p++; // cannot move p

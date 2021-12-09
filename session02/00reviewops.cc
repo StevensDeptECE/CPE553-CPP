@@ -6,7 +6,7 @@ int main() {
 	int b = 50000 * 50000;
 	int c = 15 / 2 * 2;
 	int d = 15 * 2 / 2;
-	innt e = 3 % 3 * 3;
+	int e = 3 % 3 * 3;
 	int f = 2 + 3 * 4;
 	int g = 15 / (2 * 2);
 	uint16_t h = 65534 + 3;  // 16 bits have 2^16 = 65536  0..65535

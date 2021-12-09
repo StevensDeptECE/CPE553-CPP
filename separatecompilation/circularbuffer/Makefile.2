@@ -1,0 +1,8 @@
+circularbuffer: circularbuffer.o main.o
+	g++  circularbuffer.o main.o -o circularbuffer   # calls ld (linker) links in c++ libraries
+
+circularbuffer.o: circularbuffer.cc  circularbuffer.hh
+	g++ -c  circularbuffer.cc
+
+main.o: main.cc circularbuffer.hh
+	g++ -c main.cc

@@ -7,6 +7,7 @@ int main() {
 	double b = a * 1.5;
 	int c = 4.6 * 3; 
 	int d = 2 / 3.0 * 3;
+	int d2 = 2 / 3 * 3;
 	int	e = (int)b * 3; 
 	int f = (int)(b * 3);
 	int g = int(b * 3);

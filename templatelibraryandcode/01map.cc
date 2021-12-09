@@ -26,17 +26,28 @@ int main() {
 		}
 	}
 #endif
-	for (map<string, double>::iterator i = stockPrice.begin();
-			 i != stockPrice.end(); ++i) {
+	for (map<string, double>::iterator i = stockPrice.begin(); i != stockPrice.end(); ++i) {
 		cout << i->first  << " ==> " << i->second << '\n';
 	}
 
 	for (auto x : stockPrice) { // this really uses map<string,double>::const_iterator 
 		cout << x.first << " ==> " << x.second << '\n';
 	}
+	for (const auto& x : stockPrice) { // this really uses map<string,double>::const_iterator 
+		cout << x.first << " ==> " << x.second << '\n';
+	}
 	
 	//	if (stockPrice.contains("XXY")) {
 	//cout << stockPrice["XXY"]
 	//	}
-	
+
+
+	// to check if a key is in the map
+	map<string, double>::iterator i = stockPrice.find("AAPL");
+	if (i == stockPrice.end()) {
+		cout << "not there";
+	} else {
+		// this is executed if AAPL is there
+	}
+
 }
