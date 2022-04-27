@@ -778,6 +778,7 @@ int main() {
 	roundoff();
 	nan();
 	ifstatements();
+	
 	statements();
 	thedreadedgoto(100); //***
 	scopeandlifetime();
