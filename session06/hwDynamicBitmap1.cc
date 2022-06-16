@@ -59,9 +59,9 @@ public:
 
 
 int main() {
-  Bitmap bm(640, 480, 0xFFFFFF00); // set every pixel to be color 0
-  bm.set(0,0, 0x80808000);
-  bm(3,4) = 0x80808000;
+  Bitmap bm(640, 480, 0xFFFFFF00); // set every pixel to be color white
+  bm.set(0,0, 0x80808000); // gray dot top left
+  bm(3,4) = 0x80808000; // gray dot at x=3,y=4 using operator ()
   bm.horizLine(0, 500, 0, 0x0000FF00); // x1= 0 x2= 500, y = 0 BLUE
   bm.vertLine(0, 100, 10, 0xFF000000); // y1 = 0 y2 = 100, x = 10 RED
   bm.rect(300,100, 50, 50, 0x00FF0000);; //x=300,y=100, w=50,h=50 GREEN
