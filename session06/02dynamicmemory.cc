@@ -4,7 +4,7 @@ using namespace std;
 class Cow {
 public:
   Cow() { 
-		cout << "Cow constructor\n";
+		cout << "Moo\n";
 	}
 	~Cow() {
 		cout << "Cow destructor\n";
@@ -15,12 +15,9 @@ int main() {
 	int n;
 	cin >> n;
 	int*p = new int[n];
-
-
-
 	delete [] p;
 
-	int* q = (int*)malloc(10*sizeof(int));
+	int* q = (int*)malloc(10*sizeof(int)); // old C
 	free(q);
 
 	

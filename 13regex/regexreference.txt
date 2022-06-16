@@ -5,11 +5,12 @@ abc	match a followed by b, followed by c
 [A-z]   A-Z[\]^`a-z
 [^a-z]	any single letter that is NOT a-z
 [^\)]	any letter that is NOT )
-a+	one or more a
-a*	zero or more a  a+ is the same as aa*
+cat|dog	either cat or dog
+a*	zero or more a
+a+	one or more a	  a+ is the same as aa*
 a?	zero or 1 a (a is optional)
-a{3}	exactly 3 a
-a{3,5}	3, 4 or 5 a
+a{3}	exactly 3 a  "aaa"
+a{3,5}	3, 4 or 5 a   aaa|aaaa|aaaaa
 [0-9]	a digit
 \d	shorthand for a digit
 \w	shorthand for [a-zA-Z0-9]

@@ -91,7 +91,7 @@ void overflow() {
 void typepromotion() {
 	subject("Type Promotion");
 	float a = 1.5f * 3;
-	double b = 1 * 3;
+	double b = 2 / 3;
 	int c = 1.5f * 3;
 	cout << a << '\t' << b << '\t' << c << '\n';
 }
@@ -269,8 +269,8 @@ namespace stevens {
 void scopeandlifetime() {
 	subject("Scope and Lifetime");
 	int x = 3;
-	cout << x++ << stevens::x++ << ::x++ << '\n';
-	for (int i = 0; i < 2; i++) {
+	cout << x++ << stevens::x-- << ::x++ << '\n';
+ 	for (int i = 0; i < 2; i++) {
 		int x = 0;
 		static int y = 0;
 		cout << x++ << y++ << stevens::x++ << ::x++ << '\n';
@@ -781,7 +781,7 @@ int main() {
 	
 	statements();
 	thedreadedgoto(100); //***
-	scopeandlifetime();
+	scopeandlifetime(); //***
 	openingfiles();
 	oldcstrings(); //***
 	cppstrings();
@@ -794,7 +794,7 @@ int main() {
   alignmentAndPacking();
 	polymorphism();
   varargs(); //***
-	templatefunctions();
-	templateclasses();
+	templatefunctions();//***
+	templateclasses();//***
 	variadictemplates(); //***
 }

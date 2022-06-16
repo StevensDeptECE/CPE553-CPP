@@ -43,6 +43,9 @@ private:
 	uint32_t capacity;
 	uint32_t len;
 	char* data;
+	void checkGrow() {
+
+	}
 public:
 	// new T[1000] --> calls constructor T::T() 1000 times
 	GrowArray(uint32_t initialCapacity) : capacity(initialCapacity), len(0), data(new char[initialCapacity*sizeof(T)]) {}
@@ -52,6 +55,10 @@ public:
 		delete [] data;
 	}
 	// add copy constructor and operator =
+
+	void addEnd(const T& v) {
+
+	}
 };
 
 int main() {
