@@ -3,7 +3,7 @@
 using namespace std;
 /*
 	This is a part of a hashmap with a dirty secret.
-	It crashes horribly! Use g++ -f
+	It crashes horribly! Use g++ -fsanitize=address
 */
 class HorribleHashMap {
 private:
