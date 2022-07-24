@@ -37,8 +37,7 @@ void aio_completion_handler(sigval_t sigval) {
 }
 
 void thready() {
-
-  char*  buf1 = new char[blockSize];
+  char* buf1 = new char[blockSize];
   char* buf2 = new char[blockSize];
   aiocb cb;
   char* processbuf = buf1;
