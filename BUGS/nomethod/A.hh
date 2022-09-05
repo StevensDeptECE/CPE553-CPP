@@ -1,8 +1,9 @@
 #pragma once
-#include "GLWin.hh"
-class A : public GLWin {
+#include "Base.hh"
+
+class A : public Base {
 public:
-	A() : GLWin(1000,800, "test", "tut01.vs", "tut01.fs", Color(0,0,0)) {}
+	A() {}
 	void setup() override;
 	void draw() const override;
 };

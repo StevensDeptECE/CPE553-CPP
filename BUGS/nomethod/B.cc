@@ -1,17 +1,11 @@
 #include "B.hh"
 #include <iostream>
-
 using namespace std;
 
-
-B::B()  {
-	init();
+void B::setup() {
+	cout << "B::setup";
 }
 
-void B::init() {
-	setup();
+void B::draw() const {
+	cout << "B::draw";
 }
-B::~B() {
-	cout << "destructor";
-}
-

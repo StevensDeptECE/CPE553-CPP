@@ -1,12 +1,9 @@
 #pragma once
+#include "Base.hh"
 
-class B {
+class B : public Base {
 public:
-private:
-public:	
-	B();
-	virtual void setup() = 0;
-	virtual void draw() const = 0;
-	virtual ~B();
+	B() {}
+	void setup() override;
+	void draw() const override;
 };
-
