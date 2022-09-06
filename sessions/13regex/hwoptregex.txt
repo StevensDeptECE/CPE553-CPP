@@ -1,0 +1,44 @@
+#
+# ignore all lines starting with #
+# they are comments!
+# add all lines of the form name := / / to a hashmap (unordered_map)
+#
+
+arithops	:= /oneof"+,-,*,/,%,+=,-=,*=,/=,%="/   (?:\+|\-|\*|\/|%|\+=|...)
+bitops		:= /oneof"&,|,~,&=,|="/
+compops		:= /oneof"<,>,<=,>=,==,!="/
+logicalops	:= /oneof"&&,||,!"/
+ops 		:= /oneof"[:arithops:],[:bitops:],[:compops:],[:logicalops:]"/
+
+opsyms		:=	/oneof"+-*/%!~^&()="*/
+semi		:=	/\s*;\s*/
+ident		:=	/[A-Za-z_][A-Za-z_0-9]*/
+intliteral	:=	/[+\-]?\d+/
+floatliteral	:=	/[+\-]?(\d+\.\d*|\d*\.\d+)([Ee][+\-]\d+)/
+stringliteral	:=	/"[^"]*"/
+paramlist	:=	/[:ident:](\s*,\s*[:ident:])*/
+namespace 	:=	/namespace\s+[:ident:]\s*{/
+using		:=	/using\s+namespace\s+[:ident:][:semi:]/
+literal		:=	/intliteral|floatliteral|stringliteral/
+decl		:=	/[:ident:]\s+[:ident:]\s*=[:literal:][:semi:]/
+binop		:=	/[:opsyms:]/
+expr		:=	/[:ident:][:binop:][:ident:]|
+constref	:=	/const[:ident:]&/
+classref	:=	/[:ident:]::[:ident:]&/
+
+constructor	:=	/[:ident:]::[:ident:]/
+function	:=	/[:ident:]([:paramlist:])\s*{/
+functionproto	:=	/[:ident:]([:paramlist:])\s*;/
+for		:=	/for\s*\([:decl:][:semi:][:expr:][:semi:][:expr:]\)[:stmt:]
+while		:=	/while\s*\([:expr:]\)[:stmt:]
+if		:=	/if\s*\([:expr:]\)[:stmt:]
+ifelse		:=	/if\s*\([:expr:]\)[:stmt:]else:stmt2]
+returnstmt	:=	/return[:expr:]/
+templateparams	:=	/typename[:ident:]|int [:ident:]/
+template	:=	/template\s*<templateparams>/
+
+# the following line should match decl
+int x = 3;
+
+# the following line should match for
+for (int i = 1; i <= 20; i++) cout << i;

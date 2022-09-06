@@ -1,0 +1,26 @@
+class
+	*private,public, protected
+
+	*static (shared in class)
+
+	*operator overloading
+
+	*constructor, destructor, default constructor, copy constructor operator=
+	*dynamic memory
+
+	public, private, protected inheritance
+
+	virtual inheritance
+
+	*virtual destructor
+
+	*exceptions
+
+	*template functions (sorting)
+
+	.* member operator
+
+	templates (type, value)
+
+	
+

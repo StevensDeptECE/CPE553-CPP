@@ -1,0 +1,108 @@
+(library.ps) run
+
+/plotxyconnected {
+  /xy exch def
+%  xy length 0 eq { return } if
+  xy 0 get xy 1 get moveto
+  0 2 xy length 1 sub {
+    dup
+    xy exch get
+    exch xy exch 1 add get %prStack
+ lineto
+  } for
+  stroke
+} def
+
+/plotxypoints { % [data] {markercode} plotxypoints -
+%  /markercode exch def
+  /xy exch def
+  0 2 xy length 1 sub {
+    dup
+     xy exch get
+    exch xy exch 1 add get
+%    markercode exec
+    newpath 2 sub exch 2 sub exch 5 5 rectfill
+  } for
+} def
+
+% x1 dx x2 y1 dy y2 plotGrid -
+% draw a grid of lines
+/plotGrid {
+  /y2 exch def
+  /dy exch def
+  /y1 exch def
+  /x2 exch def
+  /dx exch def
+  /x1 exch def
+  x1 dx x2 {
+    dup newpath y1 moveto y2 lineto stroke
+  } for
+  y1 dy y2 {
+    dup newpath x1 exch moveto x2 exch lineto stroke
+  } for
+} def
+
+% xmin n xmax y [tick1size tick1interval ... ticknsize tickn interval] drawTicks -
+% draw a rule on one side of a graph. Use transforms to mirror to all sides
+/drawTics {
+  /tics exch def
+  /baseSize exch def
+  /y exch def
+  /xmax exch def
+  /n exch def
+  /xmin exch def
+  /dx xmax xmin sub n div def
+  0 1 n {
+    dup tics 0 get prStack mod 0 eq (foo) disp
+    {
+      /size tics 1 get def
+    }
+    {
+	/size baseSize def
+    }ifelse
+    dx mul xmin add dup  
+    newpath y moveto y size add lineto stroke
+  } for
+} def
+
+cream dumpDict
+350 200 600 350 cream createBorder
+0 0 1 setrgbcolor
+/fauxdata [ 352 220 354 222 356 220 358 230 360 235 362 240 380 232 ] def
+
+.5 .5 .5 setrgbcolor
+gsave
+[3] 0 setdash
+350 50 600 200 50 350 plotGrid
+grestore
+fauxdata plotxyconnected
+
+1 0 0 setrgbcolor
+%fauxdata 
+%{
+%  newpath 2 sub exch 2 sub exch 5 5 rectfill
+%} plotxypoints
+fauxdata plotxypoints
+0 0 1 setrgbcolor
+350 50 600 200 10 [5 15] drawTics
+gsave
+612 792 150 500 400 650 0 1 0 1 scaleRect
+[ 0 0  .2 .1  .3 .15 .4 .29 .45 .3 .5 .31 .6 .28] plotxyconnected
+grestore
+
+
+150 500 400 650 stevens createBorder
+%/Helvetica-Bold 24 selectFont
+/Helvetica 18 selectFont
+% (This is a test) show
+0 0 0 setrgbcolor
+/Helvetica 18 selectFont
+[(testing) (testing) (foo bar baz)] 350 320 14 leftJustInBox
+%graphite dumpDict
+% matrix currentmatrix pstack
+612 792 150 500 400 650 0 1 0 1 scaleRect
+1 0 0 setrgbcolor
+%matrix currentmatrix pstack
+50 50 scale
+simpleArrow
+showpage

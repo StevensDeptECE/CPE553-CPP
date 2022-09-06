@@ -1,3 +1,0 @@
-D:/git/EE553-CPP/buildingprograms/cmakeproject/CMakeFiles/edit_cache.dir
-D:/git/EE553-CPP/buildingprograms/cmakeproject/CMakeFiles/rebuild_cache.dir
-D:/git/EE553-CPP/buildingprograms/cmakeproject/CMakeFiles/banking.dir

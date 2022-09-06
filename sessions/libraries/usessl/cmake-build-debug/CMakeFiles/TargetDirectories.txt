@@ -1,0 +1,3 @@
+/home/dkruger/git/EE553-CPP/libraries/usessl/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/dkruger/git/EE553-CPP/libraries/usessl/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/dkruger/git/EE553-CPP/libraries/usessl/cmake-build-debug/CMakeFiles/usessl.dir

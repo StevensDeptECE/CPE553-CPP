@@ -1,0 +1,45 @@
+% select a rectangle within the world and scale within it linearly
+% the first 4 coords are paper coordinates
+% the second 4 are world coordinates
+% x1 y1 x2 y2 px1 py1 px2 py2 scaleRect -
+/scaleRect {
+  20 dict
+  begin
+  /pymax exch def
+  /pxmax exch def
+  /pymin exch def
+  /pxmin exch def
+  /ymax exch def
+  /xmax exch def
+  /ymin exch def
+  /xmin exch def
+
+  /xsize xmax xmin sub def
+  /ysize ymax ymin sub def
+  /pxsize pxmax pxmin sub def
+  /pysize pymax pymin sub def
+
+  (vars) print
+  xmin == ymin ==
+  xsize == ysize ==
+  pxsize == pysize ==
+  pxmax == pxmin == 
+  pymax == pymin ==
+  (bot\n\n) print
+  matrix identmatrix
+  pxmin neg pymin neg translate
+    test
+  xsize pxsize div ysize pysize div scale
+    test
+  xmin ymin translate
+    test
+  end
+} bind def
+
+/test {
+  -74.1 40.5 transform (\n\npoint1: )print 2 copy == ==
+  -73.0 41 transform (\npoint2: )print 2 copy == ==
+  (matrix: ) print matrix currentmatrix ==
+} def
+
+200 100 600 700 -74.1 40.5 -73.0 41 scaleRect

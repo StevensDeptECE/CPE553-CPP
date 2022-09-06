@@ -1,0 +1,124 @@
+# CPE-553 Goals
+
+Students will be able to:
+Construct efficient programs using integer and floating point computation
+Create object-oriented programs that encapsulate internal details for good maintenance
+Define an algorithm and implement in a program language
+Discuss C++ programming with an interviewer using appropriate terminology
+Exercise skills in key tools to succeed in an entry-level programming job.
+Know their own skills, and the areas of C++ and programming in which they still need to learn more. 
+Be aware of additional tools and skills to study to achieve higher levels of mastery
+Take more advanced programming courses such as data structures and write and debug C++ code for those courses.
+
+Can you...
+
+Topics with asterisks should be known by the student but not
+necessarily taught or mastered. It is more important that students
+know that this is a topic they need to know for the future.
+
+coding
+1. Declare a variable and initialize it?
+2. Identify all the scopes and lifetimes of variables?
+3. skills_checklist.cc int_expr
+4. skills_checklist.cc array
+5. Identify order of operations with arithmetic operations +, -, *, /, %, unary -
+6. Identify order of operations with comparison and logical and/or/not?
+7. Write various for loops, while loops (list?)
+8. Use the ternary operator ?:
+
+memory layout
+1. Reorder a class to maximize space efficiency.
+2. Use bitfields to compact the representation of a class.
+3. Know the initializer list syntax and the fact that the order that matters is the one in the object.
+
+debugging
+1. Identify common syntax errors by inspection
+2. Recognize an initialization error
+3. Recognize an overflow/underflow error
+4. Find an array out of bounds error in sequential access.
+5. Run a program in an IDE
+6. Run a program on the command line
+7. Run a program on the command line setting parameters
+8. Run a program in the debugger in an IDE
+9. Set a breakpoint in the debugger in an IDE
+10. Set a breakpoint in gdb
+11. run a program in gdb
+12. display variables in gdb
+13. display a range of array values in gdb
+14. Use valgrind to find memory bugs.
+
+functions
+1. write a function prototype matching a call.
+2. Identify when a function can be inlined.
+3. write an inline method in a class.
+4. decide which methods should optimally be inline or not.
+5. write a recursive function.
+6. Identify the limits in variable size for a function.
+7. Solve the limits of stack size by declaring using the heap.
+8. pass parameters by value and by reference
+9. pass parameters explicitly by pointer
+
+arrays
+1. initialize an array.
+2. loop through an array efficiently (including multidimensional array).
+3. pass arrays as parameters including variable-size arrays with a separate size.
+
+templates
+1. write a template function to handle arrays of multiple types
+2. write a template class
+3. write a template class with an integer parameter to control size
+4. write a template function to accept a functor
+5. write a variadic template to process a list of integers
+
+libraries
+1. declare a vector and build a list in order
+1b. preallocate the size of a vector for efficiency.
+2. declare a map and build a sorted tree map.
+3. declare an unordered_map and build a hash map.
+4. lookup a value in a map or unordered map.
+5. remove a value from a map or unordered map.
+6. build a stack.
+7. use the <random> to generate random unit and normally distributed numbers
+8. use the sort function to sort an array or vector
+
+git
+1. Create an ssh key on your computer.
+2. Setup your github ssh key.
+3. Clone a github repository onto your computer
+4. Add a new file into a repo
+5. Commit changes on files into the repo
+6. Push the resulting changes to the remote server
+7. Get new changes from a repo onto your computer
+8. *Fork a repo
+9. *Do a pull request.
+10. *Add continuous integration to a project.
+
+object-oriented programming
+1. Write a class
+2. Instantiate an object in a way compatible with the constructors specified in the class.
+3. Write a class matching the requirements specified in main.
+
+optimization
+1. Recognize the operations the compiler can optimize.
+2. Identify the operations a compiler cannot optimize and perform those manually.
+3. Look at the assembler output and estimate whether inline code is faster.
+4. Benchmark code to determine what is faster.
+5. *Use the profiler to find hotspots.
+6. *Use a coverage tool.
+
+Exception handling
+1. throw and try..catch
+2. if not caught, terminate
+3. explicitly declaring throw()
+4. An exception class that stores file and line number
+
+*testing
+1. Build a set of tests to find expected potential problems for overflow
+2. Build a set of tests to find expected potential problems with edge effects.
+3. Build a set of tests to find array bounds bugs.
+4. Use a test library such as GUnit (https://github.com/cpp-testing/GUnit)
+
+*coding styles
+1. Understanding the importance of consistency of naming (principle of least surprise)
+2. Importance of consistent indentation
+3. using the IDE to automatically indent.

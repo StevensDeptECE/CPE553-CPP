@@ -1,0 +1,7 @@
+Find (and display) the occurrence of every capitalized word. Every
+word starting a sentence is capitalized, but so are proper names like
+John or India.
+
+Also, print out all words that are all caps like MATLAB and FORTRAN.
+Do we need to deal with apostrophes, like "Teacher's pet?"
+

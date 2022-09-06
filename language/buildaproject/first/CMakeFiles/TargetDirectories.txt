@@ -1,3 +1,0 @@
-/home/dkruger/git/course/CPE553-CPP/language/buildaproject/CMakeFiles/rebuild_cache.dir
-/home/dkruger/git/course/CPE553-CPP/language/buildaproject/CMakeFiles/edit_cache.dir
-/home/dkruger/git/course/CPE553-CPP/language/buildaproject/CMakeFiles/hang.dir

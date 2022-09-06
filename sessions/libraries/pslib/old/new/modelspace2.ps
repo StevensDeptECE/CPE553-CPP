@@ -1,0 +1,196 @@
+<< /PageSize [792 1224] >> setpagedevice
+<< /MaxOpStack 300000 >> setuserparams
+
+(modelresults.ps)run
+/typedict <<
+  /nametype { (           ) cvs exch pop }
+  /dicttype   { (dict) exch pop}
+  /stringtype { }
+  /integertype {}
+  /realtype {}
+>> def
+
+/ptyped {
+  dup type typedict exch get exec print
+} bind def
+/printdict {
+grid { exch == (=>) print == (\n) print } forall
+} bind def
+
+/plotmaskedmatrix {
+  5 dict begin
+  /grid exch def
+
+  0 setlinewidth
+  0 1 grid /jmax get 1 sub  {
+    /j exch def
+    grid /mask get j get /row exch def
+    0 1 grid /imax get 1 sub {
+      /i exch def
+      row i get 48 ne {
+	i j 1 1 rectstroke
+      } if
+    } for
+  } for
+  end
+} bind def
+
+/numbermaskedmatrix {
+  8 dict begin
+  /varname exch def
+  /grid exch def
+  /valindex 0 def
+  0 setlinewidth
+  0 1 grid /jmax get 1 sub  {
+    /j exch def
+    grid /mask get j get /row exch def
+    0 1 grid /imax get 1 sub {
+      /i exch def
+      row i get 48 ne {
+	i j 1 1 rectstroke
+	i j moveto
+	grid varname get valindex get (        ) cvs 0 2 getinterval show
+	/valindex valindex 1 add def
+      } if
+    } for
+  } for
+  end
+} bind def
+
+
+/fillmaskedmatrix {
+  8 dict begin
+  /varname exch def
+  /grid exch def
+  /colorscale 1 100 div 255 mul def
+  /valindex 0 def
+  0 setlinewidth
+  0 1 grid /jmax get 1 sub  {
+    /j exch def
+    grid /mask get j get /row exch def
+    0 1 grid /imax get 1 sub {
+      /i exch def
+      row i get 48 ne {
+	grid varname get valindex get colorscale mul cvi setcolor
+	i j 1 1 rectfill
+
+	/valindex valindex 1 add def
+      } if
+    } for
+  } for
+  end
+} bind def
+
+
+/setpalette {
+  [/Indexed /DeviceRGB 255
+    <FFFFFF EEEEFF DDDDFF CCCCFF BBBBFF AAAAFF 9999FF 8888FF
+     7777FF 6666FF 5555FF 4444FF 3333FF 2222FF 1111FF 0000FF
+     0000FC 0000F8 0000F4 0000F0 0000EC 0000E8 0000E4 0000E0
+     0000DC 0000D8 0000D4 0000D0 0000CC 0000C8 0000C4 0000C0
+     0000BC 0000B8 0000B4 0000B0 0000AC 0000A8 0000A4 0000A0
+     00009C 000098 000094 000090 00008C 000088 000084 000080
+     00007C 000078 000074 000070 00006C 000068 000064 000060
+     00005C 000058 000054 000050 00004C 000048 000044 000040
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000
+     000000000000000000000000000000000000000000000000>
+%      00003C000038000034000030000000002C000028000024000020
+%      00001C000018000014000010000000000C000008000004000000
+   ] setcolorspace
+} bind def
+
+/block <<
+  /x 20
+  /y 80
+  /dx 0
+  /dy -14
+  /style /normal
+%  /background /none
+%  /border /none
+  /text [
+    (this is a test)
+    (this is only a test)
+    (if this had been an actual test, you'd know)
+    (BGIAJ)
+  ]
+>> def
+
+/t1 <<
+  /x 20
+  /y 100
+  /dx 0
+  /dy -14
+  /style /title
+%  /background /none
+%  /border /none
+  /text [
+    (Postscript Rules!)
+  ]
+>> def
+
+/styles <<
+  /normal { /Helvetica findfont 12 scalefont setfont 0 0 0 setrgbcolor }
+  /title { /Helvetica-bold findfont 24 scalefont setfont }
+  /subtitle { /Helvetica findfont 18 scalefont setfont }
+  /notes { /Helvetica findfont 8 scalefont setfont }
+>> def
+
+/drawTextBlock {
+  5 dict begin
+  /block exch def
+  styles  block /style get get exec
+  /x block /x get def 
+  /y block /y get def
+  block /text get {
+    x y moveto pstack show
+    /x x block /dx get add def
+    /y y block /dy get add def
+  } forall
+  end
+} bind def
+
+%4 4 scale
+%t1 drawTextBlock
+%block drawTextBlock
+0 0 0 setrgbcolor
+/Helvetica findfont .8 scalefont setfont
+5.9 5.9 scale
+%grid plotmaskedmatrix
+%setpalette
+%/c 0 def
+%0 10 80 {
+%  0 10 80 {
+%    1 copy exch
+%    c setcolor
+%    c print
+%    /c c 1 add def
+%    10 10 rectfill
+%  } for
+%} for
+%fill
+%grid /h fillmaskedmatrix
+0 0 0 setrgbcolor
+grid /h numbermaskedmatrix
+showpage

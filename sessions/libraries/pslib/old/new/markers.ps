@@ -1,0 +1,59 @@
+/hex {
+   moveto s .5 mul s .8660254 mul rmoveto
+   s neg 0 rlineto
+   s -.5 mul s -.8660254 mul rlineto
+   s .5 mul s -.8660254 mul rlineto
+   s 0 rlineto
+   s .5 mul s .8660254 mul rlineto
+} bind def
+
+/equilateral {
+  moveto
+  0 r rmoveto
+  r -.8660254 mul r -1.5 mul rlineto
+  r 1.7320508 mul 0 rlineto
+} bind def
+
+/diamond {
+  moveto
+  0 r rmoveto
+  r neg r neg rlineto
+  r r neg rlineto
+  r r rlineto
+  r neg r rlineto
+} bind def
+
+/circle {
+  r 0 360 arc
+} bind def
+
+/star5 {
+  moveto
+  0 r rmoveto
+  -720 5 div dup cos r mul exch sin r mul exch rlineto
+  720 5 div dup 
+} bind def
+
+/ring {
+  2 copy r 0 360 arc
+  r 2 div 0 360 arc
+} bind def
+
+/centertext {
+  moveto
+  dup stringwidth -.5 mul exch -.5 mul exch rmoveto show
+} bind def
+
+/s 20 def
+/r 20 def
+0 0 0 setrgbcolor
+300 300 hex fill
+350 300 equilateral closepath stroke
+400 300 diamond fill
+450 300 circle fill
+500 300 ring stroke
+/Helvetica findfont 36 scalefont setfont
+(*) 300 250 centertext
+(+) 350 250 centertext
+(A) 400 250 centertext
+(@) 450 250 centertext	

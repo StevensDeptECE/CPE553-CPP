@@ -1,0 +1,1066 @@
+%!PS-Adobe-3.0
+%%Title: Yoho
+%%For:
+%%Creator: Dov Kruger using Graphite Library1.0
+%%CreationDate: 6/66/2007
+%%BoundingBox: 20.000000 20.000000 1204.000000 772.000000
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 0d
+%%PageOrder: Ascend
+%%DocumentMedia: Tabloid 1224.000000 792.000000 0 () ()
+%%DocumentNeededResources
+%%DocumentProcessColors: Color
+%%EndComments
+%%BeginProlog
+%%Copyright: (c)2007 Dave Runnels Satanic Graphing Service
+%%EndProlog
+%%BeginSetup
+%%EndSetup
+%%Page: (1) 1
+%%BeginPageSetup
+<< /PageSize [1224.000000 792.000000] >> setpagedevice
+<< /MaxOpStack 300000 >> setuserparams
+%%EndPageSetup
+% debugging routines
+
+% print the stack and then a separator for visibility
+/prStack
+{
+  pstack (===\n) print
+} bind def
+
+% display a message, then dump stack so you can tell where you are
+/disp
+{
+  print (\n) print pstack (===\n) print
+} bind def
+
+%display every symbol and value in a dictionary (fix the format!)
+/dumpDict % dict ==> -
+{
+  {
+    == ==
+%    print (   ) print dup type ==  pop %(  ) print print
+  } forall
+} bind def
+
+
+% base class for style definitions
+/base <<
+  /FontName /Helvetica
+  /FontSize 12
+>> def
+
+% specific style type
+/cream <<
+  /Inherits base
+  /FontName /Helvetica
+  /FontSize 12
+  /LineWidth 0
+  /Color [.9 .9 .7]
+  /BorderColor [0 0 0]
+%  /BorderDash [3] 0
+  /BorderWidth 2
+>> def
+
+/stevens <<
+  /Inherits base
+  /FontName /Helvetica
+  /FontSize 18
+  /LineWidth 0
+  /Color [.7 .7 .7]
+  /BorderColor [0 0 0]
+  /BorderWidth 2
+>> def
+
+% choose a specific font and size
+/selectFont { exch findfont exch scalefont setfont  } def
+
+% generate a rectangular path
+/rectPath  % x1,y1,x2,y2 -> -
+{
+  newpath
+  2 copy  moveto           % x2,y2
+  1 index 3 index lineto   % x2,y1
+  3 index 3 index lineto   % x1,y1
+  exch pop exch pop lineto % x1,y2
+  closepath
+} def
+
+% generate a path of a rounded rectangle with corner radius r
+/roundrectPath  % x1,y1,x2,y2 r -> -
+{
+  5 dict begin
+    /r exch def
+    /y2 exch def
+    /x2 exch def
+    /y1 exch def
+    /x1 exch def
+    newpath
+    x1 y2 r sub moveto
+    x1 y1 x2 r sub y1 r arct % lower left rounded corner
+    x2 y1 x2 y2 r sub r arct % lower right
+    x2 y2 x1 r add y2 r arct % top right
+    x1 y2 x1 y1 r add r arct % top left
+  end
+} def
+
+ % x1,y1,x2,y2 -> -
+/fillRect { rectPath fill } def
+
+ % x1,y1,x2,y2 -> -
+/drawRect { rectPath stroke } def
+
+ % fill a rectangle with corners rounded to radius r
+ %x1,y1,x2,y2 r -> -
+/fillRoundRect { newpath roundrectPath fill } def
+
+ % draw the edges of a rectangle with corners rounded to radius r
+ % x1,y1,x2,y2 r -> -
+/drawRoundRect { newpath roundrectPath stroke } def
+
+/setStyle
+{
+  dup /currentstyle exch def
+  begin
+    FontName FontSize selectFont
+    LineWidth setlinewidth
+    Color  aload  pop setrgbcolor
+  end
+} bind def
+
+% linewidth r g b [dashon dashoff] repeatfactor -> -
+/setlinestyle {
+ setdash  setrgbcolor setlinewidth
+} bind def
+
+% create a rectangular border in the specified style
+/createBorder % x1 y1 x2 y2 style createborder -
+{
+  setStyle
+  4 copy rectPath %rectfill
+  fill
+  rectPath
+  gsave
+  currentstyle
+  begin
+    BorderColor aload pop setrgbcolor
+    BorderWidth setlinewidth
+  end
+%  [3] 0 setdash
+  stroke  %rectstroke  
+  grestore
+} bind def
+
+%
+% do this next routine through a dict also!
+%
+
+% select a rectangle within the world and scale within it linearly
+% the first 4 coords are paper coordinates
+% the second 4 are world coordinates
+% x1 y1 x2 y2 px1 py1 px2 py2 scaleRect -
+/scaleRect {
+  20 dict
+  begin
+  /pymax exch def
+  /pxmax exch def
+  /pymin exch def
+  /pxmin exch def
+  /ymax exch def
+  /xmax exch def
+  /ymin exch def
+  /xmin exch def
+
+  /xsize xmax xmin sub def
+  /ysize ymax ymin sub def
+  /pxsize pxmax pxmin sub def
+  /pysize pymax pymin sub def
+
+%  0 0 1 setrgbcolor
+%  0 0 moveto
+%  xsize 0 lineto
+%  xsize ysize lineto
+%  0 ysize lineto
+%  fill
+
+%  matrix setmatrix
+%  0 ymax translate
+%  1 -1 scale
+  xmin ymin translate
+  xsize pxsize div ysize pysize div scale
+  pxmin neg pymin neg translate
+%  -74.1 40.5 transform (foo3)disp
+%  -73.0 41 transform (foo3)disp
+  end
+} bind def
+
+% Include an eps file, saving state from badly behaved files
+% filename scalex scaley dx dy includeEPS -
+/includeEPS {
+  5 dict begin
+%  matrix setmatrix
+%  matrix currentmatrix
+  /showpage {} def
+  /setpagedevice /pop load def
+%  pop pop
+  translate
+  scale
+  exch
+  save
+} bind def
+
+% ang m x y -> -
+/simpleArrow
+{
+  moveto 
+  gsave rotate %setmatrix rotate
+  0 1 rlineto
+  .1 -.3 rlineto
+  -.2 0 rmoveto
+  .1 .3 rlineto stroke
+  grestore
+} bind def
+
+% ang scale x y -> -
+/scaledSimpleArrow
+{
+  moveto 
+  gsave dup scale rotate
+  0 1 rlineto
+
+  -.1 -.3 rlineto
+  +.2 0 rlineto
+  -.1 .3 rlineto fill
+  grestore
+} bind def
+
+/logScaledSimpleArrow
+{
+  moveto 
+  gsave setmatrix log dup scale rotate
+  0 1 rlineto
+  .1 -.3 rlineto
+  -.2 0 rmoveto
+  .1 .3 rlineto stroke
+  grestore
+} bind def
+
+/dispTextAt {
+  /mat exch def
+  /arr exch def
+  0 3 arr length 1 sub {
+    /i exch def
+    arr i get 
+    arr i 1 add get 
+    arr i 2 add get
+    moveto gsave mat pstack setmatrix show grestore
+  } for
+} bind def
+
+% display text centered
+/horizCenteredText {  
+  /xmax exch def
+  /xmin exch def
+  /y exch def
+  /text exch def
+  xmax xmin add text stringwidth sub .5 mul y moveto
+  text show
+} bind def
+
+/graphite <<
+  /Styles 100 dict
+  /Colormaps 5 dict
+  /Borders 5 dict
+>> def
+
+/defineStyle {
+  graphite /Styles get exch store
+} bind def
+
+/getStyle {
+  graphite /Styles get exch get
+} bind def
+
+/defineColormap {
+  graphite /Colormaps get 3 1 roll put
+} bind def
+
+/getColormap {
+  graphite /Colormaps get exch get
+} bind def
+
+
+/ROYGBIV <<
+  /FunctionType 0
+    /Domain [0 1]
+    /Range [0 1 0 1 0 1]
+    /Size [6]
+    /BitsPerSample 8
+    /DataSource 
+    <800090
+    0080FF
+    00FFFF
+    FFFF00
+    FF0000
+    800000>
+  >> defineColormap
+
+/RedBlue <<
+  /FunctionType 0
+    /Domain [0 1]
+    /Range [0 1 0 1 0 1]
+    /Size [9]
+    /BitsPerSample 8
+    /DataSource 
+    <400000
+    800000
+    C00000
+    FF0000
+    FFFFFF
+    0000FF
+    0000C0
+    000080
+    000040>
+  >> defineColormap
+
+/BlueRed <<
+  /FunctionType 0
+    /Domain [0 1]
+    /Range [0 1 0 1 0 1]
+    /Size [9]
+    /BitsPerSample 8
+    /DataSource 
+    <400000
+    800000
+    C00000
+    FF0000
+    FFFFFF
+    0000FF
+    0000C0
+    000080
+    000040>
+  >> defineColormap
+
+/RedGreen <<
+  /FunctionType 0
+    /Domain [0 1]
+    /Range [0 1 0 1 0 1]
+    /Size [9]
+    /BitsPerSample 8
+    /DataSource 
+    <400000
+    800000
+    C00000
+    FF0000
+    FFFFFF
+    00FF00
+    00C000
+    008000
+    004000>
+  >> defineColormap
+
+/GreenRed <<
+  /FunctionType 0
+    /Domain [0 1]
+    /Range [0 1 0 1 0 1]
+    /Size [9]
+    /BitsPerSample 8
+    /DataSource 
+    <400000
+    800000
+    C00000
+    FF0000
+    FFFFFF
+    00FF00
+    00C000
+    008000
+    004000>
+  >> defineColormap
+
+/drawquad
+{
+  moveto
+  lineto
+  lineto
+  lineto
+  closepath
+  stroke
+} bind def
+
+/fillquad
+{
+  mul cvi setcolor
+  moveto
+  lineto
+  lineto
+  lineto
+  fill
+} bind def
+
+
+/plotmaskedmatrix {
+  5 dict begin
+  /grid exch def
+
+  0 setlinewidth
+  0 1 grid /jmax get 1 sub  {
+    /j exch def
+    grid /mask get j get /row exch def
+    0 1 grid /imax get 1 sub {
+      /i exch def
+      row i get 48 ne {
+	i j 1 1 rectstroke
+      } if
+    } for
+  } for
+  end
+} bind def
+
+/numbermaskedmatrix {
+  8 dict begin
+  /varname exch def
+  /grid exch def
+  /valindex 0 def
+  0 setlinewidth
+  0 1 grid /jmax get 1 sub  {
+    /j exch def
+    grid /mask get j get /row exch def
+    0 1 grid /imax get 1 sub {
+      /i exch def
+      row i get 48 ne {
+	i j 1 1 rectstroke
+	i j moveto
+	grid varname get valindex get (        ) cvs 0 2 getinterval show
+	/valindex valindex 1 add def
+      } if
+    } for
+  } for
+  end
+} bind def
+
+
+/fillmaskedmatrix {
+  8 dict begin
+  /varname exch def
+  /grid exch def
+  /colorscale 1 100 div 255 mul def
+  /valindex 0 def
+  0 setlinewidth
+  0 1 grid /jmax get 1 sub  {
+    /j exch def
+    grid /mask get j get /row exch def
+    0 1 grid /imax get 1 sub {
+      /i exch def
+      row i get 48 ne {
+	grid varname get valindex get colorscale mul cvi setcolor
+	i j 1 1 rectfill
+
+	/valindex valindex 1 add def
+      } if
+    } for
+  } for
+  end
+} bind def
+
+
+/setbluepalette {
+  [/Indexed /DeviceRGB 255
+    <FFFFFF
+      FCFCFF F8F8FF F4F4FF F0F0FF ECECFF E8E8FF E4E4FF E0E0FF
+      DCDCFF D8D8FF D4D4FF D0D0FF CCCCFF C8C8FF C4C4FF C0C0FF
+      BCBCFF B8B8FF B4B4FF B0B0FF ACACFF A8A8FF A4A4FF A0A0FF 
+      9C9CFF 9898FF 9494FF 9090FF 8C8CFF 8888FF 8484FF 8080FF
+      7C7CFF 7878FF 7474FF 7070FF 6C6CFF 6868FF 6464FF 6060FF
+      5C5CFF 5858FF 5454FF 5050FF 4C4CFF 4848FF 4444FF 4040FF
+      3C3CFF 3838FF 3434FF 3030FF 2C2CFF 2828FF 2424FF 2020FF
+      1C1CFF 1818FF 1414FF 1010FF 0C0CFF 0808FF 0404FF
+     0000FF 0000FE 0000FD 0000FC 0000FB 0000FA 0000F9 0000F8
+     0000F7 0000F6 0000F5 0000F4 0000F3 0000F2 0000F1 0000F0
+     0000EF 0000EE 0000ED 0000EC 0000EB 0000EA 0000E9 0000E8
+     0000E7 0000E6 0000E5 0000E4 0000E3 0000E2 0000E1 0000E0
+     0000DF 0000DE 0000DD 0000DC 0000DB 0000DA 0000D9 0000D8
+     0000D7 0000D6 0000D5 0000D4 0000D3 0000D2 0000D1 0000D0
+     0000CF 0000CE 0000CD 0000CC 0000CB 0000CA 0000C9 0000C8
+     0000C7 0000C6 0000C5 0000C4 0000C3 0000C2 0000C1 0000C0
+     0000BF 0000BE 0000BD 0000BC 0000BB 0000BA 0000B9 0000B8
+     0000B7 0000B6 0000B5 0000B4 0000B3 0000B2 0000B1 0000B0
+     0000AF 0000AE 0000AD 0000AC 0000AB 0000AA 0000A9 0000A8
+     0000A7 0000A6 0000A5 0000A4 0000A3 0000A2 0000A1 0000A0
+     00009F 00009E 00009D 00009C 00009B 00009A 000099 000098
+     000097 000096 000095 000094 000093 000092 000091 000090
+     00008F 00008E 00008D 00008C 00008B 00008A 000089 000088
+     000087 000086 000085 000084 000083 000082 000081 000080
+     00007F 00007E 00007D 00007C 00007B 00007A 000079 000078
+     000077 000076 000075 000074 000073 000072 000071 000070
+     00006F 00006E 00006D 00006C 00006B 00006A 000069 000068
+     000067 000066 000065 000064 000063 000062 000061 000060
+     00005F 00005E 00005D 00005C 00005B 00005A 000059 000058
+     000057 000056 000055 000054 000053 000052 000051 000050
+     00004F 00004E 00004D 00004C 00004B 00004A 000049 000048
+     000047 000046 000045 000044 000043 000042 000041 000040>
+%      00003C000038000034000030000000002C000028000024000020
+%      00001C000018000014000010000000000C000008000004000000
+   ] setcolorspace
+} bind def
+
+/block <<
+  /x 20
+  /y 80
+  /dx 0
+  /dy -14
+  /style /normal
+%  /background /none
+%  /border /none
+  /text [
+    (this is a test)
+    (this is only a test)
+    (if this had been an actual test, you'd know)
+    (BGIAJ)
+  ]
+>> def
+
+/t1 <<
+  /x 20
+  /y 100
+  /dx 0
+  /dy -14
+  /style /title
+%  /background /none
+%  /border /none
+  /text [
+    (Postscript Rules!)
+  ]
+>> def
+
+/styles <<
+  /normal { /Helvetica findfont 12 scalefont setfont 0 0 0 setrgbcolor }
+  /title { /Helvetica-bold findfont 24 scalefont setfont }
+  /subtitle { /Helvetica findfont 18 scalefont setfont }
+  /notes { /Helvetica findfont 8 scalefont setfont }
+>> def
+
+/drawTextBlock {
+  5 dict begin
+  /block exch def
+  styles  block /style get get exec
+  /x block /x get def 
+  /y block /y get def
+  block /text get {
+    x y moveto pstack show
+    /x x block /dx get add def
+    /y y block /dy get add def
+  } forall
+  end
+} bind def
+
+/leftJustInBox { % x y step
+  /dy exch def
+  /y exch def
+  /x exch def
+  {
+    x y moveto
+    show
+    /y y dy sub def
+  } forall
+} bind def 
+
+% [ (string) (string) ...] dx dy x y -> -
+/displayTextBlock {
+  5 dict begin
+    /y exch def
+    /x exch def
+    /dy exch def
+    /dx exch def
+    {
+      x y    moveto 
+      dup stringwidth -.5 mul exch  -.5 mul exch rmoveto show
+      /x x dx add def
+      /y y dy add def
+
+     } forall
+  end
+} bind def
+
+/drawgrid {
+    /ny exch def
+    /ymax exch def
+    /ymin exch def
+    /nx exch def
+    /xmax exch def
+    /xmin exch def
+    ymin ymax ymin sub ny 1 sub div ymax {
+	dup dup xmin exch moveto xmax exch lineto stroke
+    } for
+    xmin xmax xmin sub nx 1 sub div xmax {
+	dup dup ymin moveto ymax lineto stroke
+    } for
+} bind def
+
+%
+% xmin xmax numdivisions ymin ymax numdivisions numgrid - 
+% Draws numbers on the axis
+%
+/numgrid {
+  10 dict begin
+    /ny exch def
+    /ymax exch def
+    /ymin exch def
+    /nx exch def
+    /xmax exch def
+    /xmin exch def
+    /text (      ) def
+    ymin ymax ymin sub ny 1 sub div ymax {
+%      dup text cvs stringwidth .5 mul 2 index sub neg 
+%      exch .5 mul xmin exch sub exch moveto (             ) cvs show
+      dup xmin exch 2 copy == == (\n) print  moveto (      ) cvs show
+    } for
+    xmin xmax xmin sub nx 1 sub div xmax {
+	dup .05 sub ymin .1 sub moveto (             ) cvs show
+    } for
+  end
+} bind def
+
+%
+% array of arrays of x y points: [  [x y x y ...] [x y x y ..] ...] drawcoastline -
+% Draw polygon for each internal array
+% A different version could fill in the future, but the polygons would have to
+% be higher quality. the current set is not always properly closed
+%
+/drawcoastline {
+    {
+	/arr exch def
+	newpath
+	arr arr length 2 sub get arr arr length 1 sub get moveto
+	arr aload length 2 idiv
+	{
+	    lineto
+	} repeat
+	stroke
+    } forall
+} bind def
+
+% plot lines in the current style connecting the x,y points
+% [x] [y] -> -
+/polyline {
+  5 dict begin
+      /y exch def	
+      /x exch def	
+      x 0 get y 0 get moveto
+      1 1 x length 1 sub {
+	  dup x exch get exch y exch get lineto
+      } for
+      stroke
+  end
+} def
+
+% draw a polygon
+% x y x y ... n  -> -
+/drawpolygon {
+  2 dict begin
+    /n exch def
+    newpath
+    moveto
+    2 1 n {
+      pop lineto
+    } for
+    closepath
+    stroke
+  end
+} def
+
+% fill a polygon
+% x y x y ... n  -> -
+/fillpolygon {
+  2 dict begin
+    /n exch def
+    newpath
+    moveto
+    2 1 n {
+      pop lineto
+    } for
+    fill
+  end
+} def
+
+% draw n separate line segments
+% x1 y1 x2 y2  x1 y1 x2 y2 ... n  -> -
+/drawsegments {
+  2 dict begin
+    /n exch def
+    newpath
+    1 1 n {
+      pop moveto lineto
+    } for
+    stroke
+  end
+} def
+
+% [x] [mag] [ang] scale /arrowname -> -
+/vectorplot {
+  5 dict begin
+      /arrow exch arrows exch get def
+      /scaleval exch def
+      /angle exch def
+      /mag exch def
+      /x exch def
+      0 setlinewidth
+      0 1 x length 1 sub {
+	  /i exch def
+	  angle i get scaleval x i get mag i get arrow
+      } for
+  end
+} def
+    
+% [x] [y] scale /markerroutine -> -
+/markerplot {
+  markers exch get /marker exch def
+  /sc exch def
+  /y exch def
+  /x exch def
+  0 1 x length 1 sub {
+    dup x exch get exch y exch get sc 3 1 roll marker
+  } for
+  stroke
+} def
+
+% scale x y scale x y ... n /markerroutine -> -
+/translatescaleplot {
+  3 dict begin
+  markers exch get /marker exch def
+  /n exch def
+  1 1 n {
+    pop marker
+  } for
+  stroke
+  end
+} def
+
+% rot scale x y rot scale x y ... n /arrowroutine -> -
+/translaterotatescaleplot {
+  3 dict begin
+  arrows exch get /arrow exch def
+  /n exch def
+  1 1 n {
+    pop arrow
+  } for
+  stroke
+  end
+} def
+
+/xticks {
+  8 dict begin
+    /y1 exch def
+    /y0 exch def
+    /numTicks exch def
+    /x1 exch def
+    /x0 exch def
+    /dx x1 x0 sub numTicks 1 sub div def
+    newpath
+
+    0 1 numTicks {
+      dx mul x0 add dup y0  moveto
+      y1 lineto
+    } for
+    stroke
+  end
+} def
+
+/yticks {
+  8 dict begin
+    /x1 exch def
+    /x0 exch def
+    /numTicks exch def
+    /y1 exch def
+    /y0 exch def
+    /dy y1 y0 sub numTicks 1 sub div def
+    newpath
+
+    0 1 numTicks {
+      dy mul y0 add dup x0 exch  moveto
+      x1 exch lineto
+    } for
+    stroke
+  end
+} def
+
+% start inc count y0pts y1pts m a -> -
+% draw tick marks on the x axis
+% start inc end are all in world coordinates
+% y0 y1 are the endpoints of the line in points
+% m and a are the conversion factors to convert start,inc,end to points
+/xtick {
+  8 dict begin
+  /a exch def
+  /m exch def
+  /y1pts exch def
+  /y0pts exch def
+  /count exch def
+  /inc exch def
+  /start exch def
+  0 1 count 1 sub
+  {
+    inc mul
+    start add
+    m mul a add dup y0pts moveto y1pts lineto stroke
+  } for
+  end
+} def
+
+% same as xtick above except for y axes. This should eventually be
+% the same code using transformations, but for now this is easier
+/ytick {
+  8 dict begin
+  /a exch def
+  /m exch def
+  /x1pts exch def
+  /x0pts exch def
+  /count exch def
+  /inc exch def
+  /start exch def
+  0 1 count 1 sub
+  {
+     inc mul
+     start add
+    m mul a add dup x0pts exch moveto x1pts exch lineto stroke
+  } for
+} def
+
+% all markers go in the marker dict
+% all take the following args:
+% scale x y -> -
+/markers <<
+  /square {
+    newpath
+    moveto 
+    gsave
+      dup scale
+      -1 -1 rmoveto
+      2 0 rlineto
+      0 2 rlineto
+      -2 0 rlineto
+      closepath
+      stroke
+    grestore
+  } 
+    
+  /circle {
+    newpath
+    gsave
+      2 index 0 360 arc stroke pop
+    grestore  
+  } 
+
+  /x {
+    gsave
+      newpath
+      moveto dup scale
+      -1 -1 rmoveto
+      +2 +2 rlineto
+      +0 -2 rmoveto
+      -2 +2 rlineto
+      stroke
+    grestore
+  } 
+
+  /plus {
+    gsave
+      newpath
+      moveto dup scale
+      -1 0 rmoveto
+      +2 0 rlineto
+      -1 -1 rmoveto
+      0 +2 rlineto
+      stroke
+    grestore
+  } 
+
+  /diamond {
+    gsave
+      newpath
+      moveto dup scale
+      -1 0 rmoveto
+      +1 +1 rlineto
+      +1 -1 rlineto
+      -1 -1 rlineto
+      closepath
+      fill
+    grestore
+  } 
+
+>> def
+
+% all arrows take rot scale x y -> -
+/arrows <<
+  /a1 {
+      gsave
+      translate newpath 0 0 moveto dup scale rotate
+		0   .05 rlineto
+		.75  0 rlineto
+		-.25 +.15 rlineto
+		.5   -.2 rlineto
+		-.5  -.2 rlineto
+		+.25 +.15 rlineto
+		-.75 0 rlineto
+		closepath
+      fill
+      grestore
+  }
+
+  /a2 {
+      gsave
+      newpath
+      translate 0 0 moveto dup scale rotate
+      0 1 rlineto
+      -.15 -.35 rlineto
+      +.3 0 rmoveto
+      -.15 +.35 rlineto
+      stroke
+      grestore
+  }
+  /a3 {
+      gsave
+      newpath
+      translate 0 0 moveto dup scale rotate
+      0 1 rlineto
+      +.15 -.35 rlineto
+      stroke
+      grestore
+  }
+
+% wind rot scale x y -> -
+/windbarb
+ {
+   gsave
+     translate newpath dup scale rotate
+     5 dict begin
+       0 0 0.09 0 360 arc fill
+       0 0 moveto 1 0 lineto stroke
+       
+       /wind exch def
+       /base .09 def
+       /space .11 def
+       /height .2 def
+       /x 1 def
+ 	{             
+	     wind 50 lt { exit } if
+	     newpath x 0 moveto x base add height lineto x base add 0 lineto closepath fill
+	     /x x space sub def 
+	     /wind wind 50 sub def
+	 } loop
+           {
+		wind 10 lt { exit } if
+                 x 0 moveto x base add height lineto stroke
+	     /x x space sub def 
+	     /wind wind 10 sub def
+	 } loop
+      {
+		wind 5 lt{ exit } if
+                 x 0 moveto x base 2 div add height 2 div lineto stroke
+	     /x x space sub def 
+	     /wind wind 10 sub def
+	 } loop
+       
+       1 1 1 setrgbcolor
+       0 0 0.08 0 90 arc fill
+       0 0 moveto 0 0.09 lineto 0.09 0 lineto closepath fill 
+	end
+	grestore
+ }
+
+
+>> def
+
+% scale x y /marker -> -
+/strokeMarker {
+  markers exch get exec
+  stroke
+  grestore
+} def
+
+% r g b scale x y /marker -> -
+/strokeAndFillMarker {
+  markers exch get exec
+  gsave
+  stroke
+  grestore
+  setrgbcolor
+  fill
+  grestore
+} def
+
+% scale x y /marker -> -
+/fillMarker {
+  markers exch get exec
+  fill
+  grestore
+} def
+%============================
+gsave 20.000000 584.000000 translate
+%graph2d
+	.95 .95 .85 setrgbcolor
+0.000000 0.000000 1184.000000 188.000000 fillRect
+ .9 .9 .9 setrgbcolor
+25.000000 15.000000 1174.000000 178.000000 fillRect
+1.000000   0 0 0 [] 0 setlinestyle
+25.000000 1174.000000 9.000000 15.000000 18.260000 xticks
+25.000000 1174.000000 9.000000 178.000000 174.740000 xticks
+%applyTextStyle
+	0 0 0 setrgbcolor /Helvetica 14.000000 selectFont
+[ (0.0)(106.2)(212.5)(318.8)(425.0)(531.2)(637.5)(743.8)(850.0)]143.625000 0 25.000000 0.000000 displayTextBlock 
+1.000000   0 0 0 [] 0 setlinestyle
+15.000000 178.000000 6.000000 25.000000 28.260000 yticks
+15.000000 178.000000 6.000000 1174.000000 1170.740000 yticks
+%applyTextStyle
+	0 0 0 setrgbcolor /Helvetica 14.000000 selectFont
+ [ (15.0)(17.0)(19.0)(21.0)(23.0)(25.0)] 0 32.600000 10.000000 7.000000 displayTextBlock
+[25.000000 26.351765 27.703529 29.055294 30.407059 31.758824 33.110588 34.462353 35.814118 37.165882 38.517647 39.869412 41.221176 42.572941 43.924706 45.276471 46.628235 47.980000 49.331765 50.683529 52.035294 53.387059 54.738824 56.090588 57.442353 58.794118 60.145882 61.497647 62.849412 64.201176 65.552941 66.904706 68.256471 69.608235 70.960000 72.311765 73.663529 75.015294 76.367059 77.718824 79.070588 80.422353 81.774118 83.125882 84.477647 85.829412 87.181176 88.532941 89.884706 91.236471 92.588235 93.940000 95.291765 96.643529 97.995294 99.347059 100.698824 102.050588 103.402353 104.754118 106.105882 107.457647 108.809412 110.161176 111.512941 112.864706 114.216471 115.568235 116.920000 118.271765 119.623529 120.975294 122.327059 123.678824 125.030588 126.382353 127.734118 129.085882 130.437647 131.789412 133.141176 134.492941 135.844706 137.196471 138.548235 139.900000 141.251765 142.603529 143.955294 145.307059 146.658824 148.010588 149.362353 150.714118 152.065882 153.417647 154.769412 156.121176 157.472941 158.824706 160.176471 161.528235 162.880000 164.231765 165.583529 166.935294 168.287059 169.638824 170.990588 172.342353 173.694118 175.045882 176.397647 177.749412 179.101176 180.452941 181.804706 183.156471 184.508235 185.860000 187.211765 188.563529 189.915294 191.267059 192.618824 193.970588 195.322353 196.674118 198.025882 199.377647 200.729412 202.081176 203.432941 204.784706 206.136471 207.488235 208.840000 210.191765 211.543529 212.895294 214.247059 215.598824 216.950588 218.302353 219.654118 221.005882 222.357647 223.709412 225.061176 226.412941 227.764706 229.116471 230.468235 231.820000 233.171765 234.523529 235.875294 237.227059 238.578824 239.930588 241.282353 242.634118 243.985882 245.337647 246.689412 248.041176 249.392941 250.744706 252.096471 253.448235 254.800000 256.151765 257.503529 258.855294 260.207059 261.558824 262.910588 264.262353 265.614118 266.965882 268.317647 269.669412 271.021176 272.372941 273.724706 275.076471 276.428235 277.780000 279.131765 280.483529 281.835294 283.187059 284.538824 285.890588 287.242353 288.594118 289.945882 291.297647 292.649412 294.001176 295.352941 296.704706 298.056471 299.408235 300.760000 302.111765 303.463529 304.815294 306.167059 307.518824 308.870588 310.222353 311.574118 312.925882 314.277647 315.629412 316.981176 318.332941 319.684706 321.036471 322.388235 323.740000 325.091765 326.443529 327.795294 329.147059 330.498824 331.850588 333.202353 334.554118 335.905882 337.257647 338.609412 339.961176 341.312941 342.664706 344.016471 345.368235 346.720000 348.071765 349.423529 350.775294 352.127059 353.478824 354.830588 356.182353 357.534118 358.885882 360.237647 361.589412 362.941176 364.292941 365.644706 366.996471 368.348235 369.700000 371.051765 372.403529 373.755294 375.107059 376.458824 377.810588 379.162353 380.514118 381.865882 383.217647 384.569412 385.921176 387.272941 388.624706 389.976471 391.328235 392.680000 394.031765 395.383529 396.735294 398.087059 399.438824 400.790588 402.142353 403.494118 404.845882 406.197647 407.549412 408.901176 410.252941 411.604706 412.956471 414.308235 415.660000 417.011765 418.363529 419.715294 421.067059 422.418824 423.770588 425.122353 426.474118 427.825882 429.177647 430.529412 431.881176 433.232941 434.584706 435.936471 437.288235 438.640000 439.991765 441.343529 442.695294 444.047059 445.398824 446.750588 448.102353 449.454118 450.805882 452.157647 453.509412 454.861176 456.212941 457.564706 458.916471 460.268235 461.620000 462.971765 464.323529 465.675294 467.027059 468.378824 469.730588 471.082353 472.434118 473.785882 475.137647 476.489412 477.841176 479.192941 480.544706 481.896471 483.248235 484.600000 485.951765 487.303529 488.655294 490.007059 491.358824 492.710588 494.062353 495.414118 496.765882 498.117647 499.469412 500.821176 502.172941 503.524706 504.876471 506.228235 507.580000 508.931765 510.283529 511.635294 512.987059 514.338824 515.690588 517.042353 518.394118 519.745882 521.097647 522.449412 523.801176 525.152941 526.504706 527.856471 529.208235 530.560000 531.911765 533.263529 534.615294 535.967059 537.318824 538.670588 540.022353 541.374118 542.725882 544.077647 545.429412 546.781176 548.132941 549.484706 550.836471 552.188235 553.540000 554.891765 556.243529 557.595294 558.947059 560.298824 561.650588 563.002353 564.354118 565.705882 567.057647 568.409412 569.761176 571.112941 572.464706 573.816471 575.168235 576.520000 577.871765 579.223529 580.575294 581.927059 583.278824 584.630588 585.982353 587.334118 588.685882 590.037647 591.389412 592.741176 594.092941 595.444706 596.796471 598.148235 599.500000 600.851765 602.203529 603.555294 604.907059 606.258824 607.610588 608.962353 610.314118 611.665882 613.017647 614.369412 615.721176 617.072941 618.424706 619.776471 621.128235 622.480000 623.831765 625.183529 626.535294 627.887059 629.238824 630.590588 631.942353 633.294118 634.645882 635.997647 637.349412 638.701176 640.052941 641.404706 642.756471 644.108235 645.460000 646.811765 648.163529 649.515294 650.867059 652.218824 653.570588 654.922353 656.274118 657.625882 658.977647 660.329412 661.681176 663.032941 664.384706 665.736471 667.088235 668.440000 669.791765 671.143529 672.495294 673.847059 675.198824 676.550588 677.902353 679.254118 680.605882 681.957647 683.309412 684.661176 686.012941 687.364706 688.716471 690.068235 691.420000 692.771765 694.123529 695.475294 696.827059 698.178824 699.530588 700.882353 702.234118 703.585882 704.937647 706.289412 707.641176 708.992941 710.344706 711.696471 713.048235 714.400000 715.751765 717.103529 718.455294 719.807059 721.158824 722.510588 723.862353 725.214118 726.565882 727.917647 729.269412 730.621176 731.972941 733.324706 734.676471 736.028235 737.380000 738.731765 740.083529 741.435294 742.787059 744.138824 745.490588 746.842353 748.194118 749.545882 750.897647 752.249412 753.601176 754.952941 756.304706 757.656471 759.008235 760.360000 761.711765 763.063529 764.415294 765.767059 767.118824 768.470588 769.822353 771.174118 772.525882 773.877647 775.229412 776.581176 777.932941 779.284706 780.636471 781.988235 783.340000 784.691765 786.043529 787.395294 788.747059 790.098824 791.450588 792.802353 794.154118 795.505882 796.857647 798.209412 799.561176 800.912941 802.264706 803.616471 804.968235 806.320000 807.671765 809.023529 810.375294 811.727059 813.078824 814.430588 815.782353 817.134118 818.485882 819.837647 821.189412 822.541176 823.892941 825.244706 826.596471 827.948235 829.300000 830.651765 832.003529 833.355294 834.707059 836.058824 837.410588 838.762353 840.114118 841.465882 842.817647 844.169412 845.521176 846.872941 848.224706 849.576471 850.928235 852.280000 853.631765 854.983529 856.335294 857.687059 859.038824 860.390588 861.742353 863.094118 864.445882 865.797647 867.149412 868.501176 869.852941 871.204706 872.556471 873.908235 875.260000 876.611765 877.963529 879.315294 880.667059 882.018824 883.370588 884.722353 886.074118 887.425882 888.777647 890.129412 891.481176 892.832941 894.184706 895.536471 896.888235 898.240000 899.591765 900.943529 902.295294 903.647059 904.998824 906.350588 907.702353 909.054118 910.405882 911.757647 913.109412 914.461176 915.812941 917.164706 918.516471 919.868235 921.220000 922.571765 923.923529 925.275294 926.627059 927.978824 929.330588 930.682353 932.034118 933.385882 934.737647 936.089412 937.441176 938.792941 940.144706 941.496471 942.848235 944.200000 945.551765 946.903529 948.255294 949.607059 950.958824 952.310588 953.662353 955.014118 956.365882 957.717647 959.069412 960.421176 961.772941 963.124706 964.476471 965.828235 967.180000 968.531765 969.883529 971.235294 972.587059 973.938824 975.290588 976.642353 977.994118 979.345882 980.697647 982.049412 983.401176 984.752941 986.104706 987.456471 988.808235 990.160000 991.511765 992.863529 994.215294 995.567059 996.918824 998.270588 999.622353 1000.974118 1002.325882 1003.677647 1005.029412 1006.381176 1007.732941 1009.084706 1010.436471 1011.788235 1013.140000 1014.491765 1015.843529 1017.195294 1018.547059 1019.898824 1021.250588 1022.602353 1023.954118 1025.305882 1026.657647 1028.009412 1029.361176 1030.712941 1032.064706 1033.416471 1034.768235 1036.120000 1037.471765 1038.823529 1040.175294 1041.527059 1042.878824 1044.230588 1045.582353 1046.934118 1048.285882 1049.637647 1050.989412 1052.341176 1053.692941 1055.044706 1056.396471 1057.748235 1059.100000 1060.451765 1061.803529 1063.155294 1064.507059 1065.858824 1067.210588 1068.562353 1069.914118 1071.265882 1072.617647 1073.969412 1075.321176 1076.672941 1078.024706 1079.376471 1080.728235 1082.080000 1083.431765 1084.783529 1086.135294 1087.487059 1088.838824 1090.190588 1091.542353 1092.894118 1094.245882 1095.597647 1096.949412 1098.301176 1099.652941 1101.004706 1102.356471 1103.708235 1105.060000 1106.411765 1107.763529 1109.115294 1110.467059 1111.818824 1113.170588][24.291000 26.410000 28.855000 33.093000 33.093000 33.256000 32.930000 32.930000 33.908000 36.842000 39.124000 40.917000 43.688000 47.274000 52.001000 54.935000 56.891000 58.847000 60.151000 62.433000 65.041000 69.605000 70.420000 72.865000 74.984000 77.103000 74.821000 66.834000 64.389000 68.790000 70.909000 68.953000 62.922000 61.618000 58.684000 57.054000 63.085000 52.816000 54.772000 54.609000 56.728000 59.988000 65.367000 68.790000 66.182000 68.464000 73.191000 62.596000 65.204000 60.477000 64.552000 70.420000 68.953000 67.649000 67.486000 68.790000 78.407000 73.354000 70.746000 65.530000 63.574000 52.979000 44.503000 39.450000 36.190000 39.776000 39.613000 41.895000 44.992000 45.318000 47.437000 51.186000 53.468000 58.195000 63.574000 69.279000 77.918000 78.570000 84.275000 85.742000 85.905000 81.667000 89.817000 93.240000 89.328000 91.284000 86.883000 87.372000 88.024000 81.993000 77.429000 79.711000 75.147000 77.755000 74.658000 73.517000 78.570000 75.799000 72.539000 78.733000 76.614000 83.949000 82.971000 80.037000 63.900000 61.944000 64.715000 64.715000 66.997000 69.768000 62.596000 63.737000 67.975000 64.389000 68.790000 68.627000 59.010000 52.490000 53.794000 62.596000 62.433000 55.750000 56.076000 57.054000 61.944000 58.847000 61.781000 67.160000 65.530000 67.486000 68.301000 69.279000 67.323000 65.204000 63.411000 65.367000 59.499000 59.825000 63.411000 62.270000 63.411000 59.173000 59.010000 58.521000 56.402000 54.935000 81.504000 101.227000 103.183000 109.866000 113.289000 106.769000 114.104000 117.201000 115.082000 121.113000 131.871000 129.263000 109.214000 103.346000 94.870000 93.240000 91.936000 96.337000 103.998000 106.280000 109.377000 109.540000 106.606000 103.672000 102.694000 99.108000 95.033000 93.240000 89.980000 88.513000 86.720000 85.579000 81.830000 81.015000 78.570000 76.614000 78.081000 78.081000 80.526000 83.949000 80.689000 81.178000 77.592000 73.028000 67.323000 62.270000 59.499000 59.825000 62.270000 62.922000 62.433000 63.248000 66.182000 65.367000 63.900000 61.292000 58.521000 57.380000 57.543000 57.380000 54.283000 50.860000 48.252000 43.688000 40.917000 37.331000 38.146000 43.036000 40.754000 40.754000 39.776000 38.309000 37.820000 36.679000 34.560000 32.930000 30.322000 29.670000 27.388000 24.291000 20.868000 19.890000 17.445000 16.630000 17.608000 16.467000 15.326000 14.674000 15.978000 15.326000 16.630000 19.727000 26.410000 32.767000 35.701000 40.754000 43.362000 44.340000 47.274000 47.111000 46.785000 51.349000 56.239000 55.587000 57.380000 56.402000 54.446000 49.393000 54.772000 62.270000 63.900000 69.442000 74.984000 76.288000 80.852000 79.059000 80.037000 82.319000 74.821000 76.614000 74.169000 78.733000 77.429000 79.059000 77.266000 80.852000 80.200000 84.764000 86.557000 82.645000 89.980000 90.632000 89.491000 88.676000 92.751000 91.936000 94.544000 88.513000 91.936000 94.870000 91.936000 104.650000 105.302000 107.747000 111.659000 110.029000 103.020000 110.518000 111.985000 111.985000 113.941000 115.082000 117.527000 120.624000 116.060000 121.602000 122.743000 118.505000 121.765000 120.461000 119.483000 123.884000 124.699000 126.329000 131.056000 129.263000 132.360000 135.620000 134.805000 134.316000 131.382000 136.924000 145.237000 132.360000 131.708000 130.567000 132.034000 130.893000 131.545000 141.814000 130.567000 134.479000 134.805000 132.523000 142.466000 149.149000 97.641000 107.910000 74.006000 74.495000 72.050000 75.636000 85.905000 86.068000 86.068000 83.623000 76.125000 72.050000 74.332000 83.623000 78.896000 79.548000 71.724000 78.407000 80.526000 79.385000 75.147000 74.006000 79.059000 80.689000 74.332000 73.028000 71.561000 70.094000 63.085000 50.697000 47.600000 50.697000 49.393000 45.970000 45.644000 42.710000 41.569000 40.591000 40.428000 38.472000 39.450000 40.265000 40.754000 37.657000 35.049000 34.071000 34.071000 32.930000 32.767000 35.212000 37.168000 36.679000 36.353000 36.353000 39.450000 38.961000 40.102000 40.917000 35.049000 35.538000 35.049000 33.745000 32.930000 32.278000 30.974000 30.159000 29.670000 30.811000 29.507000 28.040000 26.899000 27.877000 25.758000 24.128000 22.987000 22.661000 22.009000 19.075000 18.097000 18.912000 22.498000 24.291000 22.335000 24.454000 25.595000 26.899000 24.128000 22.172000 25.269000 22.498000 23.313000 20.868000 20.216000 22.009000 19.238000 17.445000 19.075000 21.357000 20.868000 19.075000 17.119000 17.445000 18.097000 19.727000 19.075000 19.238000 19.401000 19.890000 18.586000 19.238000 19.890000 20.053000 21.194000 22.335000 19.401000 16.630000 16.630000 12.555000 11.414000 13.044000 19.401000 17.934000 15.000000 15.652000 15.815000 19.238000 18.586000 17.445000 18.749000 18.586000 18.423000 18.423000 19.564000 19.890000 20.705000 19.890000 19.075000 18.097000 16.467000 16.141000 15.652000 15.000000 14.674000 15.815000 22.498000 27.714000 33.745000 40.754000 46.948000 47.274000 48.578000 45.644000 47.926000 49.230000 45.155000 50.208000 54.120000 50.860000 50.697000 45.970000 49.067000 54.609000 58.032000 55.424000 56.076000 50.371000 54.772000 62.596000 71.724000 75.962000 83.460000 84.112000 82.808000 77.266000 82.319000 95.522000 111.007000 126.003000 121.276000 118.505000 117.364000 118.505000 116.060000 124.210000 127.470000 135.457000 140.021000 123.884000 137.739000 128.937000 150.127000 153.224000 154.691000 159.744000 130.241000 109.540000 106.606000 109.051000 105.628000 87.535000 87.698000 85.090000 91.121000 78.896000 79.711000 86.720000 79.711000 75.147000 78.896000 74.658000 78.896000 72.376000 70.094000 76.940000 91.121000 93.729000 94.870000 97.641000 99.271000 100.738000 99.271000 100.901000 102.531000 101.390000 100.412000 98.782000 98.293000 92.751000 97.478000 96.174000 97.152000 96.826000 98.945000 93.729000 92.751000 91.773000 94.870000 97.152000 92.425000 92.099000 93.566000 88.350000 83.623000 83.949000 80.200000 77.103000 76.940000 80.363000 86.557000 86.720000 88.350000 85.090000 80.363000 78.570000 81.504000 84.275000 85.253000 86.557000 84.927000 82.808000 79.385000 77.592000 82.156000 81.015000 80.363000 79.222000 77.592000 76.940000 74.821000 74.495000 80.363000 76.940000 79.059000 93.566000 87.046000 77.918000 104.487000 104.976000 69.279000 66.345000 63.900000 61.944000 63.574000 69.279000 68.138000 68.301000 61.618000 59.499000 57.380000 54.120000 55.587000 59.010000 59.662000 61.781000 60.640000 55.587000 51.512000 48.252000 45.644000 44.340000 42.710000 43.688000 43.036000 42.710000 47.600000 45.644000 40.428000 39.450000 37.820000 37.820000 37.657000 39.450000 40.591000 42.710000 44.503000 45.807000 45.644000 44.829000 45.318000 47.111000 47.926000 51.186000 56.565000 58.358000 61.781000 59.336000 58.684000 58.684000 59.825000 59.010000 59.173000 60.966000 62.759000 63.900000 64.552000 61.455000 60.966000 63.900000 62.270000 61.944000 65.367000 68.790000 72.376000 71.887000 72.050000 73.517000 76.940000 77.103000 79.548000 78.570000 76.451000 74.821000 74.984000 75.636000 74.658000 72.050000 71.887000 71.887000 76.614000 77.918000 78.244000 77.103000 77.103000 74.332000 72.050000 65.041000 60.477000 58.358000 57.706000 57.380000 56.565000 53.468000 54.446000 57.217000 59.010000 60.640000 64.715000 65.856000 63.574000 63.411000 65.530000 65.041000 64.389000 66.997000 67.649000 68.464000 71.724000 65.530000 64.226000 63.574000 63.737000 63.737000 63.900000 64.063000 62.759000 62.759000 62.270000 62.596000 62.270000 63.900000 64.552000 68.301000 68.790000 74.006000 70.583000 69.279000 70.420000 66.345000 68.301000 71.887000 73.354000 68.138000 69.442000 69.768000 67.812000 68.464000 68.790000 68.953000 76.125000 73.680000 80.037000 79.059000 85.090000 84.438000 87.372000 86.231000 87.535000 90.143000 95.685000 89.980000 99.597000 99.597000 91.610000 98.456000 102.205000 104.976000 103.998000 103.183000 102.857000 93.566000 104.487000 106.606000 102.857000 102.368000 91.610000 95.196000 97.641000 95.196000 82.971000 81.667000 83.297000 76.777000 76.614000 76.125000 79.385000 78.081000 74.332000 78.570000 79.548000 84.601000 82.319000 83.623000 81.993000 82.808000 84.438000 85.579000 88.839000 82.971000 83.134000 79.548000 76.288000 76.451000 74.821000 77.103000] polyline
+-1.606841 0.000000 0.000000 0.000000 [] 0 setlinestyle
+25.000000 96.500000 moveto 1174.000000 96.500000 lineto stroke
+0.000000 1.000000 0.000000 0.000000 [5.000000 5.000000] 1 setlinestyle
+38.517647 15.000000 moveto 38.517647 178.000000 lineto stroke
+ grestore
+gsave 20.000000 396.000000 translate
+%graph2d
+	.95 .95 .85 setrgbcolor
+0.000000 0.000000 1184.000000 188.000000 fillRect
+ .9 .9 .9 setrgbcolor
+25.000000 15.000000 1174.000000 178.000000 fillRect
+1.000000   0 0 0 [] 0 setlinestyle
+25.000000 1174.000000 9.000000 15.000000 18.260000 xticks
+25.000000 1174.000000 9.000000 178.000000 174.740000 xticks
+%applyTextStyle
+	0 0 0 setrgbcolor /Helvetica 14.000000 selectFont
+[ (0.0)(106.2)(212.5)(318.8)(425.0)(531.2)(637.5)(743.8)(850.0)]143.625000 0 25.000000 0.000000 displayTextBlock 
+1.000000   0 0 0 [] 0 setlinestyle
+15.000000 150.833333 6.000000 25.000000 28.260000 yticks
+15.000000 150.833333 6.000000 1174.000000 1170.740000 yticks
+%applyTextStyle
+	0 0 0 setrgbcolor /Helvetica 14.000000 selectFont
+ [ (10.0)(12.0)(14.0)(16.0)(18.0)(20.0)] 0 27.166667 10.000000 7.000000 displayTextBlock
+[25.000000 26.351765 27.703529 29.055294 30.407059 31.758824 33.110588 34.462353 35.814118 37.165882 38.517647 39.869412 41.221176 42.572941 43.924706 45.276471 46.628235 47.980000 49.331765 50.683529 52.035294 53.387059 54.738824 56.090588 57.442353 58.794118 60.145882 61.497647 62.849412 64.201176 65.552941 66.904706 68.256471 69.608235 70.960000 72.311765 73.663529 75.015294 76.367059 77.718824 79.070588 80.422353 81.774118 83.125882 84.477647 85.829412 87.181176 88.532941 89.884706 91.236471 92.588235 93.940000 95.291765 96.643529 97.995294 99.347059 100.698824 102.050588 103.402353 104.754118 106.105882 107.457647 108.809412 110.161176 111.512941 112.864706 114.216471 115.568235 116.920000 118.271765 119.623529 120.975294 122.327059 123.678824 125.030588 126.382353 127.734118 129.085882 130.437647 131.789412 133.141176 134.492941 135.844706 137.196471 138.548235 139.900000 141.251765 142.603529 143.955294 145.307059 146.658824 148.010588 149.362353 150.714118 152.065882 153.417647 154.769412 156.121176 157.472941 158.824706 160.176471 161.528235 162.880000 164.231765 165.583529 166.935294 168.287059 169.638824 170.990588 172.342353 173.694118 175.045882 176.397647 177.749412 179.101176 180.452941 181.804706 183.156471 184.508235 185.860000 187.211765 188.563529 189.915294 191.267059 192.618824 193.970588 195.322353 196.674118 198.025882 199.377647 200.729412 202.081176 203.432941 204.784706 206.136471 207.488235 208.840000 210.191765 211.543529 212.895294 214.247059 215.598824 216.950588 218.302353 219.654118 221.005882 222.357647 223.709412 225.061176 226.412941 227.764706 229.116471 230.468235 231.820000 233.171765 234.523529 235.875294 237.227059 238.578824 239.930588 241.282353 242.634118 243.985882 245.337647 246.689412 248.041176 249.392941 250.744706 252.096471 253.448235 254.800000 256.151765 257.503529 258.855294 260.207059 261.558824 262.910588 264.262353 265.614118 266.965882 268.317647 269.669412 271.021176 272.372941 273.724706 275.076471 276.428235 277.780000 279.131765 280.483529 281.835294 283.187059 284.538824 285.890588 287.242353 288.594118 289.945882 291.297647 292.649412 294.001176 295.352941 296.704706 298.056471 299.408235 300.760000 302.111765 303.463529 304.815294 306.167059 307.518824 308.870588 310.222353 311.574118 312.925882 314.277647 315.629412 316.981176 318.332941 319.684706 321.036471 322.388235 323.740000 325.091765 326.443529 327.795294 329.147059 330.498824 331.850588 333.202353 334.554118 335.905882 337.257647 338.609412 339.961176 341.312941 342.664706 344.016471 345.368235 346.720000 348.071765 349.423529 350.775294 352.127059 353.478824 354.830588 356.182353 357.534118 358.885882 360.237647 361.589412 362.941176 364.292941 365.644706 366.996471 368.348235 369.700000 371.051765 372.403529 373.755294 375.107059 376.458824 377.810588 379.162353 380.514118 381.865882 383.217647 384.569412 385.921176 387.272941 388.624706 389.976471 391.328235 392.680000 394.031765 395.383529 396.735294 398.087059 399.438824 400.790588 402.142353 403.494118 404.845882 406.197647 407.549412 408.901176 410.252941 411.604706 412.956471 414.308235 415.660000 417.011765 418.363529 419.715294 421.067059 422.418824 423.770588 425.122353 426.474118 427.825882 429.177647 430.529412 431.881176 433.232941 434.584706 435.936471 437.288235 438.640000 439.991765 441.343529 442.695294 444.047059 445.398824 446.750588 448.102353 449.454118 450.805882 452.157647 453.509412 454.861176 456.212941 457.564706 458.916471 460.268235 461.620000 462.971765 464.323529 465.675294 467.027059 468.378824 469.730588 471.082353 472.434118 473.785882 475.137647 476.489412 477.841176 479.192941 480.544706 481.896471 483.248235 484.600000 485.951765 487.303529 488.655294 490.007059 491.358824 492.710588 494.062353 495.414118 496.765882 498.117647 499.469412 500.821176 502.172941 503.524706 504.876471 506.228235 507.580000 508.931765 510.283529 511.635294 512.987059 514.338824 515.690588 517.042353 518.394118 519.745882 521.097647 522.449412 523.801176 525.152941 526.504706 527.856471 529.208235 530.560000 531.911765 533.263529 534.615294 535.967059 537.318824 538.670588 540.022353 541.374118 542.725882 544.077647 545.429412 546.781176 548.132941 549.484706 550.836471 552.188235 553.540000 554.891765 556.243529 557.595294 558.947059 560.298824][104.650000 106.008333 104.650000 104.650000 104.650000 104.650000 104.650000 106.008333 106.008333 106.008333 107.366667 110.083333 112.800000 112.800000 123.666667 120.950000 120.950000 123.666667 125.025000 125.025000 125.025000 126.383333 129.100000 130.458333 131.816667 135.891667 148.116667 150.833333 150.833333 148.116667 150.833333 144.041667 145.400000 145.400000 139.966667 142.683333 142.683333 142.683333 138.608333 130.458333 129.100000 127.741667 126.383333 125.025000 123.666667 125.025000 126.383333 100.575000 85.633333 80.200000 80.200000 86.991667 89.708333 92.425000 91.066667 92.425000 92.425000 91.066667 92.425000 92.425000 95.141667 95.141667 96.500000 96.500000 97.858333 95.141667 96.500000 97.858333 97.858333 97.858333 99.216667 103.291667 103.291667 111.441667 110.083333 114.158333 116.875000 119.591667 125.025000 125.025000 126.383333 125.025000 137.250000 130.458333 154.908333 144.041667 146.758333 145.400000 142.683333 142.683333 154.908333 158.983333 156.266667 154.908333 149.475000 144.041667 145.400000 150.833333 150.833333 149.475000 149.475000 149.475000 139.966667 129.100000 125.025000 123.666667 122.308333 119.591667 116.875000 115.516667 114.158333 115.516667 115.516667 103.291667 66.616667 58.466667 55.750000 51.675000 48.958333 47.600000 46.241667 44.883333 46.241667 53.033333 55.750000 63.900000 67.975000 76.125000 88.350000 93.783333 103.291667 106.008333 103.291667 107.366667 112.800000 115.516667 115.516667 116.875000 122.308333 122.308333 126.383333 131.816667 133.175000 130.458333 133.175000 135.891667 139.966667 139.966667 142.683333 145.400000 153.550000 154.908333 157.625000 154.908333 154.908333 150.833333 154.908333 152.191667 148.116667 149.475000 152.191667 150.833333 142.683333 134.533333 133.175000 127.741667 125.025000 122.308333 122.308333 93.783333 81.558333 70.691667 67.975000 67.975000 70.691667 72.050000 72.050000 72.050000 69.333333 67.975000 69.333333 74.766667 73.408333 73.408333 74.766667 76.125000 76.125000 76.125000 74.766667 74.766667 74.766667 76.125000 76.125000 77.483333 78.841667 78.841667 99.216667 97.858333 107.366667 111.441667 111.441667 118.233333 122.308333 122.308333 120.950000 123.666667 134.533333 133.175000 139.966667 142.683333 133.175000 144.041667 150.833333 139.966667 150.833333 148.116667 153.550000 153.550000 153.550000 141.325000 141.325000 146.758333 146.758333 145.400000 146.758333 144.041667 135.891667 120.950000 118.233333 116.875000 111.441667 110.083333 108.725000 108.725000 108.725000 108.725000 108.725000 97.858333 85.633333 74.766667 69.333333 65.258333 62.541667 62.541667 61.183333 62.541667 67.975000 67.975000 69.333333 77.483333 78.841667 80.200000 81.558333 91.066667 101.933333 99.216667 97.858333 101.933333 110.083333 112.800000 110.083333 110.083333 116.875000 125.025000 126.383333 127.741667 135.891667 130.458333 131.816667 134.533333 149.475000 145.400000 142.683333 150.833333 156.266667 156.266667 156.266667 156.266667 150.833333 152.191667 153.550000 149.475000 148.116667 148.116667 135.891667 129.100000 126.383333 125.025000 119.591667 116.875000 118.233333 118.233333 114.158333 97.858333 91.066667 92.425000 95.141667 96.500000 99.216667 97.858333 97.858333 99.216667 100.575000 100.575000 101.933333 104.650000 106.008333 106.008333 104.650000 104.650000 106.008333 104.650000 104.650000 104.650000 106.008333 106.008333 106.008333 106.008333 106.008333 104.650000 104.650000 104.650000 106.008333 108.725000 114.158333 119.591667 115.516667 116.875000 119.591667 119.591667 123.666667 131.816667 138.608333 144.041667 131.816667 139.966667 137.250000 149.475000 142.683333 153.550000 150.833333 149.475000 145.400000 137.250000 141.325000 144.041667 142.683333 144.041667 142.683333 137.250000 123.666667 122.308333 120.950000 116.875000 115.516667 114.158333 114.158333 115.516667 116.875000 111.441667 103.291667 86.991667 63.900000 57.108333 55.750000 55.750000 55.750000 55.750000 57.108333 55.750000 62.541667 69.333333 67.975000 67.975000 73.408333 85.633333 100.575000 104.650000 100.575000 108.725000 110.083333 112.800000 112.800000 116.875000 125.025000 123.666667 122.308333 127.741667 131.816667 137.250000 134.533333 134.533333 141.325000 157.625000 145.400000 146.758333 156.266667] polyline
+ grestore
+gsave 20.000000 208.000000 translate
+%graph2d
+	.95 .95 .85 setrgbcolor
+0.000000 0.000000 1184.000000 188.000000 fillRect
+ .9 .9 .9 setrgbcolor
+25.000000 15.000000 1174.000000 178.000000 fillRect
+1.000000   0 0 0 [] 0 setlinestyle
+25.000000 1174.000000 9.000000 15.000000 18.260000 xticks
+25.000000 1174.000000 9.000000 178.000000 174.740000 xticks
+%applyTextStyle
+	0 0 0 setrgbcolor /Helvetica 14.000000 selectFont
+[ (0.0)(106.2)(212.5)(318.8)(425.0)(531.2)(637.5)(743.8)(850.0)]143.625000 0 25.000000 0.000000 displayTextBlock 
+1.000000   0 0 0 [] 0 setlinestyle
+15.000000 178.000000 6.000000 25.000000 28.260000 yticks
+15.000000 178.000000 6.000000 1174.000000 1170.740000 yticks
+%applyTextStyle
+	0 0 0 setrgbcolor /Helvetica 14.000000 selectFont
+ [ (29.0)(29.6)(30.2)(30.8)(31.4)(32.0)] 0 32.600000 10.000000 7.000000 displayTextBlock
+[25.000000 26.351765 27.703529 29.055294 30.407059 31.758824 33.110588 34.462353 35.814118 37.165882 38.517647 39.869412 41.221176 42.572941 43.924706 45.276471 46.628235 47.980000 49.331765 50.683529 52.035294 53.387059 54.738824 56.090588 57.442353 58.794118 60.145882 61.497647 62.849412 64.201176 65.552941 66.904706 68.256471 69.608235 70.960000 72.311765 73.663529 75.015294 76.367059 77.718824 79.070588 80.422353 81.774118 83.125882 84.477647 85.829412 87.181176 88.532941 89.884706 91.236471 92.588235 93.940000 95.291765 96.643529 97.995294 99.347059 100.698824 102.050588 103.402353 104.754118 106.105882 107.457647 108.809412 110.161176 111.512941 112.864706 114.216471 115.568235 116.920000 118.271765 119.623529 120.975294 122.327059 123.678824 125.030588 126.382353 127.734118 129.085882 130.437647 131.789412 133.141176 134.492941 135.844706 137.196471 138.548235 139.900000 141.251765 142.603529 143.955294 145.307059 146.658824 148.010588 149.362353 150.714118 152.065882 153.417647 154.769412 156.121176 157.472941 158.824706 160.176471 161.528235 162.880000 164.231765 165.583529 166.935294 168.287059 169.638824 170.990588 172.342353 173.694118 175.045882 176.397647 177.749412 179.101176 180.452941 181.804706 183.156471 184.508235 185.860000 187.211765 188.563529 189.915294 191.267059 192.618824 193.970588 195.322353 196.674118 198.025882 199.377647 200.729412 202.081176 203.432941 204.784706 206.136471 207.488235 208.840000 210.191765 211.543529 212.895294 214.247059 215.598824 216.950588 218.302353 219.654118 221.005882 222.357647 223.709412 225.061176 226.412941 227.764706 229.116471 230.468235 231.820000 233.171765 234.523529 235.875294 237.227059 238.578824 239.930588 241.282353 242.634118 243.985882 245.337647 246.689412 248.041176 249.392941 250.744706 252.096471 253.448235 254.800000 256.151765 257.503529 258.855294 260.207059 261.558824 262.910588 264.262353 265.614118 266.965882 268.317647 269.669412 271.021176 272.372941 273.724706 275.076471 276.428235 277.780000 279.131765 280.483529 281.835294 283.187059 284.538824 285.890588 287.242353 288.594118 289.945882 291.297647 292.649412 294.001176 295.352941 296.704706 298.056471 299.408235 300.760000 302.111765 303.463529 304.815294 306.167059 307.518824 308.870588 310.222353 311.574118 312.925882 314.277647 315.629412 316.981176 318.332941 319.684706 321.036471 322.388235 323.740000 325.091765 326.443529 327.795294 329.147059 330.498824 331.850588 333.202353 334.554118 335.905882 337.257647 338.609412 339.961176 341.312941 342.664706 344.016471 345.368235 346.720000 348.071765 349.423529 350.775294 352.127059 353.478824 354.830588 356.182353 357.534118 358.885882 360.237647 361.589412 362.941176 364.292941 365.644706 366.996471 368.348235 369.700000 371.051765 372.403529 373.755294 375.107059 376.458824 377.810588 379.162353 380.514118 381.865882 383.217647 384.569412 385.921176 387.272941 388.624706 389.976471 391.328235 392.680000 394.031765 395.383529 396.735294 398.087059 399.438824 400.790588 402.142353 403.494118 404.845882 406.197647 407.549412 408.901176 410.252941 411.604706 412.956471 414.308235 415.660000 417.011765 418.363529 419.715294 421.067059 422.418824 423.770588 425.122353 426.474118 427.825882 429.177647 430.529412 431.881176 433.232941 434.584706 435.936471 437.288235 438.640000 439.991765 441.343529 442.695294 444.047059 445.398824 446.750588 448.102353 449.454118 450.805882 452.157647 453.509412 454.861176 456.212941 457.564706 458.916471 460.268235 461.620000 462.971765 464.323529 465.675294 467.027059 468.378824 469.730588 471.082353 472.434118 473.785882 475.137647 476.489412 477.841176 479.192941 480.544706 481.896471 483.248235 484.600000 485.951765 487.303529 488.655294 490.007059 491.358824 492.710588 494.062353 495.414118 496.765882 498.117647 499.469412 500.821176 502.172941 503.524706 504.876471 506.228235 507.580000 508.931765 510.283529 511.635294 512.987059 514.338824 515.690588 517.042353 518.394118 519.745882 521.097647 522.449412 523.801176 525.152941 526.504706 527.856471 529.208235 530.560000 531.911765 533.263529 534.615294 535.967059 537.318824 538.670588 540.022353 541.374118 542.725882 544.077647 545.429412 546.781176 548.132941 549.484706 550.836471 552.188235 553.540000 554.891765 556.243529 557.595294 558.947059 560.298824][129.100000 134.533333 129.100000 129.100000 129.100000 134.533333 134.533333 134.533333 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 118.233333 123.666667 123.666667 118.233333 112.800000 112.800000 112.800000 112.800000 101.933333 96.500000 101.933333 101.933333 80.200000 80.200000 80.200000 80.200000 80.200000 80.200000 80.200000 80.200000 80.200000 80.200000 85.633333 96.500000 112.800000 129.100000 134.533333 134.533333 129.100000 129.100000 129.100000 129.100000 123.666667 145.400000 156.266667 156.266667 156.266667 156.266667 150.833333 145.400000 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 145.400000 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 134.533333 134.533333 123.666667 123.666667 118.233333 112.800000 112.800000 107.366667 112.800000 96.500000 107.366667 80.200000 91.066667 80.200000 85.633333 85.633333 96.500000 80.200000 69.333333 69.333333 69.333333 69.333333 63.900000 58.466667 63.900000 63.900000 69.333333 69.333333 80.200000 101.933333 123.666667 129.100000 129.100000 129.100000 134.533333 134.533333 134.533333 134.533333 134.533333 129.100000 139.966667 167.133333 172.566667 178.000000 183.433333 183.433333 183.433333 183.433333 183.433333 183.433333 178.000000 172.566667 167.133333 167.133333 156.266667 145.400000 139.966667 139.966667 139.966667 139.966667 134.533333 123.666667 123.666667 123.666667 118.233333 118.233333 118.233333 112.800000 101.933333 101.933333 101.933333 96.500000 91.066667 80.200000 80.200000 80.200000 74.766667 69.333333 69.333333 63.900000 63.900000 63.900000 63.900000 63.900000 69.333333 69.333333 69.333333 74.766667 91.066667 107.366667 123.666667 123.666667 123.666667 129.100000 129.100000 129.100000 156.266667 161.700000 167.133333 172.566667 172.566667 167.133333 167.133333 167.133333 167.133333 167.133333 172.566667 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 145.400000 150.833333 134.533333 123.666667 123.666667 118.233333 112.800000 112.800000 112.800000 112.800000 101.933333 96.500000 96.500000 96.500000 107.366667 96.500000 91.066667 91.066667 80.200000 80.200000 74.766667 74.766667 74.766667 74.766667 74.766667 69.333333 74.766667 74.766667 80.200000 96.500000 112.800000 134.533333 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 145.400000 156.266667 161.700000 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 167.133333 161.700000 156.266667 156.266667 156.266667 150.833333 139.966667 145.400000 145.400000 139.966667 134.533333 129.100000 134.533333 134.533333 123.666667 112.800000 112.800000 112.800000 96.500000 112.800000 107.366667 101.933333 85.633333 91.066667 96.500000 91.066667 80.200000 80.200000 80.200000 74.766667 80.200000 80.200000 80.200000 80.200000 85.633333 96.500000 123.666667 134.533333 134.533333 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 156.266667 156.266667 156.266667 156.266667 150.833333 150.833333 150.833333 150.833333 150.833333 150.833333 145.400000 145.400000 139.966667 139.966667 139.966667 145.400000 145.400000 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 145.400000 139.966667 139.966667 139.966667 134.533333 123.666667 129.100000 123.666667 123.666667 123.666667 118.233333 112.800000 96.500000 96.500000 112.800000 101.933333 96.500000 85.633333 91.066667 80.200000 80.200000 80.200000 80.200000 80.200000 80.200000 80.200000 80.200000 80.200000 96.500000 112.800000 134.533333 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 139.966667 134.533333 139.966667 145.400000 156.266667 167.133333 178.000000 178.000000 178.000000 178.000000 172.566667 178.000000 178.000000 172.566667 167.133333 167.133333 167.133333 167.133333 156.266667 150.833333 145.400000 150.833333 145.400000 139.966667 139.966667 139.966667 134.533333 123.666667 123.666667 129.100000 123.666667 112.800000 107.366667 112.800000 112.800000 101.933333 85.633333 107.366667 96.500000 96.500000] polyline
+ grestore
+showpage
+%%Trailer
+%%EOF

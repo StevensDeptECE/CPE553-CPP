@@ -1,4 +1,0 @@
-/opt/clion-2017.3.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/dkruger/git/EE553-CPP/libraries/usessl
--- Configuring done
--- Generating done
--- Build files have been written to: /home/dkruger/git/EE553-CPP/libraries/usessl/cmake-build-debug

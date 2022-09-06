@@ -1,0 +1,30 @@
+There is no language feature in C++ called an abstract class as there is in Java.
+
+Instead, any class containing a pure virtual function is abstract.
+
+class A {
+public:
+  virtual void f() =0;
+};
+
+class A is abstract, because if we instantiated it:
+
+A a1;
+
+and called the method:
+
+a1.f();
+
+we would have no idea what to do.
+
+Therefore, C++ solves this problem -- by not letting the programmer instantiate.
+
+A a1; // error: cannot instantiate an abstract class
+
+class B : public A {
+public:
+  void f() { cout << "b"; }
+};
+
+B b1; // B is not abstract because it overrides the method f in its parent
+

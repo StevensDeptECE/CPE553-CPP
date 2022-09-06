@@ -1,3 +1,0 @@
-C:/Users/dkruger/git/EE553-CPP/Session01/cmake-build-debug/CMakeFiles/Session01.dir
-C:/Users/dkruger/git/EE553-CPP/Session01/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/dkruger/git/EE553-CPP/Session01/cmake-build-debug/CMakeFiles/rebuild_cache.dir
