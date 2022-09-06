@@ -3,9 +3,9 @@
 using namespace std;
 
 void A::setup() {
-	cout << "hello";
+	cout << "A::setup";
 }
 
 void A::draw() const {
-	cout << "hello";
+	cout << "A::draw";
 }
