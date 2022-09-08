@@ -1,9 +1,11 @@
-# C++ QUICK REFERENCE / C++ CHEATSHEET
-Based on <a href="https://github.com/mortennobel/cpp-cheatsheet/blob/master/README.md">Morten Nobel-Jørgensen.</a> Edited by Dov Kruger
+# C++ Quick Reference
+Based on <a href="https://github.com/mortennobel/cpp-cheatsheet">Morten Nobel-Jørgensen's C++ Reference.</a> Edited by Dov Kruger
 
-The goal is to give a concise overview of basic, modern C++ (C++14).
+A concise overview of basic, modern C++ (C++14).
 
 ## Preprocessor
+
+Any line with a preprocessor directive (starting with #) is executed before the compiler, changing the source code before the compiler sees it.
 
 ```cpp
                             // Comment to end of line
@@ -13,7 +15,7 @@ The goal is to give a concise overview of basic, modern C++ (C++14).
 #define X some text         // Replace X with some text
 #define F(a,b) a+b          // Replace F(1,2) with 1+2
 #define X \
- some text                  // Multiline definition
+ some text                  // Multiline definition, replace X with "\nsome text"
 #undef X                    // Remove definition
 #if defined(X)              // Conditional compilation (#ifdef X)
 #else                       // Optional (#ifndef X or #if !defined(X))
@@ -23,15 +25,17 @@ The goal is to give a concise overview of basic, modern C++ (C++14).
 ## Declarations
 
 ```cpp
-int x;                      // Declare x to be an integer (value undefined)
-int x=255;                  // Declare and initialize x to 255
-short s; long l;            // Usually 16 or 32 bit integer (int may be either)
-char c='a';                 // Usually 8 bit character
+int x;                      // Define x to be an integer (for initial value see scope)
+int x=255;                  // Define and initialize x to 255
+short s;                    // at least 16 bits, <= int (signedness not specified)
+long l;                     // At least 32 bits, >= int (signedness not specified)
+char c='a';                 // Usually 8 bit character, a single addressable value
 unsigned char u=255;
 signed char s=-1;           // char might be either
 unsigned long x =
   0xffffffffL;              // short, int, long are signed
-float f; double d;          // Single or double precision real (never unsigned)
+float f;                    // single precision, 32 bits, 8 digits precision, range e+38
+double d;                   // Double precision, 64 bits, 15 digits precision, range e+308
 bool b=true;                // true or false, may also use int (1 or 0)
 int a, b, c;                // Multiple declarations
 int a[10];                  // Array of 10 ints (a[0] through a[9])
