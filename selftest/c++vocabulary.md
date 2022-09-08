@@ -22,6 +22,7 @@ Even if you really know how to program well, if you don't know the terminology a
 1. virtual function
 1. pure virtual function
 1. virtual function table (VFT)
+1. virtual inheritance
 1. binding
 1. static
 1. public
@@ -38,7 +39,6 @@ Even if you really know how to program well, if you don't know the terminology a
 1. extern
 1. static
 1. auto
-1. registers
 1. stack
 1. backtrace
 1. namespace
@@ -52,53 +52,52 @@ Even if you really know how to program well, if you don't know the terminology a
 1. vector instructions
 1. pipelining
 1. branch prediction
+1. roundoff error
+1. subtractive cancellation
+1. absolute error
+1. relative error
+1. exponent
+1. mantissa
+1. IEEE 754
+
 
 ## Generic Programming
 
-generic programming
-templates
-functor
-variadic templates
-lambda function
-closure
+1. generic programming
+1. templates
+1. functor
+1. variadic templates
+1. lambda function
+1. closure
 
-function
-recursion
-parameter
-reference
-value
+## Functions
 
-## Computer Architecture Terminology
-registers
-cache
-instruction cache
-data cache
-cache coherence
-stack frame
-MMU
+1. function
+1. recursion
+1. parameter
+1. reference
+1. value
 
 ## Memory Safety
 
-bounds checking
-type-safe
-memory-safe
-side effect
-dangling reference
-race condition
-deadlock
-
+1. bounds checking
+1. type-safe
+1. memory-safe
+1. side effect
+1. dangling reference
+1. race condition
+1. deadlock
 ## C++ Compiler Terminology
 
-primitive data type
-statement
-declaration
-definition
-preprocessor
-macro
-token
-keyword
-identifier
-
+1. primitive data type
+1. statement
+1. declaration
+1. definition
+1. preprocessor
+1. macro
+1. token
+1. keyword
+1. identifier
 ## Multithreading
 
 1. multithreading
@@ -107,7 +106,7 @@ identifier
 1. mutex
 1. atomic
 
-## Development Process and 
+## Development Process and Methodologies
 
 1. continuous integration
 1. unit testing
@@ -118,17 +117,55 @@ identifier
 1. Rapid Application Development (RAD)
 1. Extreme Programming
 
+see [methodologies](https://newrelic.com/blog/best-practices/programming-methodology-primer)
 ## Tools
 
-1. gprof
-1. gcov
-1. make
-1. cmake
+1. git
+1. [make](https://www.gnu.org/software/make/manual/) and [tutorial](https://makefiletutorial.com/)
+1. [cmake](https://cmake.org/) and [tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
+1. [gprof](https://users.cs.duke.edu/~ola/courses/programming/gprof.html)
+1. [gcov]()
+1. debugger ([gdb](), [cgdb]())
 1. ninja
 1. doxygen
 1. autoconf
 1. configure
-1. git
 1. github
 1. IDE
-1. debugger
+  1.1 [vscode]()
+  1.1 [CLion]()
+  1.1 [qtcreator]()
+
+## Optimization
+
+1. Peephole optimizer
+1. constant folding
+1. strength reduction
+1. deadcode removal
+1. loop invariant code movement
+1. tail call removal
+1. Common subexpression elimination
+1. vectorization
+1. auto-parallelization
+1. loop unrolling
+
+[Godbolt](https://queue.acm.org/detail.cfm?id=3372264)
+
+## Computer Architecture Terminology
+1. word size
+1. address size
+1. bus
+1. address bus
+1. data bus
+1. registers
+1. cache
+1. instruction cache
+1. data cache
+1. cache coherence
+1. stack frame
+1. MMU
+1. pipelining
+1. prefetching
+1. branch prediction
+1. little and big endian architectures
+1. memory alignment
