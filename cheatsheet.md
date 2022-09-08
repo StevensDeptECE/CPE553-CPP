@@ -36,29 +36,37 @@ unsigned long x =
   0xffffffffL;              // short, int, long are signed
 float f;                    // single precision, 32 bits, 8 digits precision, range e+38
 double d;                   // Double precision, 64 bits, 15 digits precision, range e+308
-bool b=true;                // true or false, may also use int (1 or 0)
+bool b=true;                // true or false, may also use int (nonzero is true)
 int a, b, c;                // Multiple declarations
 int a[10];                  // Array of 10 ints (a[0] through a[9])
 int a[]={0,1,2};            // Initialized array (or a[3]={0,1,2}; )
 int a[2][2]={{1,2},{4,5}};  // Array of array of ints
-char s[]="hello";           // String (6 elements including '\0')
-std::string s = "Hello"     // Creates string object with value "Hello"
+int a[10] = {0,5};          // All unspecified elements are initialized to 0
+char s[]="hello";           // Legacy C String (6 elements including '\0')
+std::string s = "Hello"     // C++ string object with value "Hello"
 std::string s = R"(Hello
-World)";                    // Creates string object with value "Hello\nWorld"
+World)";                    // Raw string may contain newline: "Hello\nWorld"
 int* p;                     // p is a pointer to (address of) int
-char* s="hello";            // s points to unnamed array containing "hello"
+int *p;                     // same as above, spaces don't matter
+int* p = NULL;              // ancient C style pointer to nothing
+int* p = 0;                 // old C++ style 0 means null pointer
+int* p = nullptr;           // modern C++ nullptr
+const char* s="hello";      // s points to unnamed array containing "hello"
 void* p=nullptr;            // Address of untyped memory (nullptr is 0)
 int& r=x;                   // r is a reference to (alias of) int x
-enum weekend {SAT,SUN};     // weekend is a type with values SAT and SUN
+enum weekend {SAT,SUN};     // old style enumerated type, SAT=0, SUN=1
+weekend w = SAT;            // set enumerated variable to value
+weekend w = 0;              // put in int equivalent to SAT
+weekend w = 19;             // C++ allows putting in a bad value
 enum weekend day;           // day is a variable of type weekend
 enum weekend{SAT=0,SUN=1};  // Explicit representation as int
 enum {SAT,SUN} day;         // Anonymous enum
 enum class Color {Red,Blue};// Color is a strict type with values Red and Blue
 Color x = Color::Red;       // Assign Color x to red
 typedef String char*;       // String s; means char* s;
-const int c=3;              // Constants must be initialized, cannot assign to
-const int* p=a;             // Contents of p (elements of a) are constant
-int* const p=a;             // p (but not contents) are constant
+const int c = 3;            // Constants must be initialized, cannot be modified
+const int* p=a;             // Value pointed to by p cannot be modified
+int* const p=a;             // the pointer cannot change (but elements can)
 const int* const p=a;       // Both p and its contents are constant
 const int& cr=x;            // cr cannot be assigned to change x
 int8_t,uint8_t,int16_t,
@@ -75,30 +83,43 @@ auto& s = singleton::instance();
 
 ```cpp
 255, 0377, 0xff             // Integers (decimal, octal, hex)
-2147483647L, 0x7fffffffl    // Long (32-bit) integers
-123.0, 1.23e2               // double (real) numbers
+2147483647L, 0x7fffffffl    // Long (>= 32-bit) integers
+4200000000U, 0xFFFFFFFFU    // unsigned int (32-bit)
+123456789012345678ULL       // unsigned long long
+123.0f, -1.2345678e-38      // single precision floating point literals
+123.0, 1.23456789012345e+308// double precision floating point literals
 'a', '\141', '\x61'         // Character (literal, octal, hex)
-'\n', '\\', '\'', '\"'      // Newline, backslash, single quote, double quote
+'\n', '\t', '\\', '\'', '\"'// Newline, tab, backslash, single quote, double quote
 "string\n"                  // Array of characters ending with newline and \0
 "hello" "world"             // Concatenated strings
 true, false                 // bool constants 1 and 0
-nullptr                     // Pointer type with the address of 0
+nullptr                     // Pointer to nothing with the address of 0
 ```
 
 ## STORAGE Classes
 
 ```cpp
-int x;                      // Auto (memory exists only while in scope)
-static int x;               // Global lifetime even if local scope
+int x;                      // global variable, initialized to 0
+int glob = 1921;            // initialized global variable
+static int y;               // global lifetime, scope is this file, default = 0
+extern int z;               // someone else must have defined this global or linker error
+void f() {
+  int x;                    // Auto (memory exists only while in scope, not initialized)
+  int a = 2;                // auto, initialized every time function is entered
+  static int z;             // initialized once at start of program to 0
+  static int w = 13;        // initialized once at start of program to 13
+}
+if local scope
 extern int x;               // Information only, declared elsewhere
 ```
 
 ## Statements
 
 ```cpp
-x=y;                        // Every expression is a statement
+;                           // Empty statement, does nothing
+5+6;                        // Expression, no code generated
+x=y;                        // Assignment
 int x;                      // Declarations are statements
-;                           // Empty statement
 {                           // A block is a single statement
     int x;                  // Scope of x is from declaration to end of block
 }

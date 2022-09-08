@@ -169,3 +169,9 @@ see [methodologies](https://newrelic.com/blog/best-practices/programming-methodo
 1. branch prediction
 1. little and big endian architectures
 1. memory alignment
+1. burst mode RAM
+
+## Operating System Issues
+
+1. PATH
+1. LD_LIBRARY_PATH (or on windows, PATH)
