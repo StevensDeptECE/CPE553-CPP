@@ -2,6 +2,8 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #include <condition_variable>
 #include <cstring>
@@ -12,6 +14,7 @@ using namespace std;
 using namespace std::chrono_literals;
 
 constexpr uint32_t blockSize = 512;
+size_t bytesRemaining;
 
 mutex readMutex;
 bool readReady = false;
@@ -51,10 +54,12 @@ void thready() {
   char* processbuf = buf1;
   char* readbuf = buf2;
   fh = open("smallfile.dat", O_RDONLY);
+	struct stat info;
+	fstat(fh, &info);
   if (fh < 0) {
     throw std::runtime_error("cannot open file!");
   }
-
+	bytesRemaining = info.st_size;
   memset(&cb, 0, sizeof(aiocb));
   cb.aio_fildes = fh;
   cb.aio_nbytes = blockSize;
@@ -78,8 +83,9 @@ void thready() {
 
   int cursor = 0;
   int currentBytesRead = read(fh, buf1, blockSize);  // read the 1st block
-
-  while (true) {
+	bytesRemaining -= currentBytesRead;
+	
+  while (bytesRemaining > 0) {
     cb.aio_buf = readbuf;
     operation_completed = false; // set predicate to true and wait until asynch changes it
     cb.aio_offset = cursor;
@@ -92,8 +98,13 @@ void thready() {
     if (!operation_completed)
       break;
 		currentBytesRead = bytesRead; // make local copy of global modified by the asynch code
+		bytesRemaining -= currentBytesRead;
     cursor += bytesRead;
     if (currentBytesRead < blockSize) {
+			cout << "last time" << endl;
+			swap(processbuf, readbuf);     // switch to other buffer for next time
+			currentBytesRead = bytesRead;  // create local copy
+			process(processbuf, currentBytesRead);  // process while waiting
       break;  // last time, get out
     }
     cout << "back from wait" << endl;
@@ -101,7 +112,7 @@ void thready() {
     currentBytesRead = bytesRead;  // create local copy
 
   }
-
+  
   delete[] buf1;
   delete[] buf2;
 }
