@@ -28,4 +28,4 @@ void readWriteMem(uint64_t* p, uint32_t n);
 void writeReadMem(uint64_t* p, uint32_t n);
 void copyMem(uint64_t* dest, uint64_t* src, uint32_t n);
 
-void writeBytesToDiskSize(uint32_t n, uint32_t blockSize);
+void writeBytesToDiskSize(const char filename[], uint32_t n, uint32_t blockSize);

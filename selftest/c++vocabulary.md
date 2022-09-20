@@ -87,6 +87,7 @@ Even if you really know how to program well, if you don't know the terminology a
 1. dangling reference
 1. race condition
 1. deadlock
+
 ## C++ Compiler Terminology
 
 1. primitive data type
@@ -98,6 +99,7 @@ Even if you really know how to program well, if you don't know the terminology a
 1. token
 1. keyword
 1. identifier
+
 ## Multithreading
 
 1. multithreading
@@ -118,19 +120,20 @@ Even if you really know how to program well, if you don't know the terminology a
 1. Extreme Programming
 
 see [methodologies](https://newrelic.com/blog/best-practices/programming-methodology-primer)
+
 ## Tools
 
 1. git
 1. [make](https://www.gnu.org/software/make/manual/) and [tutorial](https://makefiletutorial.com/)
 1. [cmake](https://cmake.org/) and [tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
 1. [gprof](https://users.cs.duke.edu/~ola/courses/programming/gprof.html)
-1. [gcov]()
-1. debugger ([gdb](), [cgdb]())
-1. ninja
-1. doxygen
+1. [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html)
+1. debugger ([gdb](https://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_toc.html), [cgdb](https://cgdb.github.io/docs/cgdb.html))
+1. [ninja](https://ninja-build.org/)
+1. [doxygen](https://doxygen.nl/)
 1. autoconf
 1. configure
-1. github
+1. [github](github.com/)
 1. IDE
   1.1 [vscode]()
   1.1 [CLion]()

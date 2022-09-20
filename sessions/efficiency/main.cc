@@ -69,37 +69,37 @@ void empty2(uint64_t* p, uint32_t n);
  delete [] p2;
  //void writeBytesToDiskSize(uint32_t n, uint32_t blockSize);
  benchmark<>::bench("writeFile 1 byte at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 1); } );
+										[]() { writeBytesToDiskSize("1byte.dat", n2, 1); } );
 
  benchmark<>::bench("writeFile 2 bytes at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 2); } );
+										[]() { writeBytesToDiskSize("2byte.dat", n2, 2); } );
 
  benchmark<>::bench("writeFile 3 bytes at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 3); } );
+										[]() { writeBytesToDiskSize("3byte.dat", n2, 3); } );
  benchmark<>::bench("writeFile 4 bytes at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 4); } );
+										[]() { writeBytesToDiskSize("4byte.dat", n2, 4); } );
  benchmark<>::bench("writeFile 8 bytes at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 8); } );
+										[]() { writeBytesToDiskSize("8byte.dat", n2, 8); } );
  benchmark<>::bench("writeFile 16 bytes at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 16); } );
+										[]() { writeBytesToDiskSize("16byte.dat", n2, 16); } );
 
 
  benchmark<>::bench("writeBytes 1k at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 1*1024); } );
+										[]() { writeBytesToDiskSize("1kbyte.dat", n2, 1*1024); } );
  benchmark<>::bench("writeBytes 2k at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 2*1024); } );
+										[]() { writeBytesToDiskSize("2kbyte.dat", n2, 2*1024); } );
  benchmark<>::bench("writeBytes 4k at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 4*1024); } );
+										[]() { writeBytesToDiskSize("4kbyte.dat", n2, 4*1024); } );
  benchmark<>::bench("writeBytes 8k at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 8*1024); } );
+										[]() { writeBytesToDiskSize("8kbyte.dat", n2, 8*1024); } );
  benchmark<>::bench("writeBytes 16k at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 16*1024); } );
+										[]() { writeBytesToDiskSize("16kbyte.dat", n2, 16*1024); } );
  benchmark<>::bench("writeBytes 32k at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 32*1024); } );
+										[]() { writeBytesToDiskSize("32kbyte.dat", n2, 32*1024); } );
  benchmark<>::bench("writeBytes 64k at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 64*1024); } );
+										[]() { writeBytesToDiskSize("64kbyte.dat", n2, 64*1024); } );
  benchmark<>::bench("writeBytes 128k at a time", trials,
-										[]() { writeBytesToDiskSize(n2, 128*1024); } );
+										[]() { writeBytesToDiskSize("128kbyte.dat", n2, 128*1024); } );
 }
 
 int main() {

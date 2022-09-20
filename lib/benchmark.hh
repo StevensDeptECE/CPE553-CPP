@@ -52,12 +52,8 @@ class benchmark {
 		std::cerr << std::setw(40) << msg << " elapsed time: " << elapsedTime << "\n";
   }
   void displayavg(uint64_t iterations) const {
-		//    std::cerr << msg << " elapsed time: " << (elapsedTime / iterations) << "\n";
-    std::cerr << msg << " elapsed time: ";
-    auto s = duration_cast<std::chrono::nanoseconds>(elapsedTime / iterations);
-		std::cerr << std::setw(14) << s.count() << "ns\n";
-
-		//display(std::cerr, elapsedTime);
+    std::cerr << msg << " elapsed time: " <<
+			std::setw(14) << (elapsedTime/iterations).count() << "ns\n";
   }
   template <typename Func>
   static void benchOnce(const std::string_view msg, bool doesPrint,  Func func) {

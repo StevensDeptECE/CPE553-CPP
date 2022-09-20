@@ -183,9 +183,9 @@ double prod_double(uint32_t n) {
 	return prod;
 }
 
-void writeBytesToDiskSize(uint32_t n, uint32_t blockSize) {
+void writeBytesToDiskSize(const char filename[], uint32_t n, uint32_t blockSize) {
 	char buf[blockSize] = {0};
-	int fh = open("test.dat", O_WRONLY);
+	int fh = open(filename, O_WRONLY);
 	for (uint32_t i = n / blockSize; i > 0; i--)
 		write(fh, buf, sizeof(blockSize));
 	if (n % blockSize != 0) { // extra last write if not evenly aligned
