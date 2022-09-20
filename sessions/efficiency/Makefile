@@ -9,15 +9,15 @@ clean:
 
 lib1.a:	lib1.cc lib1.hh
 	$(CXX) $(DEBUG) $(OPT) -c lib1.cc
-	ar rvs lib1.a lib1.o
+	ar rvs libtest1.a lib1.o
 
 lib2.so:lib2.cc lib2.hh
 	$(CXX) $(DEBUG) $(OPT) -fPIC -c lib2.cc
-	$(CXX) -shared lib2.o -o lib2.so
+	$(CXX) -shared lib2.o -o libtest2.so
 
 main: main.o benchmarks.o lib1.a lib2.so
 	$(CXX) $(DEBUG) $(OPT) -c benchmarks.cc
-	$(CXX) $(DEBUG) main.o benchmarks.o -llib1 -L. -llib2 -o main
+	$(CXX) $(DEBUG) main.o benchmarks.o -ltest1 -L. -ltest2 -o main
 	ldd main
 
 main.o: main.cc ../../lib/benchmark.hh

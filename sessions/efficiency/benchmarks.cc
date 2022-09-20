@@ -1,12 +1,33 @@
 #include <cstdint>
 #include "lib1.hh"
 #include "lib2.hh"
+#include <unistd.h>
+#include <fcntl.h>
 
 void empty();
+void empty(uint32_t, uint32_t);
+void empty(uint32_t, uint32_t, uint32_t);
+void empty(double x);
+void empty(double x, double y);
+void empty(double x, double y, double z);
+
 
 uint64_t callfunc(uint32_t n) {
 	for (uint32_t i = 0; i < n; i++)
 		empty();
+	return 0;
+}
+
+uint64_t callfunc2params(uint32_t n) {
+	for (uint32_t i = 0; i < n; i++)
+		empty(i,i);
+	return 0;
+}
+
+uint64_t callfunc3params(uint32_t n) {
+	for (uint32_t i = 0; i < n; i++)
+		empty(i,i,i);
+	return 0;
 }
 
 uint64_t sum1Ton(uint32_t n) {
@@ -34,33 +55,54 @@ uint64_t sumDiv2(uint32_t n) {
 void empty2(uint64_t* p, uint32_t n) {
 }
 
-uint64_t readMem(uint64_t* p, uint32_t n) {
+uint64_t readMem8(const uint8_t p[], uint32_t n) {
 	uint64_t sum = 0;
 	for (int i = 0; i < n; ++i)
 		sum += p[i];
 	return sum;
 }
 
-// write zeros into a block of memory n elements long, 64 bits at a time
-void writeMem(uint64_t* p, uint32_t n) {
+uint64_t readMem16(const uint16_t p[], uint32_t n) {
+	uint64_t sum = 0;
 	for (int i = 0; i < n; ++i)
-		p[i] = 0;
+		sum += p[i];
+	return sum;
+}
+
+uint64_t readMem32(const uint32_t p[], uint32_t n) {
+	uint64_t sum = 0;
+	for (int i = 0; i < n; ++i)
+		sum += p[i];
+	return sum;
+}
+
+uint64_t readMem64(const uint64_t p[], uint32_t n) {
+	uint64_t sum = 0;
+	for (int i = 0; i < n; ++i)
+		sum += p[i];
+	return sum;
 }
 
 // write zeros into a block of memory n elements long, 8 bits at a time
-void writeMem(uint8_t* p, uint32_t n) {
+void writeMem8(uint8_t* p, uint32_t n) {
 	for (int i = 0; i < n; ++i)
 		p[i] = 0;
 }
 
 // write zeros into a block of memory n elements long, 16 bits at a time
-void writeMem(uint16_t* p, uint32_t n) {
+void writeMem16(uint16_t* p, uint32_t n) {
 	for (int i = 0; i < n; ++i)
 		p[i] = 0;
 }
 
 // write zeros into a block of memory n elements long, 32 bits at a time
-void writeMem(uint32_t* p, uint32_t n) {
+void writeMem32(uint32_t* p, uint32_t n) {
+	for (int i = 0; i < n; ++i)
+		p[i] = 0;
+}
+
+// write zeros into a block of memory n elements long, 64 bits at a time
+void writeMem64(uint64_t* p, uint32_t n) {
 	for (int i = 0; i < n; ++i)
 		p[i] = 0;
 }
@@ -73,8 +115,8 @@ void writeMem(uint32_t* p, uint32_t n) {
 	 through to main memory.  So we will benchmark writeRead also.
 */
 void readWriteMem(uint64_t* p, uint32_t n) {
-  readMem(p, n);
-	writeMem(p, n);
+  readMem64(p, n);
+	writeMem64(p, n);
 }
 
 /**
@@ -83,8 +125,8 @@ void readWriteMem(uint64_t* p, uint32_t n) {
 
 */
 void writeReadMem(uint64_t* p, uint32_t n) {
-	writeMem(p, n);
-  readMem(p, n);
+	writeMem64(p, n);
+  readMem64(p, n);
 }
 
 void copyMem(uint64_t* dest, uint64_t* src, uint32_t n) {
@@ -96,7 +138,7 @@ void copyMem(uint64_t* dest, uint64_t* src, uint32_t n) {
 uint32_t calllib1(uint32_t n) {
 	uint32_t sum = 0;
 	for (uint32_t i = 0; i < n; i++) {
-		sum += libFunc1(i, i);
+		sum += libraryFunc1(i, i);
 	}
 	return sum;
 }
@@ -104,7 +146,7 @@ uint32_t calllib1(uint32_t n) {
 uint32_t calllib2(uint32_t n) {
 	uint32_t sum = 0;
 	for (uint32_t i = 0; i < n; i++) {
-		sum += libFunc2(i, i);
+		sum += libraryFunc2(i, i);
 	}
 	return sum;
 }
@@ -141,4 +183,21 @@ double prod_double(uint32_t n) {
 	return prod;
 }
 
+void writeBytesToDiskSize(uint32_t n, uint32_t blockSize) {
+	char buf[blockSize] = {0};
+	int fh = open("test.dat", O_WRONLY);
+	for (uint32_t i = n / blockSize; i > 0; i--)
+		write(fh, buf, sizeof(blockSize));
+	if (n % blockSize != 0) { // extra last write if not evenly aligned
+		write(fh, buf, n  % blockSize);
+	}
+	close(fh);
+}
+
 void empty() {}
+void empty(uint32_t, uint32_t) {}
+void empty(uint32_t, uint32_t, uint32_t) {}
+void empty(double x) {}
+void empty(double x, double y) {}
+void empty(double x, double y, double z) {}
+
