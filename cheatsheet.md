@@ -69,9 +69,10 @@ const int* p=a;             // Value pointed to by p cannot be modified
 int* const p=a;             // the pointer cannot change (but elements can)
 const int* const p=a;       // Both p and its contents are constant
 const int& cr=x;            // cr cannot be assigned to change x
-int8_t,uint8_t,int16_t,
-uint16_t,int32_t,uint32_t,
-int64_t,uint64_t            // Fixed length standard types
+int8_t,int16_t,int32_t,
+int64_t                     // signed portable integer types
+uint8_t,int16_t,uint32_t,
+uint64_t                    // unsigned portable integer types
 auto it = m.begin();        // Declares it to the result of m.begin()
 auto const param = config["param"];
                             // Declares it to the const result
@@ -83,11 +84,13 @@ auto& s = singleton::instance();
 
 ```cpp
 255, 0377, 0xff             // Integers (decimal, octal, hex)
+10110011000b                // integer (binary)
 2147483647L, 0x7fffffffl    // Long (>= 32-bit) integers
 4200000000U, 0xFFFFFFFFU    // unsigned int (32-bit)
 123456789012345678ULL       // unsigned long long
-123.0f, -1.2345678e-38      // single precision floating point literals
+123.0f, -1.2345678e-38f     // single precision floating point literals
 123.0, 1.23456789012345e+308// double precision floating point literals
+1.5L                        // long double literal
 'a', '\141', '\x61'         // Character (literal, octal, hex)
 '\n', '\t', '\\', '\'', '\"'// Newline, tab, backslash, single quote, double quote
 "string\n"                  // Array of characters ending with newline and \0
@@ -96,7 +99,7 @@ true, false                 // bool constants 1 and 0
 nullptr                     // Pointer to nothing with the address of 0
 ```
 
-## STORAGE Classes
+## Storage Classes
 
 ```cpp
 int x;                      // global variable, initialized to 0
@@ -592,4 +595,22 @@ future<int> fut =         // result of async function
   async(launch::async, fib, 4); // start async function in other thread
 // do some other work 
 cout << fut.get();        // get result of async function. Wait if needed.
+```
+
+## `random` (random number generator)
+```cpp
+#include <random>
+std::default_random_engine gen;               // generates bits
+uint32_t x = gen();                           // generate 32 bits
+std::uniform_int_distribution<int> dist(1,6); // uniform number 1 to 6
+int dice_roll = distribution(generator);      // get a random number 1 to 6
+std::poisson_distribution<int> pdist(5.2);
+std::exponential_distribution<double> expo(3.5); // $p(x|\lambda)=\lambda{}e^{-\lambda{}x}$
+std::gamma_distribution<double> gdist(2,2);
+std::weibull_distribution<double> wdist(2,4);
+std::linear_congruential_engine gen2;         // different kinds of generators
+std::mersenne_twister_engine gen3;
+std::subtract_with_carry_engine gen4;
+
+std::normal_distribution<double> N(0,1);      // normal with mean=0 and variance=1
 ```
