@@ -14,6 +14,8 @@ Even if you really know how to program well, if you don't know the terminology a
 1. parent
 1. child
 1. encapsulation
+1. behavior
+1. stateful
 
 ## C++-Specific Terms for Object-Oriented Programming
 
@@ -31,6 +33,8 @@ Even if you really know how to program well, if you don't know the terminology a
 1. friend
 1. operator overloading
 1. inlining
+1. Resource Allocation Is Initialization (RAII)
+1. virtual inheritance
 
 ## Scope and Lifetime
 1. scope
@@ -64,11 +68,9 @@ Even if you really know how to program well, if you don't know the terminology a
 ## Generic Programming
 
 1. generic programming
-1. templates
+1. template
 1. functor
 1. variadic templates
-1. lambda function
-1. closure
 
 ## Functions
 
@@ -77,16 +79,21 @@ Even if you really know how to program well, if you don't know the terminology a
 1. parameter
 1. reference
 1. value
+1. lambda function
+1. closure
 
-## Memory Safety
+## Memory, Performance and Safety
 
 1. bounds checking
 1. type-safe
 1. memory-safe
 1. side effect
 1. dangling reference
-1. race condition
-1. deadlock
+1. demand-paging
+1. MMU
+1. heap
+1. stack
+1. stack frame
 
 ## C++ Compiler Terminology
 
@@ -107,6 +114,8 @@ Even if you really know how to program well, if you don't know the terminology a
 1. condition_variable
 1. mutex
 1. atomic
+1. race condition
+1. deadlock
 
 ## Development Process and Methodologies
 
@@ -118,6 +127,7 @@ Even if you really know how to program well, if you don't know the terminology a
 1. coverage analysis
 1. Rapid Application Development (RAD)
 1. Extreme Programming
+1. scrum
 
 see [methodologies](https://newrelic.com/blog/best-practices/programming-methodology-primer)
 
@@ -132,12 +142,12 @@ see [methodologies](https://newrelic.com/blog/best-practices/programming-methodo
 1. [ninja](https://ninja-build.org/)
 1. [doxygen](https://doxygen.nl/)
 1. autoconf
-1. configure
+1. configure [ancient but still used](https://www.gnu.org/prep/standards/html_node/Configuration.html)
 1. [github](github.com/)
 1. IDE
-  1.1 [vscode]()
-  1.1 [CLion]()
-  1.1 [qtcreator]()
+  1.1 [vscode](https://code.visualstudio.com/Download)
+  1.1 [CLion](https://www.jetbrains.com/clion/download)
+  1.1 [qtcreator](https://www.qt.io/product/development-tools)
 
 ## Optimization
 
@@ -178,3 +188,7 @@ see [methodologies](https://newrelic.com/blog/best-practices/programming-methodo
 
 1. PATH
 1. LD_LIBRARY_PATH (or on windows, PATH)
+1. library
+1. shared library: .DLL(windows), .so (Linux), .dylib (Mac)
+1. static library: .a
+1. object file: .obj (Windows), .o (Unixi)

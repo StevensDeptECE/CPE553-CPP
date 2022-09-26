@@ -827,6 +827,7 @@ void maps_and_unordered_maps() {
 		cout << v.first << "=>" << v.second << '\n';
 	}
 
+    cout << "ordered size=" << ord.size() << '\n';
 	unordered_map<string, int> quo;
 	quo["AAPL"] = 152;
 	quo["IBM"] = 123;
@@ -842,6 +843,13 @@ void maps_and_unordered_maps() {
 	for (auto q : quo) {
 		cout << q.first << "=>" << q.second << '\n';
 	}
+	unordered_map<string,int>::iterator i = quo.find("BIG");
+	if (i == quo.end()) {
+      cout << "nope!\n";
+	} else {
+	  cout << i->second << '\n';
+	}
+    cout << "unordered size=" << quo.size() << '\n';
 }
 
 
