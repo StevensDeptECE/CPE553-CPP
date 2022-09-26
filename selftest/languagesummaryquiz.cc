@@ -9,6 +9,8 @@
 #include <stdarg.h>
 #include <algorithm>
 #include <concepts>
+#include <unordered_map>
+#include <map>
 using namespace std;
 
 /*
@@ -49,11 +51,15 @@ void operatorprecedence() {
 	int a = 2 + 3 * 4;
 	int b = 2 / 3 * 3;
 	int c = (int)1.5 * 3;
-	int d = 1 << 2 & 1 << 3;
+	int d = (int)(1.5 * 3);
+	int e = 1 << 2 & 1 << 3;
+	int f = (1 << 2) & (1 << 3);
 	cout << a << '\t'
 			 << b << '\t'
 			 << c << '\t'
-			 << d << '\n';
+			 << d << '\t'
+			 << e << '\t'
+			 << f << '\n';
 }
 
 void equaloperatorprecedence() {
@@ -307,7 +313,9 @@ void oldcstrings() {
 	char s2[80] = "abc";
 	strcat(s2, "def");
 	cout << s2 << " length = " << strlen(s2) << '\n';
-	// length of c strings is 1 longer then the length because they end with '\0'
+	// length of c strings is 1 longer than the number of chars because they end with ASCII NUL ('\0')
+	// see: ascii.txt
+	// see: ../BUGS/20spillz.cc
 
 	strcpy(s2, "xyz\n");
 
@@ -743,8 +751,9 @@ int sumargs(int first, ...) {
 	va_list args;
 	int v;
 	int sum = first;
+	va_start(args, first);
 	while ((v = va_arg(args, int)) != 0)
-		sum += sumargs(v);
+		sum += v;
 	return sum;
 }
 
@@ -803,10 +812,36 @@ void variadictemplates() {
 
 void maps_and_unordered_maps() {
 	subject("Maps and Ordered Maps");
-	map<int, int> orderme;
-	orderme[2] = 19;
+	map<int, int> ord;
+	ord[2] = 19;
+    ord[17] = 26;
+	ord[-11] = 4;
+	cout << "ordered: " << ord[-11] << '\n';
+	cout << "ordered: " << ord[5] << '\n';
+	try {
+      cout << "ordered: at(9)" << ord.at(9) << '\n';
+	} catch (...) {
+	  cout << "out of bounds\n";
+	}
+    for (auto v : ord) {
+		cout << v.first << "=>" << v.second << '\n';
+	}
 
-	
+	unordered_map<string, int> quo;
+	quo["AAPL"] = 152;
+	quo["IBM"] = 123;
+	quo["X"] = 18;
+
+	cout << "unordered: quo[AAPL]=" << quo["AAPL"] << '\n';
+	cout << "unordered: quo[AAPL]=" << quo["JJ"] << '\n';
+	try {
+		cout << "unordered: quo[AAPL]=" << quo.at("Q") << '\n';
+	} catch (const exception& e) {
+		cout << e.what();
+	}
+	for (auto q : quo) {
+		cout << q.first << "=>" << q.second << '\n';
+	}
 }
 
 
@@ -868,6 +903,7 @@ int main() {
 	polymorphism();
 	sizeofclasses();
   alignmentAndPacking();
+  maps_and_unordered_maps();
 	bitoperations();
 	randomnumbergen(); //***
   varargs(); //***
