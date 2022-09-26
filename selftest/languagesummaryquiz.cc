@@ -657,6 +657,7 @@ void alignmentAndPacking() {
 }
 
 void polymorphism() {
+  subject("polymorphism");
   vector<A*> list;
   list.push_back(new B());
   list.push_back(new C());
@@ -709,25 +710,29 @@ void inlining() {
   cout << verylongfunctionshouldnotbeinlined(n) << '\n'; // not advantageous to inline, too big
   cout << add(2,3) << '\n'; // this should  be inlined because the code becomes
   // shorter and faster. In this case 2+3 --> 5, no computation at all, just print 5.
-  //inline is just a suggestion. It typically only happens when optimization is on
-  // inline cannot happen if the compiler does not have the code for the function
+  // inline is just a suggestion. It typically only happens when optimization is on
+  // inline cannot happen if the compiler does not know the code for the function at this point in compile
 }
 
 template<typename T>
-void sort(T x[], int n) {
+void bubsort(T x[], int n) {
   for (int j = 0; j < n-1; j++)
     for (int i = 0; i < n-1; i++)
-      if (x[i] < x[i+1])
+      if (x[i] < x[i+1]) //bubsort requires operator < supported
         swap(x[i], x[i+1]);
+  for (int i = 0; i < n; i++)
+    cout << x[i] << ' ';
+  cout << '\n';
 }
 
 void templatefunctions() {
+  subject("template classes");
   int a[] = {4, 3, 2, 1};
   double b[] = {3.5, 2.5, 4.1, 1.2, 2.7};
   string c[] = {"test", "hello", "apple", "donkey", "cat", "bear"};
-  sort(a, 4); // sort is a generic function that works on any type as long as a > b is supported
-  sort(b, 5);
-  sort(c, sizeof(c)/sizeof(string));
+  bubsort(a, 4);
+  bubsort(b, 5);
+  bubsort(c, sizeof(c)/sizeof(string));
 }
 
 template<typename Precision>
@@ -737,13 +742,18 @@ private:
 public:
   Complex(Precision r, Precision i) : r(r), i(i) {}
   friend Complex operator +(Complex a, Complex b) { return Complex(a.r+b.r, a.i+b.i); }
+  friend ostream& operator <<(ostream& s, const Complex& c) {
+	return s << '(' << c.r << "," << c.i << ")";
+  }
 };
 
 void templateclasses() {
+  subject("template classes");
   Complex<int> a(1,2);
   Complex<double> b(3.5,2.2);
   Complex<double> c(1.2,3.1);
   Complex<double> d = b + c;
+  cout << d << '\n';
 }
 
 // a function that accepts n parameters. It will go until the first zero
@@ -887,7 +897,15 @@ void lambdafuncs() {
 //TODO: constexpr
 // issue here is not legal/illegal because this quiz should work.
 void constexprexamples() {
-
+  subject("constexpr examples");
+  int x[20];
+  constexpr uint32_t sz = sizeof(x); // known at compile time
+  int n;
+  cin >> n;
+  int y[n];
+  //constexpr uint32_t size2 = sizeof(y);
+  //cout << size2 << '\n';
+  cout << sizeof(y) << '\n';
 }
 
 
@@ -912,6 +930,7 @@ int main() {
 	sizeofclasses();
   alignmentAndPacking();
   maps_and_unordered_maps();
+  constexprexamples();
 	bitoperations();
 	randomnumbergen(); //***
   varargs(); //***
