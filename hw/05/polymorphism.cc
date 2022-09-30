@@ -24,4 +24,7 @@ int main() {
   for (auto s : shapes) {
     s->print(f);
   }
+  for (auto s : shapes) {
+    delete s; // free the memory used by each shape after we are done
+  }
 }

@@ -46,7 +46,17 @@ int main() {
     cout << r1.area() << '\n'; // internally: call a function _WEIRD_MANGLED_area(&r1)
     Circle c1(50.2, 62.5, 4.0); // circle with radius 4.0
     cout << c1.area() << '\n';
+    Shape* shapes[3] = { &r1, &c1, new Circle(200, 100, 15.5)};
 
+    for (int i = 0; i < sizeof(shapes)/sizeof(Shape*); i++)
+      cout << (*shapes[i]).area();
+
+    for (int i = 0; i < sizeof(shapes)/sizeof(Shape*); i++)
+      cout << shapes[i]->area();
+
+    for (auto s : shapes) {
+        cout << s->area();
+    }
 
 //    const int size = 3;
 //    Circle circles[size] = { Circle(2,5,3.5), Circle(17,4, 28.2), {200, 100, 52.5} };
