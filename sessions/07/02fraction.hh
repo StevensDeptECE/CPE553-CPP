@@ -19,3 +19,5 @@ public:
 	// because you have no control over what else will be included
 	std::ostream& operator <<(std::ostream& s, fraction f);
 };
+
+#endif
