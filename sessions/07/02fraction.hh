@@ -11,6 +11,8 @@ public:
 	// header file contains function prototypes (declarations) of all methods
 	// could eventually also have inline code. We will discuss that later
 	fraction(int n, int d);
+	int getNum() const;
+	
 	friend operator +(fraction a, fraction b);
 
 	// note: full names on data types in header files (std::ostream)
