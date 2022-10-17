@@ -13,13 +13,15 @@ better error checking.
 
 Here are the subjects in this project
 
-* [Markdown Language Summary(markdowntutorial.md)
+* [Markdown Language Summary](markdowntutorial.md)
 * Links to external tutorials on markdown language
   + [w3schools](https://www.w3schools.io/file/markdown-introduction/)
     - [cheatsheet]()
   + [James Bachini](https://jamesbachini.com/markdown-tutorial/)
   + [ItsFOSS](https://itsfoss.com/markdown-guide/)
     - [cheatsheet](https://itsfoss.com/markdown-guide/)
+* Markdown turns into HTML, and you can embed HTML and CSS
+  + [tutorial on HTML](https://www.w3schools.com/html/)
 * The [OpenDSA project](https://opendsa-server.cs.vt.edu/) uses a compiler that also embeds python code; this requires a server running python.
   + [source code for OpenDSA compiler](https://github.com/OpenDSA/OpenDSA)
 * [Problems with Markdown as it Exists Today](FixingMarkdown.md)
