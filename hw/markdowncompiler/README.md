@@ -22,6 +22,7 @@ Here are the subjects in this project
     - [cheatsheet](https://itsfoss.com/markdown-guide/)
 * Markdown turns into HTML, and you can embed HTML and CSS
   + [tutorial on HTML](https://www.w3schools.com/html/)
+  + [tutorial on CSS](https://www.w3schools.com/css/)
 * The [OpenDSA project](https://opendsa-server.cs.vt.edu/) uses a compiler that also embeds python code; this requires a server running python.
   + [source code for OpenDSA compiler](https://github.com/OpenDSA/OpenDSA)
 * [Problems with Markdown as it Exists Today](FixingMarkdown.md)
