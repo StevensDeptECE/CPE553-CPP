@@ -10,7 +10,8 @@
 	5. Calling functions
 	6. Passing parameters to functions
 	7. calling functions in a shared library
-  8. I/O on a block-oriented device (both small numbers of bytes and a block at a time)
+	8. Building a list of objects with both inline and non-inline functions
+    9. I/O on a block-oriented device (both small numbers of bytes and a block at a time)
  */
 #include <iostream>
 
@@ -30,11 +31,42 @@ void operation_benchmarks() {
 	benchmark<>::bench("empty function 2 parms", trials, []() { callfunc2params(n); } );
 	benchmark<>::bench("empty function 3 parms", trials, []() { callfunc3params(n); } );
 	benchmark<>::bench("empty function call static library", trials, []() { calllib1(n); } );
-	benchmark<>::bench("empty function call shared object", trials, []() { calllib2(n); } );
+	//benchmark<>::bench("empty function call shared object", trials, []() { calllib2(n); } );
 	
 	benchmark<>::bench("sum 1 to n", trials, []() { sum1Ton(n); } );
 	benchmark<>::bench("sum and divide", trials, []() { sumDiv(n); } );
 	benchmark<>::bench("sum with 2 divisions", trials, []() { sumDiv(n); } );
+	benchmark<>::bench("callfunc", trials, []() { callfunc(n); } );
+	benchmark<>::bench("callfunc 2 params", trials, []() { callfunc2params(n); } );
+	benchmark<>::bench("callfunc 3 params", trials, []() { callfunc3params(n); } );
+	benchmark<>::bench("readmem8bit", trials, []() {
+		uint8_t* p = new uint8_t[n];
+		 readMem8(p, n); 
+		 delete[] p;
+		 } );
+	benchmark<>::bench("readmem16bit", trials, []() {
+		uint16_t* p = new uint16_t[n];
+		readMem16(p, n); 
+		delete[] p;
+		} );
+	benchmark<>::bench("readmem32bit", trials, []() {
+		uint32_t* p = new uint32_t[n];
+		readMem32(p, n); 
+	    delete[] p;
+		} );
+	benchmark<>::bench("readmem64bit", trials, []() {
+		uint64_t* p = new uint64_t[n];
+		readMem64(p, n); 
+		delete[] p;
+		} );
+	benchmark<>::bench("readmem64bitunaligned", trials, []() {
+		uint64_t* p = new uint64_t[n+1];
+		uint64_t* unaligned = (uint64_t*)((char*)p + 1); // point to unaligned memory
+		readMem64(unaligned, n); 
+		delete[] p;
+		} );
+
+
 #if 0
 	float sum(uint32_t n);
 	float prod(uint32_t n);
