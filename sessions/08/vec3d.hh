@@ -5,7 +5,7 @@ class vec3d {
 private:
   double x,y,z;
 public:
-  vec3d(double x, double y, double z);
+  vec3d(double x = 0, double y = 0, double z = 0);
   friend vec3d operator +(vec3d a, vec3d b);
   friend vec3d operator -(vec3d a);
 

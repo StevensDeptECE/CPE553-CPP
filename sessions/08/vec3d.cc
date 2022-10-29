@@ -1,4 +1,4 @@
- #include "vec3d.hh"
+#include "vec3d.hh"
 #include <cmath>
 using namespace std;
 vec3d::vec3d(double x, double y, double z): x(x), y(y), z(z){}
@@ -22,7 +22,6 @@ const vec3d& vec3d::operator +() const
  {
    return *this;
  }
-
 
  double vec3d::abs() const {
   return sqrt(x*x + y*y + z*z);
