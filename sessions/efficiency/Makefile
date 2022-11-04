@@ -15,7 +15,7 @@ lib2.so:lib2.cc lib2.hh
 	$(CXX) $(DEBUG) $(OPT) -fPIC -c lib2.cc
 	$(CXX) -shared lib2.o -o libtest2.so
 
-LIBS := -ltest1 -ltest2
+LIBS := -ltest1 #-ltest2
 main: main.o benchmarks.o lib1.a lib2.so
 	$(CXX) $(DEBUG) $(OPT) -c benchmarks.cc
 	$(CXX) $(DEBUG) main.o benchmarks.o $(LIBS) -o main
