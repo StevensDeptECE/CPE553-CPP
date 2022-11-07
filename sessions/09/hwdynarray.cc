@@ -2,21 +2,21 @@
 using namespace std;
 
 class DynArray {
-    private:
-    int* data;
-    uint32_t len;
-    uint32_t capacity;
-    grow should double the size of the list and copy all the old into the new
-    void grow() {
+private:
+	int* data;
+	uint32_t len;
+	uint32_t capacity;
+	//grow should double the size of the list and copy all the old into the new
+	void grow() {
 
-    }
-    public:
-    DynArray(uint32_t capacity);
-    void add(int v);
-    ~DynArray();
-    friend ostream& operator <<(ostream& s, const DynArray& d) {
-
-    }
+	}
+public:
+	DynArray(uint32_t capacity);
+	~DynArray();
+	void add(int v);
+	friend ostream& operator <<(ostream& s, const DynArray& d) {
+		
+	}
 };
 
 int main() {
