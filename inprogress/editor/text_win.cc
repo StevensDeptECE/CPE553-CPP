@@ -2,8 +2,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-text_win::text_win() : cursor(0) {
-  screen = 1;
+text_win::text_win() : cursor(0), s(cout) {
+  //screen = 1;
 }
 
 void test1() {

@@ -13,7 +13,8 @@ private:
   static constexpr uint32_t bufsize = 32768;
   char buf[bufsize];
   uint32_t cursor; // current location in the buffer
-  int screen; // handle to the screen
+ // int screen; // handle to the screen
+  ostream& s;
   #define CSI "\033"
   #define CSIc '\033'    
   void insert(char a) {
@@ -132,7 +133,8 @@ public:
 	}
 	void flush() {
         if (cursor >0) {
-    		write(screen, buf, cursor);
+    		//write(screen, buf, cursor);
+			s << buf;
             cursor = 0;
         }
 	}
