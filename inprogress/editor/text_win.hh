@@ -19,43 +19,64 @@ private:
   #define CSIc '\033'    
   void insert(char a) {
     buf[cursor++] = CSIc;
+		buf[cursor++] = '[';
     buf[cursor++] = a;
   }
   void insert(char a, char b) {
     buf[cursor++] = CSIc;
+		buf[cursor++] = '[';
     buf[cursor++] = a;
     buf[cursor++] = b;
   }
   void insert(char a, char b, char c) {
     buf[cursor++] = CSIc;
+		buf[cursor++] = '[';
     buf[cursor++] = a;
     buf[cursor++] = b;
     buf[cursor++] = c;
   }
   void insert(char a, char b, char c, char d) {
     buf[cursor++] = CSIc;
+		buf[cursor++] = '[';
     buf[cursor++] = a;
     buf[cursor++] = b;
     buf[cursor++] = c;
     buf[cursor++] = d;
   }
+	void insertnum(uint8_t v) {
+    if (v >= 100) {
+			int d = v / 100;
+			buf[cursor++] = d + '0';
+			v -= d * 100;
+		}
+		if (v >= 10) {
+			int d = v / 10;
+      buf[cursor++] = d + '0';
+			v -= d * 10;
+		}
+		buf[cursor++] = v + '0';
+	}	
 public:
 	text_win();
 	void clear() { insert('2', 'J'); }
-	void gotorc(int row, int col) {
-        int len = sprintf(buf + cursor, CSI "%d;%dH", row, col);
-        cursor += len;
+	void gotorc(uint8_t row, uint8_t col) {
+		buf[cursor++] = CSIc;
+		buf[cursor++] = '[';
+		insertnum(row);
+		buf[cursor++] = ';';
+		insertnum(col);
+		buf[cursor++] = 'H';
     }
 	void setLowColor(uint8_t fg, uint8_t bg) {
         insert(30+fg, ';', 40+bg, 'm');
     }
 	void setFG(uint32_t r, uint32_t g, uint32_t b) {
-        int bytes = sprintf(buf + cursor, CSI "38;2;%d;%d;%dm",
+        int bytes = sprintf(buf + cursor, CSI "[38;2;%d;%d;%dm",
 		      r, g, b);
         cursor += bytes;
     }
 	void setBG(uint32_t r, uint32_t g, uint32_t b) {
-        int bytes = sprintf(buf + cursor, CSI "38;2;%d;%d;%dm",
+        int bytes = sprintf(buf + cursor, CSI "[38;2;%d;%d;%dm",
 		      r, g, b);
         cursor += bytes;
     }

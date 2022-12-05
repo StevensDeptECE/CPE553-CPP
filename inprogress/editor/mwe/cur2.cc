@@ -60,13 +60,12 @@ public:
 
 int main() {
   text_win w;	
-	for (int r = 0; r <= 20; r += 4) {
-		w.setFG(0x00,0x10,0x40);
-		w.print(r,0, r);
-		w.setFG(0xFF,0x00,0x30);
-		w.print(r,10, r);
+	w.setFG(0x00,0x40,0xFF);
+	for (int i = 0; i < 10; i++) {
+		w.print(10+i,3,"test");
 	}
 	w.bold();
+	w.print(2, 30, 42);
 	w.flush();
-	sleep(60);
+	sleep(5);
 }
