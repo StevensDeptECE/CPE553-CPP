@@ -42,7 +42,7 @@ int main() {
     double b[] = { 10.5, 9.1, 8, 7, 6.1, 5, 4, 3, 2, 1.1 };
     string c[] = { 
         "hello", "cat", "elephant", "dog"
-    };
+    };power
     Elephant d[] = { {"Fred", 5}, {"Alice", 17}, {"James", 2}};
     // type unification, T=int
     bubbleSort(a, sizeof(a)/sizeof(int));
