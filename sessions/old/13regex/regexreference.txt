@@ -6,9 +6,9 @@ abc	match a followed by b, followed by c
 [^a-z]	any single letter that is NOT a-z
 [^\)]	any letter that is NOT )
 cat|dog	either cat or dog
-a*	zero or more a
+a*	zero or more a   Kleene
 a+	one or more a	  a+ is the same as aa*
-a?	zero or 1 a (a is optional)
+a?	zero or 1 a (a is optional)      [a-z]?
 a{3}	exactly 3 a  "aaa"
 a{3,5}	3, 4 or 5 a   aaa|aaaa|aaaaa
 [0-9]	a digit
