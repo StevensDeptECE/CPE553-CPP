@@ -1,0 +1,30 @@
+/*
+
+Shape [ pointer to VFT  ]
+
+
+Circle
+Shape [ pointer to VFT  ]
+radius
+
+Rect
+Shape [ pointer to VFT  ]    <---------------------- p
+len
+wid
+
+
+VFT for Circle
+   Circle::area   -----------> pointer to the function
+   Circle::print   -----------> pointer to the function
+
+VFT for Rect
+   Rect::area   -----------> pointer to the function
+   Rect::print   -----------> pointer to the function
+
+
+
+
+
+
+
+*/
