@@ -1,6 +1,8 @@
 #include <unistd.h>
 #include <stdio.h>
-#include <termios.h>
+//#include <termios.h>
+#include <ncurses/curses.h>
+#include <ncurses/term.h>
 
 using namespace std;
 static struct termios old_terminal_settings;

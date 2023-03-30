@@ -66,7 +66,7 @@ public:
 		buf[cursor++] = ';';
 		insertnum(col);
 		buf[cursor++] = 'H';
-    }
+	}
 	void setLowColor(uint8_t fg, uint8_t bg) {
         insert(30+fg, ';', 40+bg, 'm');
     }
@@ -110,6 +110,15 @@ public:
       s.cursor += len;
       return s;
 	}
+	void print(const char s[]) {
+		//TODO:
+	}
+	void field(uint32_t fg, uint32_t bg, uint32_t r, uint32_t c, uint32_t w) {
+		gotorc(r,c);
+		setColor(fg, bg);
+		print("test");
+	}
+	
 	char hexDigit(int d) {
 		return d >= 10 ? ('A'-10) + d : d + '0';
 	}
