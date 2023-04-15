@@ -1,0 +1,6 @@
+George      Washington
+Thomas      Jefferson
+John        Adams
+George      Bush
+Barack      Obama
+Joe         Biden
