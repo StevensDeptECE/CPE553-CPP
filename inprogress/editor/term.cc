@@ -22,8 +22,10 @@ void resetterm() {
 
 int main() {
   int c;
+	setterm();
   while (c = getc(stdin)) {
     putc(c, stdout);
   }
+	resetterm();
   return 0;
 }
