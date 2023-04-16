@@ -27,6 +27,11 @@ public:
     //TODO: complete
   }
 
+  //TODO: write the move constructor
+  dynamicarray(dynamicarray&& orig) : ________________ {
+
+  }
+  
   // copy and swap paradigm
   dynamicarray& operator =(dynamicarray copy) {
     size = copy.size;
