@@ -10,6 +10,8 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
+/// stbi_write_png(filename, width, height, 4, img, width * 4);
+
 class DynamicBitmap {
 private:
 	uint32_t* p;
@@ -50,6 +52,24 @@ DynamicBitmap makemeone(int w, int h) {
 	return;
 }
 
+/*
+    0   1   2   3   4   5
+0:          r   r   r                      
+1:          r   r   r
+2:          r   r   r
+3:          *   *   *
+
+x=2,y=3
+y*width+x = 3*6+2 = 20
+
+start = y*width+x = 20
+p[start] = color
+p[start+1] = color
+p[start+2] = color
+
+
+*/
+
 int main() {
 	// FIRST PART (ADD COLORS HERE)
 	constexpr uint32_t BLACK = 0xFF000000; // black opaque
@@ -64,8 +84,8 @@ int main() {
 	int xdiameter = 200;
 	int ydiameter = 100;
 
-	DynamicBitmap b(1024, 1024, BLACK); // Potentially dynamic size (Now: 1024 x 1024 pixels)
-	b(32,32) = RED;
+	DynamicBitmap b(1024, 800, BLACK); // Potentially dynamic size (Now: 1024 x 1024 pixels)
+	b(40,32) = RED;  // 32*1024 +40
 	cout << b(32,32);
 	
 	b.horizLine(0, 500, 200, RED); // Red horizontal line, from x=0 to x=500, at y = 200
