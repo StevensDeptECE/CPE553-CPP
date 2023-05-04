@@ -269,10 +269,23 @@ void thedreadedgoto(int n) {
 	cout << "There are " << countPrimes << " primes up to " << n << '\n';
 }
 
+int scope1() {
+	int x = 0;
+	x++;
+	return x;
+}
+
+int scope2() {
+	static int x = 0;
+	x++;
+	return x;
+}
+
 int x = 1;
 namespace stevens {
 	int x = 2;
 }
+//TODO: need lifetime examples
 void scopeandlifetime() {
 	subject("Scope and Lifetime");
 	int x = 3;
@@ -282,6 +295,10 @@ void scopeandlifetime() {
 		static int y = 0;
 		cout << x++ << y++ << stevens::x++ << ::x++ << '\n';
 	}
+	cout << "scope1:" << scope1() << '\n';
+	cout << "scope1:" << scope1() << '\n';
+	cout << "scope2:" << scope2() << '\n';
+	cout << "scope2:" << scope2() << '\n';
 }
 
 void openingfiles() {
@@ -346,11 +363,12 @@ void cppstrings() {
 void identifiers() {
 	subject("Rules for Identifiers (names of entities)");
 	int thisIsALongVariableName = 1; // identifiers are names
+	int this_is_snake_case = 99;
 	int abc123 = 2;
 	int _donotusenames_startingwith_underscore = 3; // used by the compiler
 	int __DONOT_USE = 4; // do not use names starting with two underscores, reserved to the standard
-	const int CONSTANTS = 5; // C and C++ convention: constants are all caps
-
+	const int CONSTANTS = 5; // old C and C++ convention: constants are all caps
+	constexpr uint32_t new_const = 6; // new convention, snake case 
 	// const variables have storage
 	
 	constexpr int BLACK = 0, WHITE = 1; // new C++11 way of specifying constants that have no storage, so better potential for optimization
@@ -436,7 +454,7 @@ void sizeofclasses() {
 	class Bits {
 		int a:2; // bit field: 2 bits (1 for sign, -2 .. +1)
 		int b:3; // bit field: 3 bits (1 for sign, -4 .. +3)
-		unsigned int c:5; // bit field: 5 bits (0 .. 31
+		unsigned int c:5; // bit field: 5 bits (0 .. 31)
 	public:
 		Bits(int a, int b, int c) : a(a), b(b), c(c) {}
 	};
@@ -545,6 +563,7 @@ void randomnumbergen() {
 	// include <random>
 	default_random_engine generator;
 	uniform_int_distribution<int> distribution(1,6);
+	uint32_t x = generator();
 	int diceRoll = distribution(generator);  // generates number in the range 1..6
 	cout << diceRoll << '\n';
 
@@ -577,7 +596,7 @@ void inheritance() {
 	
 	class D : protected A {};
 	// private A --> invisible in B
-	// protected and public A --> private in B
+	// protected and public A --> protected in D
   // "this is just for me and my children" instead use: containment
 	class Dalternate {
 	protected:
@@ -668,6 +687,9 @@ void polymorphism() {
   cout << sizeof(A) << '\n'; // the size of A is bigger than the data by one pointer
   cout << sizeof(B) << '\n'; // and same for every object inheriting from A
   cout << sizeof(C) << '\n';
+  for (auto x : list)
+    delete x;
+  //TODO: note see virtual destructor!
 }
 
 uint32_t verylongfunctionshouldnotbeinlined(uint32_t a) {
