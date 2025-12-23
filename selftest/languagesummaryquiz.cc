@@ -46,6 +46,14 @@ void integeroperations() {
 			 <<	e << '\n';
 }
 
+//TODO: add into main
+void type_promotion() {
+	subject("Type Promotion");
+	double a = 1.5 * 3;
+	int b = 1.5 * 3;
+	int c = 1.6 * 3;
+}
+
 void operatorprecedence() {
 	subject("Operator Precedence");
 	int a = 2 + 3 * 4;
@@ -962,3 +970,4 @@ int main() {
 	templateclasses();//***
 	variadictemplates(); //***
 }
+
